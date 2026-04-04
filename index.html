@@ -1,220 +1,556 @@
-export default function DigitalAgSolutionsWebsite() {
-  const services = [
-    {
-      title: "Digital Farm Decision Support",
-      desc: "Data-driven solutions for smarter farm planning, crop management, and risk reduction.",
-    },
-    {
-      title: "AI, Crop Models & Sensors",
-      desc: "Integration of AI, crop models, field sensors, and drone data for actionable insights.",
-    },
-    {
-      title: "Experimental Design",
-      desc: "Research project design, sampling strategies, and data collection plans for new studies.",
-    },
-    {
-      title: "Training & Capacity Building",
-      desc: "Hands-on training in digital agriculture, analytics, modeling, and field data workflows.",
-    },
-    {
-      title: "Platform Design",
-      desc: "Custom concepts for digital platforms, dashboards, and decision-support systems.",
-    },
-    {
-      title: "Farm to Landscape Analytics",
-      desc: "Consultancy across field, farm, farming systems, and landscape scales worldwide.",
-    },
-  ];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Ag Solutions</title>
+  <style>
+    :root {
+      --green: #15803d;
+      --green-dark: #166534;
+      --teal: #0f766e;
+      --blue: #0369a1;
+      --light: #f8fafc;
+      --dark: #0f172a;
+      --muted: #475569;
+      --white: #ffffff;
+      --card: #ffffff;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+      --radius: 20px;
+    }
 
-  const projects = [
-    "Crop yield prediction and forecasting",
-    "Drone-based crop monitoring and data analysis",
-    "Sensor-based decision support",
-    "Desktop studies on farming systems",
-    "AI-enabled agricultural innovation",
-    "Research protocol and data pipeline development",
-  ];
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      background: var(--light);
+    }
 
-  return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
-      <section className="relative overflow-hidden bg-gradient-to-br from-green-700 via-emerald-600 to-sky-700 text-white">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute -top-24 -left-16 h-72 w-72 rounded-full bg-white blur-3xl" />
-          <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-white blur-3xl" />
-        </div>
-        <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
-            <div>
-              <div className="mb-4 inline-flex rounded-full border border-white/30 bg-white/10 px-4 py-1 text-sm backdrop-blur">
-                Digital Ag Solutions
-              </div>
-              <h1 className="text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
-                Smarter Agriculture Through AI, Data, and Digital Innovation
-              </h1>
-              <p className="mt-6 max-w-2xl text-lg text-white/90">
-                We help researchers, farmers, agribusinesses, and development partners design better agricultural systems using AI, crop models, sensors, drones, and data-driven decision tools.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <a
-                  href="#services"
-                  className="rounded-2xl bg-white px-6 py-3 font-semibold text-emerald-700 shadow-lg transition hover:scale-[1.02]"
-                >
-                  Explore Services
-                </a>
-                <a
-                  href="#contact"
-                  className="rounded-2xl border border-white/40 bg-white/10 px-6 py-3 font-semibold text-white backdrop-blur transition hover:bg-white/20"
-                >
-                  Contact Us
-                </a>
-              </div>
-            </div>
+    img { max-width: 100%; display: block; }
 
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="rounded-3xl bg-white/10 p-6 backdrop-blur shadow-2xl">
-                <div className="text-sm uppercase tracking-[0.2em] text-white/70">Core Strength</div>
-                <div className="mt-3 text-2xl font-semibold">AI + Agronomy</div>
-                <p className="mt-3 text-white/85">
-                  Turning complex agricultural data into practical recommendations.
-                </p>
-              </div>
-              <div className="rounded-3xl bg-white/10 p-6 backdrop-blur shadow-2xl">
-                <div className="text-sm uppercase tracking-[0.2em] text-white/70">Coverage</div>
-                <div className="mt-3 text-2xl font-semibold">Farm to Landscape</div>
-                <p className="mt-3 text-white/85">
-                  Solutions spanning plots, farms, farming systems, and wider landscapes.
-                </p>
-              </div>
-              <div className="rounded-3xl bg-white/10 p-6 backdrop-blur shadow-2xl sm:col-span-2">
-                <div className="text-sm uppercase tracking-[0.2em] text-white/70">What We Deliver</div>
-                <div className="mt-3 text-2xl font-semibold">Research Design, Analytics, Platforms, and Training</div>
-                <p className="mt-3 text-white/85">
-                  From new project design to data collection plans, yield prediction, drone integration, and decision-support platform concepts.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
 
-      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8" id="services">
-        <div className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Our Services</p>
-          <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Consultancy for modern agriculture</h2>
-          <p className="mt-4 text-lg text-slate-600">
-            We combine agricultural science with digital tools to improve productivity, sustainability, and decision-making.
-          </p>
-        </div>
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+    }
 
-        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {services.map((service) => (
-            <div key={service.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
-              <h3 className="text-xl font-semibold">{service.title}</h3>
-              <p className="mt-3 text-slate-600">{service.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 20px;
+    }
 
-      <section className="bg-white py-16">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-2 lg:px-8">
-          <div className="rounded-3xl bg-slate-900 p-8 text-white shadow-xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-400">What We Support</p>
-            <h2 className="mt-3 text-3xl font-bold">Applied research and practical innovation</h2>
-            <ul className="mt-6 space-y-4 text-white/85">
-              {projects.map((item) => (
-                <li key={item} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--green-dark);
+      text-decoration: none;
+    }
 
-          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-700">Why Choose Us</p>
-            <h2 className="mt-3 text-3xl font-bold">Built for researchers, projects, and real farms</h2>
-            <div className="mt-6 grid gap-5 sm:grid-cols-2">
-              <div className="rounded-2xl bg-white p-5 shadow-sm">
-                <div className="text-2xl font-bold text-emerald-700">1</div>
-                <p className="mt-2 text-slate-600">Strong agronomy and farming systems foundation</p>
-              </div>
-              <div className="rounded-2xl bg-white p-5 shadow-sm">
-                <div className="text-2xl font-bold text-emerald-700">2</div>
-                <p className="mt-2 text-slate-600">Experience integrating digital tools with field realities</p>
-              </div>
-              <div className="rounded-2xl bg-white p-5 shadow-sm">
-                <div className="text-2xl font-bold text-emerald-700">3</div>
-                <p className="mt-2 text-slate-600">Ability to design research and data systems from scratch</p>
-              </div>
-              <div className="rounded-2xl bg-white p-5 shadow-sm">
-                <div className="text-2xl font-bold text-emerald-700">4</div>
-                <p className="mt-2 text-slate-600">Global perspective for diverse production environments</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+    }
 
-      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8" id="about">
-        <div className="rounded-[2rem] bg-gradient-to-r from-emerald-50 to-sky-50 p-8 lg:p-12">
-          <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">About Digital Ag Solutions</p>
-              <h2 className="mt-3 text-3xl font-bold sm:text-4xl">From data to decisions in agriculture</h2>
-              <p className="mt-5 text-lg leading-8 text-slate-700">
-                Digital Ag Solutions provides consultancy in digital agriculture, smart farm decision-making, and AI-enabled agricultural innovation. We support the design of new research projects, data collection plans, training programs, and digital systems that help clients make better decisions with confidence.
-              </p>
-              <p className="mt-4 text-lg leading-8 text-slate-700">
-                Our work spans crop yield prediction, drone and sensor integration, crop modeling, platform design, and systems analysis at farm, farming system, and landscape levels.
-              </p>
-            </div>
-            <div className="rounded-3xl bg-white p-8 shadow-sm">
-              <h3 className="text-2xl font-semibold">Core Message</h3>
-              <p className="mt-4 text-slate-600">
-                Helping agriculture move from observation to insight, and from insight to action.
-              </p>
-              <div className="mt-8 space-y-4">
-                <div className="rounded-2xl bg-emerald-50 p-4 text-emerald-800">AI-powered decision support</div>
-                <div className="rounded-2xl bg-sky-50 p-4 text-sky-800">Field-ready research design</div>
-                <div className="rounded-2xl bg-amber-50 p-4 text-amber-800">Globally relevant agricultural consultancy</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
 
-      <section className="bg-slate-950 text-white" id="contact">
-        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-400">Contact</p>
-              <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Let’s build smarter agricultural solutions</h2>
-              <p className="mt-4 max-w-2xl text-lg text-slate-300">
-                Whether you need a research design, digital platform concept, crop modeling support, drone data workflow, or AI-enabled agricultural insight, Digital Ag Solutions is ready to help.
-              </p>
-            </div>
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
-              <div className="space-y-4 text-slate-200">
-                <div>
-                  <div className="text-sm uppercase tracking-wide text-slate-400">Company</div>
-                  <div className="mt-1 text-xl font-semibold">Digital Ag Solutions</div>
-                </div>
-                <div>
-                  <div className="text-sm uppercase tracking-wide text-slate-400">Services</div>
-                  <div className="mt-1">Consultancy, AI integration, crop models, sensors, drones, experimental design, and training</div>
-                </div>
-                <div>
-                  <div className="text-sm uppercase tracking-wide text-slate-400">Email</div>
-                  <div className="mt-1">info@digitalagsolutions.com</div>
-                </div>
-              </div>
-              <button className="mt-8 w-full rounded-2xl bg-emerald-500 px-5 py-3 font-semibold text-slate-950 transition hover:scale-[1.01]">
-                Request a Consultation
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+    .menu a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 600;
+    }
+
+    .menu a:hover { color: var(--green); }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover,
+    .btn-outline:hover { transform: translateY(-1px); }
+
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,0.7);
+      color: white;
+      background: transparent;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(21,128,61,0.95), rgba(15,118,110,0.94), rgba(3,105,161,0.94));
+      color: white;
+      padding: 74px 0 80px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.16);
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 4vw, 4rem);
+      line-height: 1.1;
+      margin: 0 0 18px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 28px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-card img {
+      border-radius: 22px;
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      background: rgba(255,255,255,0.1);
+    }
+
+    .hero-card small {
+      display: block;
+      margin-top: 12px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    section { padding: 80px 0; }
+
+    .section-head {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 40px;
+    }
+
+    .section-head h2 {
+      font-size: 2.25rem;
+      margin: 0 0 10px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 22px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 { margin-top: 0; margin-bottom: 10px; }
+    .card p { color: var(--muted); margin-bottom: 0; }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 800;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+    }
+
+    .feature-wrap {
+      background: var(--dark);
+      color: white;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .feature-box {
+      background: rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .feature-box h3 { margin-top: 0; }
+    .feature-box ul { margin: 0; padding-left: 20px; }
+    .feature-box li { margin-bottom: 10px; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .about-image img {
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      min-height: 420px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .about-content .badge {
+      color: var(--green);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.85rem;
+    }
+
+    .about-content h2 {
+      font-size: 2.3rem;
+      margin: 10px 0 16px;
+    }
+
+    .about-content p { color: var(--muted); }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .stat {
+      background: white;
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.6rem;
+      color: var(--green-dark);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+    }
+
+    .gallery-item span {
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      background: rgba(15,23,42,0.72);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .cta {
+      background: linear-gradient(135deg, #ecfeff, #eff6ff, #f0fdf4);
+    }
+
+    .cta-box {
+      background: white;
+      border-radius: 28px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .contact-card {
+      background: var(--dark);
+      color: white;
+      border-radius: 24px;
+      padding: 28px;
+    }
+
+    .contact-card p { margin: 10px 0; color: rgba(255,255,255,0.86); }
+
+    footer {
+      background: #020617;
+      color: rgba(255,255,255,0.86);
+      padding: 26px 0;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .feature-grid,
+      .about-grid,
+      .cta-box,
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      .stats { grid-template-columns: 1fr; }
+      .hero-card img,
+      .about-image img,
+      .gallery-item img { height: auto; min-height: 0; }
+      .navbar { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container navbar">
+      <a href="#home" class="brand">
+        <span class="brand-logo">DA</span>
+        <span>Digital Ag Solutions</span>
+      </a>
+      <div class="menu">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#gallery">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
     </div>
-  );
-}
+  </div>
+
+  <header class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">AI • Drones • Sensors • Crop Models</span>
+        <h1>Smarter Agriculture Through Data, AI, and Digital Innovation</h1>
+        <p>
+          Digital Ag Solutions helps farmers, researchers, agribusinesses, and development organizations design better agricultural systems through crop modeling, sensor integration, drone analytics, AI solutions, experimental design, and data-driven decision support.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#services">Explore Services</a>
+          <a class="btn btn-outline" href="#contact">Request a Consultation</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80" alt="Digital agriculture field with modern farm monitoring" />
+        <small>Digital tools for better decisions from field to landscape scale.</small>
+      </div>
+    </div>
+  </header>
+
+  <section id="services">
+    <div class="container">
+      <div class="section-head">
+        <h2>Our Services</h2>
+        <p>
+          We combine agricultural science with digital tools to improve productivity, sustainability, and decision-making across diverse production systems.
+        </p>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="icon">1</div>
+          <h3>Digital Farm Decision Support</h3>
+          <p>Data-driven solutions for smarter farm planning, crop management, and risk reduction.</p>
+        </div>
+        <div class="card">
+          <div class="icon">2</div>
+          <h3>AI, Crop Models & Sensors</h3>
+          <p>Integration of AI, crop models, field sensors, and drone data to generate practical insights.</p>
+        </div>
+        <div class="card">
+          <div class="icon">3</div>
+          <h3>Experimental Design</h3>
+          <p>Research design, sampling strategies, and robust data collection plans for new projects.</p>
+        </div>
+        <div class="card">
+          <div class="icon">4</div>
+          <h3>Training & Capacity Building</h3>
+          <p>Hands-on training in digital agriculture, crop modeling, analytics, and field data workflows.</p>
+        </div>
+        <div class="card">
+          <div class="icon">5</div>
+          <h3>Platform Design</h3>
+          <p>Concepts for digital dashboards, decision-support platforms, and research data systems.</p>
+        </div>
+        <div class="card">
+          <div class="icon">6</div>
+          <h3>Farm to Landscape Analytics</h3>
+          <p>Support at plot, farm, farming system, and landscape levels for global agricultural projects.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="feature-wrap">
+    <div class="container feature-grid">
+      <div class="feature-box">
+        <h3>What We Support</h3>
+        <ul>
+          <li>Crop yield prediction and forecasting</li>
+          <li>Drone-based crop monitoring and image analysis</li>
+          <li>Sensor-based decision support systems</li>
+          <li>Desktop studies on farming systems</li>
+          <li>AI-enabled agricultural innovation</li>
+          <li>Research protocols and data pipelines</li>
+        </ul>
+      </div>
+      <div class="feature-box">
+        <h3>Why Clients Work With Us</h3>
+        <ul>
+          <li>Strong agronomy and farming systems foundation</li>
+          <li>Ability to connect science with practical farm realities</li>
+          <li>Experience in data systems, digital tools, and model integration</li>
+          <li>Support for both research teams and applied field projects</li>
+          <li>Global perspective for diverse climates and production environments</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container about-grid">
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80" alt="Aerial view of agricultural landscape" />
+      </div>
+      <div class="about-content">
+        <div class="badge">About Digital Ag Solutions</div>
+        <h2>From data to decisions in agriculture</h2>
+        <p>
+          Digital Ag Solutions provides consultancy in digital agriculture, smart farm decision-making, and AI-enabled agricultural innovation. We support the design of research projects, data collection plans, training programs, and digital systems that help clients make better decisions with confidence.
+        </p>
+        <p>
+          Our work spans crop yield prediction, drone and sensor integration, crop modeling, platform design, and systems analysis from farm to landscape scale.
+        </p>
+        <div class="stats">
+          <div class="stat"><strong>AI</strong><span>Integrated analytics</span></div>
+          <div class="stat"><strong>Drones</strong><span>Imaging and monitoring</span></div>
+          <div class="stat"><strong>Models</strong><span>Prediction and planning</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="container">
+      <div class="section-head">
+        <h2>Focus Areas</h2>
+        <p>Examples of the types of agricultural systems and digital services we support.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1200&q=80" alt="Drone over crop field" />
+          <span>Drone Integration</span>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1523741543316-beb7fc7023d8?auto=format&fit=crop&w=1200&q=80" alt="Field sensors and monitoring" />
+          <span>Sensor-Based Monitoring</span>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1492496913980-501348b61469?auto=format&fit=crop&w=1200&q=80" alt="Crop data analysis and planning" />
+          <span>Research & Analytics</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="contact">
+    <div class="container">
+      <div class="cta-box">
+        <div>
+          <h2>Let’s build smarter agricultural solutions</h2>
+          <p>
+            Whether you need experimental design, digital platform concepts, drone data workflows, AI integration, crop modeling support, or a desktop study, Digital Ag Solutions is ready to help.
+          </p>
+          <a class="btn btn-primary" href="mailto:info@digitalagsolutions.com">Email Us</a>
+        </div>
+        <div class="contact-card">
+          <h3>Contact</h3>
+          <p><strong>Company:</strong> Digital Ag Solutions</p>
+          <p><strong>Email:</strong> info@digitalagsolutions.com</p>
+          <p><strong>Services:</strong> Consultancy, AI integration, crop models, sensors, drones, experimental design, training, and digital platform design.</p>
+          <p><strong>Coverage:</strong> Farm, farming system, and landscape scale.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Digital Ag Solutions. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
