@@ -1,0 +1,220 @@
+export default function DigitalAgSolutionsWebsite() {
+  const services = [
+    {
+      title: "Digital Farm Decision Support",
+      desc: "Data-driven solutions for smarter farm planning, crop management, and risk reduction.",
+    },
+    {
+      title: "AI, Crop Models & Sensors",
+      desc: "Integration of AI, crop models, field sensors, and drone data for actionable insights.",
+    },
+    {
+      title: "Experimental Design",
+      desc: "Research project design, sampling strategies, and data collection plans for new studies.",
+    },
+    {
+      title: "Training & Capacity Building",
+      desc: "Hands-on training in digital agriculture, analytics, modeling, and field data workflows.",
+    },
+    {
+      title: "Platform Design",
+      desc: "Custom concepts for digital platforms, dashboards, and decision-support systems.",
+    },
+    {
+      title: "Farm to Landscape Analytics",
+      desc: "Consultancy across field, farm, farming systems, and landscape scales worldwide.",
+    },
+  ];
+
+  const projects = [
+    "Crop yield prediction and forecasting",
+    "Drone-based crop monitoring and data analysis",
+    "Sensor-based decision support",
+    "Desktop studies on farming systems",
+    "AI-enabled agricultural innovation",
+    "Research protocol and data pipeline development",
+  ];
+
+  return (
+    <div className="min-h-screen bg-slate-50 text-slate-900">
+      <section className="relative overflow-hidden bg-gradient-to-br from-green-700 via-emerald-600 to-sky-700 text-white">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute -top-24 -left-16 h-72 w-72 rounded-full bg-white blur-3xl" />
+          <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-white blur-3xl" />
+        </div>
+        <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            <div>
+              <div className="mb-4 inline-flex rounded-full border border-white/30 bg-white/10 px-4 py-1 text-sm backdrop-blur">
+                Digital Ag Solutions
+              </div>
+              <h1 className="text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+                Smarter Agriculture Through AI, Data, and Digital Innovation
+              </h1>
+              <p className="mt-6 max-w-2xl text-lg text-white/90">
+                We help researchers, farmers, agribusinesses, and development partners design better agricultural systems using AI, crop models, sensors, drones, and data-driven decision tools.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <a
+                  href="#services"
+                  className="rounded-2xl bg-white px-6 py-3 font-semibold text-emerald-700 shadow-lg transition hover:scale-[1.02]"
+                >
+                  Explore Services
+                </a>
+                <a
+                  href="#contact"
+                  className="rounded-2xl border border-white/40 bg-white/10 px-6 py-3 font-semibold text-white backdrop-blur transition hover:bg-white/20"
+                >
+                  Contact Us
+                </a>
+              </div>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="rounded-3xl bg-white/10 p-6 backdrop-blur shadow-2xl">
+                <div className="text-sm uppercase tracking-[0.2em] text-white/70">Core Strength</div>
+                <div className="mt-3 text-2xl font-semibold">AI + Agronomy</div>
+                <p className="mt-3 text-white/85">
+                  Turning complex agricultural data into practical recommendations.
+                </p>
+              </div>
+              <div className="rounded-3xl bg-white/10 p-6 backdrop-blur shadow-2xl">
+                <div className="text-sm uppercase tracking-[0.2em] text-white/70">Coverage</div>
+                <div className="mt-3 text-2xl font-semibold">Farm to Landscape</div>
+                <p className="mt-3 text-white/85">
+                  Solutions spanning plots, farms, farming systems, and wider landscapes.
+                </p>
+              </div>
+              <div className="rounded-3xl bg-white/10 p-6 backdrop-blur shadow-2xl sm:col-span-2">
+                <div className="text-sm uppercase tracking-[0.2em] text-white/70">What We Deliver</div>
+                <div className="mt-3 text-2xl font-semibold">Research Design, Analytics, Platforms, and Training</div>
+                <p className="mt-3 text-white/85">
+                  From new project design to data collection plans, yield prediction, drone integration, and decision-support platform concepts.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8" id="services">
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Our Services</p>
+          <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Consultancy for modern agriculture</h2>
+          <p className="mt-4 text-lg text-slate-600">
+            We combine agricultural science with digital tools to improve productivity, sustainability, and decision-making.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {services.map((service) => (
+            <div key={service.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+              <h3 className="text-xl font-semibold">{service.title}</h3>
+              <p className="mt-3 text-slate-600">{service.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-white py-16">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-2 lg:px-8">
+          <div className="rounded-3xl bg-slate-900 p-8 text-white shadow-xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-400">What We Support</p>
+            <h2 className="mt-3 text-3xl font-bold">Applied research and practical innovation</h2>
+            <ul className="mt-6 space-y-4 text-white/85">
+              {projects.map((item) => (
+                <li key={item} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-700">Why Choose Us</p>
+            <h2 className="mt-3 text-3xl font-bold">Built for researchers, projects, and real farms</h2>
+            <div className="mt-6 grid gap-5 sm:grid-cols-2">
+              <div className="rounded-2xl bg-white p-5 shadow-sm">
+                <div className="text-2xl font-bold text-emerald-700">1</div>
+                <p className="mt-2 text-slate-600">Strong agronomy and farming systems foundation</p>
+              </div>
+              <div className="rounded-2xl bg-white p-5 shadow-sm">
+                <div className="text-2xl font-bold text-emerald-700">2</div>
+                <p className="mt-2 text-slate-600">Experience integrating digital tools with field realities</p>
+              </div>
+              <div className="rounded-2xl bg-white p-5 shadow-sm">
+                <div className="text-2xl font-bold text-emerald-700">3</div>
+                <p className="mt-2 text-slate-600">Ability to design research and data systems from scratch</p>
+              </div>
+              <div className="rounded-2xl bg-white p-5 shadow-sm">
+                <div className="text-2xl font-bold text-emerald-700">4</div>
+                <p className="mt-2 text-slate-600">Global perspective for diverse production environments</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8" id="about">
+        <div className="rounded-[2rem] bg-gradient-to-r from-emerald-50 to-sky-50 p-8 lg:p-12">
+          <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">About Digital Ag Solutions</p>
+              <h2 className="mt-3 text-3xl font-bold sm:text-4xl">From data to decisions in agriculture</h2>
+              <p className="mt-5 text-lg leading-8 text-slate-700">
+                Digital Ag Solutions provides consultancy in digital agriculture, smart farm decision-making, and AI-enabled agricultural innovation. We support the design of new research projects, data collection plans, training programs, and digital systems that help clients make better decisions with confidence.
+              </p>
+              <p className="mt-4 text-lg leading-8 text-slate-700">
+                Our work spans crop yield prediction, drone and sensor integration, crop modeling, platform design, and systems analysis at farm, farming system, and landscape levels.
+              </p>
+            </div>
+            <div className="rounded-3xl bg-white p-8 shadow-sm">
+              <h3 className="text-2xl font-semibold">Core Message</h3>
+              <p className="mt-4 text-slate-600">
+                Helping agriculture move from observation to insight, and from insight to action.
+              </p>
+              <div className="mt-8 space-y-4">
+                <div className="rounded-2xl bg-emerald-50 p-4 text-emerald-800">AI-powered decision support</div>
+                <div className="rounded-2xl bg-sky-50 p-4 text-sky-800">Field-ready research design</div>
+                <div className="rounded-2xl bg-amber-50 p-4 text-amber-800">Globally relevant agricultural consultancy</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-950 text-white" id="contact">
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-400">Contact</p>
+              <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Let’s build smarter agricultural solutions</h2>
+              <p className="mt-4 max-w-2xl text-lg text-slate-300">
+                Whether you need a research design, digital platform concept, crop modeling support, drone data workflow, or AI-enabled agricultural insight, Digital Ag Solutions is ready to help.
+              </p>
+            </div>
+            <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
+              <div className="space-y-4 text-slate-200">
+                <div>
+                  <div className="text-sm uppercase tracking-wide text-slate-400">Company</div>
+                  <div className="mt-1 text-xl font-semibold">Digital Ag Solutions</div>
+                </div>
+                <div>
+                  <div className="text-sm uppercase tracking-wide text-slate-400">Services</div>
+                  <div className="mt-1">Consultancy, AI integration, crop models, sensors, drones, experimental design, and training</div>
+                </div>
+                <div>
+                  <div className="text-sm uppercase tracking-wide text-slate-400">Email</div>
+                  <div className="mt-1">info@digitalagsolutions.com</div>
+                </div>
+              </div>
+              <button className="mt-8 w-full rounded-2xl bg-emerald-500 px-5 py-3 font-semibold text-slate-950 transition hover:scale-[1.01]">
+                Request a Consultation
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
