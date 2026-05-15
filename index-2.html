@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Digital Ag Systems | Full-Stack Digital Agronomy</title>
+  <meta name="description" content="Digital Ag Systems delivers full-stack digital agronomy — APSIM crop simulation, drone analytics, carbon advisory, and precision agriculture consulting across Europe and North America."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fraunces:ital,wght@0,300;0,600;0,700;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --navy:#0b1929;--navy2:#0f2035;
+      --blue:#1a6fc4;--blue2:#2484e0;--sky:#5baaf5;
+      --ice:#ddeeff;--white:#fff;--off:#f7fafd;
+      --gray:#64788f;--lgray:#e4ecf4;--bdr:rgba(26,111,196,.15);
+      --fh:'Fraunces',serif;--fb:'Plus Jakarta Sans',sans-serif;
+      --max:1140px;--r:10px;--sh:0 4px 32px rgba(11,25,41,.10);
+    }
+    html{scroll-behavior:smooth}
+    body{background:#fff;color:var(--navy);font-family:var(--fb);font-size:16px;line-height:1.65;overflow-x:hidden}
+
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--bdr);box-shadow:0 1px 12px rgba(11,25,41,.06);transition:box-shadow .3s}
+    .logo{font-family:var(--fb);font-weight:800;font-size:1.05rem;color:var(--navy);text-decoration:none;display:flex;align-items:center;gap:8px}
+    .logo-dot{width:8px;height:8px;border-radius:50%;background:var(--blue)}
+    .logo span{color:var(--blue)}
+    .nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+    .nav-links a{font-size:.88rem;font-weight:500;color:var(--gray);text-decoration:none;transition:color .2s}
+    .nav-links a:hover{color:var(--blue)}
+    .nav-btn{background:var(--blue)!important;color:#fff!important;padding:9px 22px;border-radius:6px;font-weight:600!important;transition:background .2s!important}
+    .nav-btn:hover{background:var(--blue2)!important}
+    .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+    .burger span{display:block;width:22px;height:2px;background:var(--navy);border-radius:2px;transition:all .3s}
+
+    /* ── HERO ── */
+    .hero{min-height:100vh;background:var(--navy);display:flex;align-items:center;padding:120px 48px 80px;position:relative;overflow:hidden}
+    .hero-glow{position:absolute;top:-20%;right:-10%;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(36,132,224,.22) 0%,transparent 65%);pointer-events:none}
+    .hero-glow2{position:absolute;bottom:-20%;left:-5%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(26,111,196,.12) 0%,transparent 65%);pointer-events:none}
+    .hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(91,170,245,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(91,170,245,.04) 1px,transparent 1px);background-size:72px 72px}
+    .hero-inner{position:relative;max-width:var(--max);margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 420px;gap:80px;align-items:center}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(91,170,245,.12);border:1px solid rgba(91,170,245,.25);border-radius:100px;padding:5px 16px;font-size:.78rem;font-weight:600;color:var(--sky);letter-spacing:.07em;text-transform:uppercase;margin-bottom:24px;opacity:0;animation:fadeUp .6s .1s forwards}
+    .pdot{width:6px;height:6px;border-radius:50%;background:var(--sky);animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+    h1{font-family:var(--fh);font-weight:700;font-size:clamp(2.6rem,5.5vw,4.6rem);line-height:1.08;letter-spacing:-.02em;color:#fff;opacity:0;animation:fadeUp .7s .2s forwards}
+    h1 em{font-style:italic;color:var(--sky)}
+    .hero-sub{margin-top:24px;font-size:1.08rem;color:rgba(221,238,255,.7);font-weight:300;line-height:1.75;max-width:520px;opacity:0;animation:fadeUp .7s .35s forwards}
+    .hero-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;opacity:0;animation:fadeUp .7s .48s forwards}
+    .chip{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:5px;padding:5px 13px;font-size:.8rem;color:var(--ice);font-weight:500}
+    .hero-ctas{display:flex;gap:14px;margin-top:40px;flex-wrap:wrap;opacity:0;animation:fadeUp .7s .58s forwards}
+    .btn-blue{background:var(--blue2);color:#fff;padding:14px 30px;border-radius:7px;font-weight:700;font-size:.92rem;text-decoration:none;transition:all .2s;border:none;cursor:pointer;font-family:var(--fb)}
+    .btn-blue:hover{background:var(--sky);transform:translateY(-1px)}
+    .btn-ghost{background:transparent;color:var(--ice);padding:14px 30px;border-radius:7px;font-weight:500;font-size:.92rem;text-decoration:none;border:1px solid rgba(255,255,255,.2);transition:all .2s}
+    .btn-ghost:hover{border-color:var(--sky);color:var(--sky)}
+    .hero-card{background:rgba(255,255,255,.05);border:1px solid rgba(91,170,245,.2);border-radius:16px;padding:36px 32px;opacity:0;animation:fadeUp .7s .65s forwards}
+    .hcard-title{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--sky);margin-bottom:20px}
+    .mrow{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+    .mrow:last-child{border:none}
+    .mlabel{font-size:.85rem;color:rgba(221,238,255,.6)}
+    .munit{font-size:.73rem;color:rgba(221,238,255,.4);margin-top:2px}
+    .mval{font-family:var(--fh);font-weight:700;font-size:1.45rem;color:var(--sky)}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+    /* ── TRUST BAR ── */
+    .trust-bar{background:var(--off);border-top:1px solid var(--lgray);border-bottom:1px solid var(--lgray);padding:22px 48px}
+    .trust-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .trust-label{font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);white-space:nowrap}
+    .tsep{width:1px;height:22px;background:var(--lgray)}
+    .titem{display:flex;align-items:center;gap:7px;font-size:.83rem;color:var(--gray);font-weight:500}
+
+    /* ── SHARED ── */
+    section{padding:96px 48px}
+    .container{max-width:var(--max);margin:0 auto}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
+    .eyebrow::before{content:'';display:block;width:22px;height:2px;background:var(--blue);border-radius:2px}
+    h2{font-family:var(--fh);font-weight:700;font-size:clamp(1.85rem,3.5vw,2.8rem);line-height:1.15;letter-spacing:-.02em;color:var(--navy)}
+    h2 em{font-style:italic;color:var(--blue)}
+    .secsub{font-size:1rem;color:var(--gray);font-weight:300;max-width:500px;margin-top:14px;line-height:1.75}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .6s,transform .6s}
+    .reveal.vis{opacity:1;transform:translateY(0)}
+
+    /* ── SERVICES ── */
+    #services{background:#fff}
+    .svc-hdr{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:52px;flex-wrap:wrap}
+    .svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+    .svc-card{border:1.5px solid var(--lgray);border-radius:var(--r);padding:32px 28px;background:#fff;transition:all .25s;position:relative;overflow:hidden}
+    .svc-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+    .svc-card:hover{border-color:rgba(26,111,196,.3);box-shadow:var(--sh);transform:translateY(-3px)}
+    .svc-card:hover::after{transform:scaleX(1)}
+    .svc-icon{width:46px;height:46px;border-radius:10px;background:var(--off);border:1px solid var(--lgray);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:20px}
+    .svc-card h3{font-family:var(--fb);font-weight:700;font-size:1.02rem;color:var(--navy);margin-bottom:10px}
+    .svc-card p{font-size:.88rem;color:var(--gray);line-height:1.65;font-weight:300}
+    .svc-list{list-style:none;margin-top:18px}
+    .svc-list li{font-size:.83rem;color:var(--gray);padding:5px 0;display:flex;align-items:flex-start;gap:8px}
+    .svc-list li::before{content:'→';color:var(--blue);font-weight:700;flex-shrink:0;margin-top:1px}
+    .svc-price{display:inline-block;margin-top:20px;background:var(--off);border:1px solid var(--lgray);color:var(--blue);font-size:.78rem;font-weight:700;padding:5px 13px;border-radius:100px}
+
+    /* ── DRONE ── */
+    #drone{background:var(--off)}
+    .drone-split{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center}
+    .drone-left h2{margin-bottom:14px}
+    .drone-left .secsub{margin-bottom:32px}
+    .workflow{display:flex;flex-direction:column}
+    .wstep{display:flex;gap:20px;padding-bottom:28px;position:relative}
+    .wstep:not(:last-child)::before{content:'';position:absolute;left:17px;top:38px;width:2px;bottom:0;background:var(--lgray)}
+    .wnum{width:36px;height:36px;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:1}
+    .wbody strong{display:block;font-weight:600;font-size:.95rem;color:var(--navy);margin-bottom:3px;margin-top:6px}
+    .wbody span{font-size:.86rem;color:var(--gray);font-weight:300}
+    .drone-panel{background:#fff;border:1.5px solid var(--lgray);border-radius:14px;padding:40px 36px;box-shadow:var(--sh)}
+    .dpanel-title{font-size:.76rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--blue);margin-bottom:24px;text-align:center}
+    .drone-emoji{text-align:center;font-size:4rem;margin-bottom:28px;animation:float 3.5s ease-in-out infinite;display:block}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    .spec-tbl{width:100%;border-collapse:collapse}
+    .spec-tbl tr{border-bottom:1px solid var(--lgray)}
+    .spec-tbl tr:last-child{border:none}
+    .spec-tbl td{padding:11px 4px;font-size:.87rem}
+    .spec-tbl td:first-child{color:var(--gray)}
+    .spec-tbl td:last-child{color:var(--blue);font-weight:700;text-align:right}
+
+    /* ── WHY ── */
+    #why{background:var(--navy);padding:80px 48px}
+    .why-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px}
+    .why-head{grid-column:1/-1}
+    .why-head h2{color:#fff}
+    .why-head .secsub{color:rgba(221,238,255,.6);max-width:560px}
+    .why-card{background:rgba(255,255,255,.05);border:1px solid rgba(91,170,245,.15);border-radius:var(--r);padding:28px 24px;transition:border-color .25s}
+    .why-card:hover{border-color:rgba(91,170,245,.35)}
+    .why-icon{font-size:1.6rem;margin-bottom:14px;display:block}
+    .why-card h3{font-family:var(--fb);font-weight:700;font-size:1rem;color:#fff;margin-bottom:8px}
+    .why-card p{font-size:.86rem;color:rgba(221,238,255,.6);font-weight:300;line-height:1.65}
+
+    /* ── WORK ── */
+    #work{background:#fff}
+    .work-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;margin-top:48px}
+    .case-card{border:1.5px solid var(--lgray);border-radius:var(--r);padding:32px;background:#fff;transition:all .25s}
+    .case-card:hover{box-shadow:var(--sh);border-color:rgba(26,111,196,.25);transform:translateY(-2px)}
+    .case-tag{font-size:.72rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+    .case-card h3{font-family:var(--fb);font-weight:700;font-size:1rem;color:var(--navy);margin-bottom:10px;line-height:1.4}
+    .case-card p{font-size:.88rem;color:var(--gray);line-height:1.65;font-weight:300}
+    .case-result{margin-top:22px;padding:15px;background:var(--off);border-radius:7px;border-left:3px solid var(--blue)}
+    .crlabel{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:4px}
+    .crtext{font-size:.88rem;color:var(--navy);line-height:1.55}
+    .case-meta{display:flex;gap:14px;margin-top:18px;flex-wrap:wrap}
+    .case-meta span{font-size:.78rem;color:var(--gray)}
+
+    /* ── PRICING ── */
+    #pricing{background:var(--off)}
+    .price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px;margin-top:48px;align-items:start}
+    .price-card{background:#fff;border:1.5px solid var(--lgray);border-radius:var(--r);padding:34px 28px;position:relative}
+    .price-card.feat{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,111,196,.08)}
+    .feat-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:3px 14px;border-radius:100px;white-space:nowrap}
+    .pname{font-weight:700;font-size:1rem;color:var(--navy);margin-bottom:6px}
+    .pdesc{font-size:.84rem;color:var(--gray);font-weight:300;line-height:1.55;margin-bottom:20px}
+    .pamount{font-family:var(--fh);font-weight:700;font-size:2.4rem;color:var(--blue);line-height:1;margin-bottom:2px}
+    .punit{font-size:.79rem;color:var(--gray);margin-bottom:22px}
+    .plist{list-style:none;margin-bottom:26px;border-top:1px solid var(--lgray);padding-top:18px}
+    .plist li{font-size:.85rem;color:var(--gray);padding:6px 0;display:flex;align-items:flex-start;gap:8px;border-bottom:1px solid var(--lgray)}
+    .plist li:last-child{border:none}
+    .plist li::before{content:'✓';color:var(--blue);font-weight:700;flex-shrink:0}
+    .pbtn{display:block;text-align:center;padding:12px;border-radius:7px;font-weight:600;font-size:.88rem;text-decoration:none;border:1.5px solid var(--blue);color:var(--blue);transition:all .2s}
+    .pbtn:hover{background:var(--blue);color:#fff}
+    .price-card.feat .pbtn{background:var(--blue);color:#fff}
+    .price-card.feat .pbtn:hover{background:var(--blue2)}
+
+    /* ── CONTACT ── */
+    #contact{background:#fff}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+    .contact-left h2{margin-bottom:14px}
+    .contact-left .secsub{margin-bottom:36px}
+    .citems{display:flex;flex-direction:column;gap:18px}
+    .ci{display:flex;align-items:center;gap:14px}
+    .ci-icon{width:42px;height:42px;border-radius:9px;background:var(--off);border:1px solid var(--lgray);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+    .ci-text strong{display:block;font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--gray);margin-bottom:2px}
+    .ci-text a,.ci-text span{font-size:.92rem;color:var(--navy);font-weight:500;text-decoration:none;transition:color .2s}
+    .ci-text a:hover{color:var(--blue)}
+    .cform{background:var(--off);border:1.5px solid var(--lgray);border-radius:14px;padding:40px 36px}
+    .cform h3{font-family:var(--fb);font-weight:700;font-size:1.1rem;color:var(--navy);margin-bottom:26px}
+    .fg{margin-bottom:16px}
+    .fg label{display:block;font-size:.77rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--gray);margin-bottom:7px}
+    .fg input,.fg select,.fg textarea{width:100%;background:#fff;border:1.5px solid var(--lgray);border-radius:7px;padding:11px 14px;color:var(--navy);font-family:var(--fb);font-size:.92rem;transition:border-color .2s;outline:none}
+    .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--blue)}
+    .fg textarea{height:100px;resize:vertical}
+    .fg select option{background:#fff}
+    .sbtn{width:100%;background:var(--blue);color:#fff;border:none;padding:13px;border-radius:7px;font-weight:700;font-size:.92rem;cursor:pointer;font-family:var(--fb);transition:all .2s;margin-top:6px}
+    .sbtn:hover{background:var(--blue2);transform:translateY(-1px)}
+
+    /* ── FOOTER ── */
+    footer{background:var(--navy);padding:48px;display:flex;flex-direction:column;align-items:center;gap:16px}
+    .flogo{font-family:var(--fb);font-weight:800;font-size:1.05rem;color:#fff;display:flex;align-items:center;gap:8px}
+    .flogo span{color:var(--sky)}
+    .ftag{font-size:.84rem;color:rgba(221,238,255,.5);text-align:center}
+    .flinks{display:flex;gap:24px;list-style:none;flex-wrap:wrap;justify-content:center}
+    .flinks a{font-size:.83rem;color:rgba(221,238,255,.55);text-decoration:none;transition:color .2s}
+    .flinks a:hover{color:var(--sky)}
+    .fcopy{font-size:.76rem;color:rgba(221,238,255,.3)}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px){
+      nav{padding:0 20px}
+      section,#why{padding:64px 20px}
+      .hero{padding:100px 20px 64px}
+      .trust-bar{padding:18px 20px}
+      footer{padding:40px 20px}
+      .hero-inner,.drone-split,.contact-grid{grid-template-columns:1fr;gap:40px}
+      .why-inner{grid-template-columns:1fr}
+      .why-head{grid-column:1}
+      .nav-links{display:none}
+      .burger{display:flex}
+      .tsep{display:none}
+      .svc-hdr{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="main-nav">
+  <a href="#home" class="logo">
+    <div class="logo-dot"></div>Digital<span>Ag</span>&nbsp;Systems
+  </a>
+  <ul class="nav-links" id="nav-list">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#drone">Drone</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-btn">Book a Call</a></li>
+  </ul>
+  <button class="burger" onclick="toggleNav()" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="home">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge"><div class="pdot"></div>Full-Stack Digital Agronomy</div>
+      <h1>Smarter Decisions.<br/><em>Better Harvests.</em></h1>
+      <p class="hero-sub">We combine APSIM crop simulation, licensed drone analytics, and carbon advisory into one integrated service — so agribusinesses and carbon platforms get science that works in the real world.</p>
+      <div class="hero-chips">
+        <span class="chip">🌱 APSIM Modeling</span>
+        <span class="chip">🚁 Drone Analytics</span>
+        <span class="chip">🌍 Carbon Advisory</span>
+        <span class="chip">🇪🇹 🇯🇵 🇦🇺 🇺🇸 4 Continents</span>
+      </div>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn-blue">Book a Discovery Call →</a>
+        <a href="#services" class="btn-ghost">Explore Services</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hcard-title">What We Deliver</div>
+      <div class="mrow">
+        <div><div class="mlabel">Drone coverage</div><div class="munit">per day, per operator</div></div>
+        <div class="mval">500+ ac</div>
+      </div>
+      <div class="mrow">
+        <div><div class="mlabel">APSIM simulation modules</div><div class="munit">crop · soil · climate · management</div></div>
+        <div class="mval">80+</div>
+      </div>
+      <div class="mrow">
+        <div><div class="mlabel">Continents of field experience</div><div class="munit">Ethiopia · Japan · Australia · USA</div></div>
+        <div class="mval">4</div>
+      </div>
+      <div class="mrow">
+        <div><div class="mlabel">Starting drone price</div><div class="munit">multispectral NDVI + agronomic report</div></div>
+        <div class="mval">$8/ac</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST BAR ── -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <span class="trust-label">Trusted Expertise</span>
+    <div class="tsep"></div>
+    <div class="titem">🎓 PhD-Level Crop Science</div>
+    <div class="tsep"></div>
+    <div class="titem">🚁 Licensed Drone Operator</div>
+    <div class="tsep"></div>
+    <div class="titem">🌿 APSIM Certified Modelling</div>
+    <div class="tsep"></div>
+    <div class="titem">✅ Consulting Projects Delivered</div>
+    <div class="tsep"></div>
+    <div class="titem">🌍 Europe &amp; North America</div>
+  </div>
+</div>
+
+<!-- ── SERVICES ── -->
+<section id="services">
+  <div class="container">
+    <div class="svc-hdr">
+      <div>
+        <div class="eyebrow reveal">Our Services</div>
+        <h2 class="reveal">Full-Stack Digital Agronomy —<br/><em>From Field to Decision</em></h2>
+      </div>
+      <p class="secsub reveal">Six specialist services that work independently or as a coordinated system — all grounded in verified crop science.</p>
+    </div>
+    <div class="svc-grid">
+
+      <div class="svc-card reveal">
+        <div class="svc-icon">🌱</div>
+        <h3>APSIM Crop Simulation</h3>
+        <p>Mechanistic modelling of your specific cropping system — legumes, mixed rotations, and nitrogen dynamics — calibrated to your soil, climate, and management.</p>
+        <ul class="svc-list">
+          <li>Legume N-fixation quantification</li>
+          <li>Yield gap analysis &amp; scenario testing</li>
+          <li>Carbon MRV framework development</li>
+          <li>Long-term rotation optimisation</li>
+        </ul>
+        <span class="svc-price">From $5,000 per project</span>
+      </div>
+
+      <div class="svc-card reveal">
+        <div class="svc-icon">🚁</div>
+        <h3>Drone Crop Monitoring</h3>
+        <p>Licensed drone operations with agronomic-grade interpretation. Not just NDVI maps — actionable management prescriptions backed by crop science.</p>
+        <ul class="svc-list">
+          <li>Multispectral NDVI + RGB mapping</li>
+          <li>Stress zone identification</li>
+          <li>Variable rate application prescriptions</li>
+          <li>Drone data → APSIM calibration</li>
+        </ul>
+        <span class="svc-price">From $8/acre · Seasonal packages</span>
+      </div>
+
+      <div class="svc-card reveal">
+        <div class="svc-icon">🌍</div>
+        <h3>Carbon &amp; Nitrogen Advisory</h3>
+        <p>Science-based advisory for carbon credit MRV, nitrogen credit verification, and regenerative agriculture transition planning.</p>
+        <ul class="svc-list">
+          <li>Legume N-credit quantification</li>
+          <li>Carbon baseline survey (drone + APSIM)</li>
+          <li>MRV methodology development</li>
+          <li>Scope 3 emissions reporting</li>
+        </ul>
+        <span class="svc-price">From $15,000 per engagement</span>
+      </div>
+
+      <div class="svc-card reveal">
+        <div class="svc-icon">🔬</div>
+        <h3>Experimental Design &amp; Analytics</h3>
+        <p>Robust research design, sampling strategies, and data collection plans — built for scientific rigour and real-world field conditions.</p>
+        <ul class="svc-list">
+          <li>Field trial design &amp; protocols</li>
+          <li>Statistical analysis &amp; data pipelines</li>
+          <li>Sensor integration planning</li>
+          <li>AI-enabled data workflows</li>
+        </ul>
+        <span class="svc-price">From $3,000 per project</span>
+      </div>
+
+      <div class="svc-card reveal">
+        <div class="svc-icon">🎓</div>
+        <h3>Training &amp; Capacity Building</h3>
+        <p>Hands-on training in digital agriculture, APSIM crop modelling, drone data workflows, and AI-enabled field analytics.</p>
+        <ul class="svc-list">
+          <li>APSIM for legume &amp; mixed systems</li>
+          <li>Drone data interpretation</li>
+          <li>Digital farm decision tools</li>
+          <li>Group &amp; institutional programs</li>
+        </ul>
+        <span class="svc-price">From $2,500 per program</span>
+      </div>
+
+      <div class="svc-card reveal">
+        <div class="svc-icon">📊</div>
+        <h3>Strategic Science Retainer</h3>
+        <p>Monthly advisory for agtech companies and carbon platforms needing ongoing scientific support, simulation runs, and expert review on demand.</p>
+        <ul class="svc-list">
+          <li>Monthly APSIM scenario runs</li>
+          <li>4 × advisory calls per month</li>
+          <li>Methodology review &amp; sign-off</li>
+          <li>Priority 48-hour turnaround</li>
+        </ul>
+        <span class="svc-price">From $3,500/month</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── DRONE ── -->
+<section id="drone">
+  <div class="container">
+    <div class="drone-split">
+      <div class="drone-left reveal">
+        <div class="eyebrow">The Drone Advantage</div>
+        <h2>From Flight to Farm<br/><em>Decision in One Workflow</em></h2>
+        <p class="secsub">Most drone pilots deliver maps. We deliver science. Your flight data feeds directly into our APSIM models — creating a closed-loop system no standalone service can replicate.</p>
+        <div class="workflow">
+          <div class="wstep">
+            <div class="wnum">1</div>
+            <div class="wbody"><strong>Licensed Drone Flight</strong><span>Multispectral NDVI + RGB mapping of your fields. Same-day data processing and delivery.</span></div>
+          </div>
+          <div class="wstep">
+            <div class="wnum">2</div>
+            <div class="wbody"><strong>Agronomic Interpretation</strong><span>Stress zones and deficiency patterns identified using PhD-level crop science — not just colour maps.</span></div>
+          </div>
+          <div class="wstep">
+            <div class="wnum">3</div>
+            <div class="wbody"><strong>APSIM Model Calibration</strong><span>Drone observations feed directly into our simulation platform, improving forecast accuracy for your specific soils and climate.</span></div>
+          </div>
+          <div class="wstep">
+            <div class="wnum">4</div>
+            <div class="wbody"><strong>Management Prescription</strong><span>Variable-rate application maps, intervention priorities, and a written agronomic report with clear field actions.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="drone-panel reveal">
+        <div class="dpanel-title">Licensed Drone Service Specification</div>
+        <span class="drone-emoji">🚁</span>
+        <table class="spec-tbl">
+          <tr><td>Imaging capability</td><td>Multispectral + RGB</td></tr>
+          <tr><td>Coverage per day</td><td>500+ acres</td></tr>
+          <tr><td>Outputs delivered</td><td>NDVI · NDRE · Prescriptions</td></tr>
+          <tr><td>Report turnaround</td><td>Same day</td></tr>
+          <tr><td>Starting price</td><td>From $8/acre</td></tr>
+          <tr><td>Licensing status</td><td>Licensed &amp; Insured</td></tr>
+          <tr><td>Seasonal packages</td><td>From $5,000/season</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY ── -->
+<section id="why">
+  <div class="container">
+    <div class="why-inner">
+      <div class="why-head reveal">
+        <div class="eyebrow" style="color:var(--sky)">Why Digital Ag Systems</div>
+        <h2>The Integration Advantage</h2>
+        <p class="secsub">We are not a drone company that learned agronomy, or a modeller who bought a drone. We are a fully integrated scientific service — and that changes what is possible for your farm or business.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-icon">🔬</span>
+        <h3>Science First, Always</h3>
+        <p>Every deliverable is grounded in peer-reviewed crop science. APSIM is the same platform used by CSIRO and international research institutions — we bring it to commercial farm decisions.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-icon">🚁</span>
+        <h3>Drone + Model = One Pipeline</h3>
+        <p>Our drone data directly calibrates our APSIM models. That closed loop means better simulation accuracy and better in-season prescriptions — from one team, one workflow.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-icon">🌍</span>
+        <h3>4-Continent Field Depth</h3>
+        <p>Field experience across Ethiopian smallholder systems, Japanese precision paddies, Australian broadacre farms, and US carbon market programs. Context matters — we have it.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-icon">💰</span>
+        <h3>Outcome-Based Pricing</h3>
+        <p>We price against the value we deliver, not hours we log. Our drone work saves more in inputs than it costs to fly. Carbon projects are priced against verified outcomes.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-icon">📋</span>
+        <h3>Verified, Publishable Work</h3>
+        <p>Our methodologies hold up to regulatory and scientific scrutiny — for carbon credit verification, MRV submissions, or government program compliance.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-icon">🤝</span>
+        <h3>Long-Term Partnership</h3>
+        <p>The model we calibrate this season is more accurate next season. Retainer clients consistently see better outcomes in year two than year one. We compound with you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CASE STUDIES ── -->
+<section id="work">
+  <div class="container">
+    <div class="eyebrow reveal">Our Work</div>
+    <h2 class="reveal">Results We Have <em>Delivered</em></h2>
+    <p class="secsub reveal">Completed engagements demonstrating our full methodology in action.</p>
+    <div class="work-grid">
+
+      <div class="case-card reveal">
+        <div class="case-tag">Legume Systems · APSIM Modelling · USA</div>
+        <h3>Nitrogen Credit Quantification for a US Grain Cooperative</h3>
+        <p>A midwest grain cooperative needed scientific validation of legume-derived nitrogen credits to enter a voluntary carbon market. Existing estimates relied on generic lookup tables with no local calibration, creating compliance risk.</p>
+        <div class="case-result">
+          <div class="crlabel">Outcome</div>
+          <div class="crtext">APSIM-modelled N-fixation revised the credit estimate by 31%, improving accuracy and market acceptance. Client enrolled in a carbon program with a verified, defensible methodology.</div>
+        </div>
+        <div class="case-meta">
+          <span>📍 US Midwest</span>
+          <span>⏱ 4 weeks</span>
+          <span>🌱 Soybean-maize rotation</span>
+        </div>
+      </div>
+
+      <div class="case-card reveal">
+        <div class="case-tag">Crop Advisory · APSIM Analysis · Ethiopia</div>
+        <h3>Legume Integration Assessment for East African Development Program</h3>
+        <p>An international development NGO needed evidence-based recommendations for integrating legumes into smallholder mixed cropping systems in the Ethiopian highlands — to improve soil nitrogen and food security simultaneously.</p>
+        <div class="case-result">
+          <div class="crlabel">Outcome</div>
+          <div class="crtext">Scenario analysis identified 3 optimal legume varieties and planting windows. Report adopted as the scientific baseline for program expansion reaching 2,400 smallholder households.</div>
+        </div>
+        <div class="case-meta">
+          <span>📍 Ethiopian Highlands</span>
+          <span>⏱ 6 weeks</span>
+          <span>🌱 Mixed smallholder systems</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── PRICING ── -->
+<section id="pricing">
+  <div class="container">
+    <div class="eyebrow reveal">Transparent Pricing</div>
+    <h2 class="reveal">Simple. Outcome-Based.<br/><em>No Surprises.</em></h2>
+    <p class="secsub reveal">Every engagement is scoped to your specific problem. These are starting points, not ceilings.</p>
+    <div class="price-grid">
+
+      <div class="price-card reveal">
+        <div class="pname">Crop System Diagnostic</div>
+        <p class="pdesc">Rapid APSIM analysis for organisations needing a fast scientific answer to a defined problem.</p>
+        <div class="pamount">$3,500</div>
+        <div class="punit">starting from · 2–3 week turnaround</div>
+        <ul class="plist">
+          <li>APSIM scenario analysis</li>
+          <li>10-page technical report</li>
+          <li>Management recommendations</li>
+          <li>1 review call included</li>
+        </ul>
+        <a href="#contact" class="pbtn">Get Started →</a>
+      </div>
+
+      <div class="price-card feat reveal">
+        <div class="feat-badge">Most Popular</div>
+        <div class="pname">Digital Farm Intelligence</div>
+        <p class="pdesc">Our flagship engagement — drone survey combined with APSIM simulation and carbon analysis.</p>
+        <div class="pamount">$15,000</div>
+        <div class="punit">starting from · 6–8 week engagement</div>
+        <ul class="plist">
+          <li>Drone NDVI flight + agronomic report</li>
+          <li>APSIM calibration + scenario runs</li>
+          <li>Carbon / N-credit quantification</li>
+          <li>Variable rate prescription maps</li>
+          <li>Full technical report + presentation</li>
+        </ul>
+        <a href="#contact" class="pbtn">Get Started →</a>
+      </div>
+
+      <div class="price-card reveal">
+        <div class="pname">Strategic Science Retainer</div>
+        <p class="pdesc">Ongoing monthly scientific advisory for agtech companies and carbon platforms.</p>
+        <div class="pamount">$3,500</div>
+        <div class="punit">per month · minimum 3 months</div>
+        <ul class="plist">
+          <li>Monthly APSIM simulation runs</li>
+          <li>4 × advisory calls per month</li>
+          <li>Methodology review &amp; sign-off</li>
+          <li>Priority 48-hour turnaround</li>
+          <li>Equity participation available</li>
+        </ul>
+        <a href="#contact" class="pbtn">Get Started →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-left reveal">
+        <div class="eyebrow">Get In Touch</div>
+        <h2>Let's Talk About<br/><em>Your Project</em></h2>
+        <p class="secsub">Whether you need a rapid crop diagnostic, a full drone survey, or an ongoing science retainer — start with a free 30-minute discovery call. No obligation.</p>
+        <div class="citems">
+          <div class="ci">
+            <div class="ci-icon">📧</div>
+            <div class="ci-text">
+              <strong>Email</strong>
+              <a href="mailto:fikruaw2005@gmail.com">fikruaw2005@gmail.com</a>
+            </div>
+          </div>
+          <div class="ci">
+            <div class="ci-icon">📅</div>
+            <div class="ci-text">
+              <strong>Book a Free 30-Min Call</strong>
+              <!-- UPDATE: add your Calendly link here -->
+              <a href="mailto:fikruaw2005@gmail.com">Email to schedule →</a>
+            </div>
+          </div>
+          <div class="ci">
+            <div class="ci-icon">💼</div>
+            <div class="ci-text">
+              <strong>LinkedIn</strong>
+              <!-- UPDATE: add your LinkedIn URL here -->
+              <a href="https://linkedin.com" target="_blank">Connect on LinkedIn →</a>
+            </div>
+          </div>
+          <div class="ci">
+            <div class="ci-icon">🌍</div>
+            <div class="ci-text">
+              <strong>Coverage</strong>
+              <span>Remote-first · Europe &amp; North America</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cform reveal">
+        <h3>Send a Message</h3>
+        <form onsubmit="handleForm(event)">
+          <div class="fg"><label>Your Name</label><input type="text" placeholder="Jane Smith" required/></div>
+          <div class="fg"><label>Organisation</label><input type="text" placeholder="Agtech / NGO / Farm / Research group"/></div>
+          <div class="fg"><label>Email Address</label><input type="email" placeholder="jane@organisation.com" required/></div>
+          <div class="fg">
+            <label>Service of Interest</label>
+            <select>
+              <option value="">Select a service...</option>
+              <option>APSIM Crop Simulation</option>
+              <option>Drone Crop Monitoring</option>
+              <option>Carbon &amp; Nitrogen Advisory</option>
+              <option>Experimental Design &amp; Analytics</option>
+              <option>Training &amp; Capacity Building</option>
+              <option>Strategic Science Retainer</option>
+              <option>Not sure — let's discuss</option>
+            </select>
+          </div>
+          <div class="fg"><label>Tell Us About Your Challenge</label><textarea placeholder="Describe your crops, region, and the decision you need help with..."></textarea></div>
+          <button type="submit" class="sbtn">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── */
+<footer>
+  <div class="flogo"><span>Digital</span>Ag&nbsp;Systems</div>
+  <div class="ftag">Full-Stack Digital Agronomy · APSIM Simulation · Drone Analytics · Carbon Advisory · Training</div>
+  <ul class="flinks">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#drone">Drone</a></li>
+    <li><a href="#work">Our Work</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="fcopy">© 2026 Digital Ag Systems. All rights reserved. · <a href="mailto:fikruaw2005@gmail.com" style="color:inherit;text-decoration:none">fikruaw2005@gmail.com</a></div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('vis'), i * 70);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Mobile nav toggle
+  let navOpen = false;
+  function toggleNav() {
+    const nl = document.getElementById('nav-list');
+    navOpen = !navOpen;
+    if (navOpen) {
+      Object.assign(nl.style, {
+        display: 'flex', flexDirection: 'column', gap: '14px',
+        position: 'absolute', top: '68px', left: '0', right: '0',
+        background: 'rgba(255,255,255,0.98)', padding: '16px 24px 24px',
+        borderBottom: '1px solid #e4ecf4',
+        boxShadow: '0 8px 24px rgba(11,25,41,0.10)', zIndex: '99'
+      });
+    } else {
+      nl.style.display = 'none';
+    }
+  }
+
+  // Close nav on link click (mobile)
+  document.querySelectorAll('#nav-list a').forEach(a => {
+    a.addEventListener('click', () => {
+      if (window.innerWidth <= 900) {
+        document.getElementById('nav-list').style.display = 'none';
+        navOpen = false;
+      }
+    });
+  });
+
+  // Nav shadow on scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('main-nav').style.boxShadow =
+      window.scrollY > 30
+        ? '0 2px 20px rgba(11,25,41,0.12)'
+        : '0 1px 12px rgba(11,25,41,0.06)';
+  });
+
+  // Contact form
+  function handleForm(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.sbtn');
+    btn.textContent = '✓ Message sent — we\'ll reply within 24 hours';
+    btn.style.background = '#1a6fc4';
+    btn.disabled = true;
+  }
+</script>
+</body>
+</html>
