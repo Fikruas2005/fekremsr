@@ -1,1 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Digital Ag Systems | Full-Stack Digital Agronomy</title>
+  <meta name="description" content="Digital Ag Systems delivers full-stack digital agronomy — APSIM crop simulation, drone analytics, carbon advisory, and precision agriculture consulting across Europe and North America."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fraunces:ital,wght@0,300;0,600;0,700;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --navy:#0b1929;--navy2:#0f2035;
+      --blue:#1a6fc4;--blue2:#2484e0;--sky:#5baaf5;
+      --ice:#ddeeff;--white:#fff;--off:#f7fafd;
+      --gray:#64788f;--lgray:#e4ecf4;--bdr:rgba(26,111,196,.15);
+      --fh:'Fraunces',serif;--fb:'Plus Jakarta Sans',sans-serif;
+      --max:1140px;--r:10px;--sh:0 4px 32px rgba(11,25,41,.10);
+    }
+    html{scroll-behavior:smooth}
+    body{background:#fff;color:var(--navy);font-family:var(--fb);font-size:16px;line-height:1.65;overflow-x:hidden}
+
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--bdr);box-shadow:0 1px 12px rgba(11,25,41,.06);transition:box-shadow .3s}
+    .logo{font-family:var(--fb);font-weight:800;font-size:1.05rem;color:var(--navy);text-decoration:none;display:flex;align-items:center;gap:8px}
+    .logo-dot{width:8px;height:8px;border-radius:50%;background:var(--blue)}
+    .logo span{color:var(--blue)}
+    .nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+    .nav-links a{font-size:.88rem;font-weight:500;color:var(--gray);text-decoration:none;transition:color .2s}
+    .nav-links a:hover{color:var(--blue)}
+    .nav-btn{background:var(--blue)!important;color:#fff!important;padding:9px 22px;border-radius:6px;font-weight:600!important;transition:background .2s!important}
+    .nav-btn:hover{background:var(--blue2)!important}
+    .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+    .burger span{display:block;width:22px;height:2px;background:var(--navy);border-radius:2px;transition:all .3s}
+
+    /* ── HERO ── */
+    .hero{min-height:100vh;background:var(--navy);display:flex;align-items:center;padding:120px 48px 80px;position:relative;overflow:hidden}
+    .hero-glow{position:absolute;top:-20%;right:-10%;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(36,132,224,.22) 0%,transparent 65%);pointer-events:none}
+    .hero-glow2{position:absolute;bottom:-20%;left:-5%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(26,111,196,.12) 0%,transparent 65%);pointer-events:none}
+    .hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(91,170,245,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(91,170,245,.04) 1px,transparent 1px);background-size:72px 72px}
+    .hero-inner{position:relative;max-width:var(--max);margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 420px;gap:80px;align-items:center}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(91,170,245,.12);border:1px solid rgba(91,170,245,.25);border-radius:100px;padding:5px 16px;font-size:.78rem;font-weight:600;color:var(--sky);letter-spacing:.07em;text-transform:uppercase;margin-bottom:24px;opacity:0;animation:fadeUp .6s .1s forwards}
+    .pdot{width:6px;height:6px;border-radius:50%;background:var(--sky);animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+    h1{font-family:var(--fh);font-weight:700;font-size:clamp(2.6rem,5.5vw,4.6rem);line-height:1.08;letter-spacing:-.02em;color:#fff;opacity:0;animation:fadeUp .7s .2s forwards}
+    h1 em{font-style:italic;color:var(--sky)}
+    .hero-sub{margin-top:24px;font-size:1.08rem;color:rgba(221,238,255,.7);font-weight:300;line-height:1.75;max-width:520px;opacity:0;animation:fadeUp .7s .35s forwards}
+    .hero-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;opacity:0;animation:fadeUp .7s .48s forwards}
+    .chip{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:5px;padding:5px 13px;font-size:.8rem;color:var(--ice);font-weight:500}
+    .hero-ctas{display:flex;gap:14px;margin-top:40px;flex-wrap:wrap;opacity:0;animation:fadeUp .7s .58s forwards}
+    .btn-blue{background:var(--blue2);color:#fff;padding:14px 30px;border-radius:7px;font-weight:700;font-size:.92rem;text-decoration:none;transition:all .2s;border:none;cursor:pointer;font-family:var(--fb)}
+    .btn-blue:hover{background:var(--sky);transform:translateY(-1px)}
+    .btn-ghost{background:transparent;color:var(--ice);padding:14px 30px;border-radius:7px;font-weight:500;font-size:.92rem;text-decoration:none;border:1px solid rgba(255,255,255,.2);transition:all .2s}
+    .btn-ghost:hover{border-color:var(--sky);color:var(--sky)}
+    .hero-card{background:rgba(255,255,255,.05);border:1px solid rgba(91,170,245,.2);border-radius:16px;padding:36px 32px;opacity:0;animation:fadeUp .7s .65s forwards}
+    .hcard-title{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--sky);margin-bottom:20px}
+    .mrow{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+    .mrow:last-child{border:none}
+    .mlabel{font-size:.85rem;color:rgba(221,238,255,.6)}
+    .munit{font-size:.73rem;color:rgba(221,238,255,.4);margin-top:2px}
+    .mval{font-family:var(--fh);font-weight:700;font-size:1.45rem;color:var(--sky)}
 
