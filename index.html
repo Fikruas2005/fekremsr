@@ -34,3 +34,1126 @@
       --fh:'DM Serif Display',serif;
       --fb:'Outfit',sans-serif;
       --max:1140px;
+      --r:8px;
+      --r2:14px;
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--offwhite);color:var(--ink);font-family:var(--fb);font-size:16px;line-height:1.65;overflow-x:hidden}
+    img{display:block;max-width:100%}
+    a{text-decoration:none}
+    .container{max-width:var(--max);margin:0 auto;padding:0 44px}
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.vis{opacity:1;transform:translateY(0)}
+    .stag{display:inline-flex;align-items:center;gap:7px;font-size:.7rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
+    .stag::before{content:'';display:block;width:18px;height:2px;background:var(--teal);border-radius:2px}
+    h2.sh{font-family:var(--fh);font-size:clamp(1.85rem,3.4vw,2.85rem);font-weight:400;line-height:1.18;letter-spacing:-.015em;color:var(--ink)}
+    h2.sh em{font-style:italic;color:var(--teal)}
+    .ssub{font-size:.97rem;color:var(--muted);font-weight:300;line-height:1.78;max-width:510px;margin-top:12px}
+    .btn-p{display:inline-flex;align-items:center;gap:7px;background:var(--teal);color:var(--white);padding:13px 28px;border-radius:var(--r);font-weight:600;font-size:.9rem;transition:all .22s;border:none;cursor:pointer;font-family:var(--fb)}
+    .btn-p:hover{background:var(--teal2);transform:translateY(-2px);box-shadow:0 6px 20px rgba(15,118,110,.3)}
+    .btn-s{display:inline-flex;align-items:center;gap:7px;background:transparent;color:var(--ink);padding:13px 28px;border-radius:var(--r);font-weight:500;font-size:.9rem;border:1.5px solid var(--border2);transition:all .22s}
+    .btn-s:hover{border-color:var(--teal);color:var(--teal)}
+    .btn-t{display:inline-flex;align-items:center;gap:7px;background:transparent;color:var(--teal);padding:13px 26px;border-radius:var(--r);font-weight:600;font-size:.9rem;border:1.5px dashed rgba(15,118,110,.4);transition:all .22s}
+    .btn-t:hover{background:rgba(15,118,110,.06);border-style:solid}
+    .btn-ghost{display:inline-flex;align-items:center;gap:6px;font-size:.87rem;font-weight:600;color:var(--teal);transition:gap .2s}
+    .btn-ghost:hover{gap:10px}
+
+    .logo-mark{flex-shrink:0}
+
+    /* ══ NAV ══ */
+    nav{position:fixed;top:0;left:0;right:0;z-index:300;height:68px;display:flex;align-items:center;background:rgba(250,250,248,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+    nav.scrolled{box-shadow:0 2px 24px rgba(13,31,15,.08)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:var(--max);margin:0 auto;padding:0 44px}
+    .nav-logo{display:flex;align-items:center;gap:11px}
+    .nav-wordmark{line-height:1.15}
+    .nw-main{font-family:var(--fh);font-size:1.1rem;color:var(--ink)}
+    .nw-main span{color:var(--teal)}
+    .nav-links{display:flex;align-items:center;gap:24px;list-style:none}
+    .nav-links a{font-size:.85rem;font-weight:500;color:var(--muted);transition:color .2s}
+    .nav-links a:hover{color:var(--teal)}
+    .nav-cta{background:var(--teal)!important;color:var(--white)!important;padding:8px 20px;border-radius:var(--r);font-weight:600!important}
+    .nav-cta:hover{background:var(--teal2)!important}
+    .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+    .burger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all .3s}
+
+    /* ══ HERO ══ */
+    #home{background:linear-gradient(160deg,var(--offwhite) 0%,#eef5ee 100%);padding-top:0}
+    .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:60px;padding:110px 44px 80px;max-width:var(--max);margin:0 auto}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(15,118,110,.07);border:1px solid rgba(15,118,110,.18);border-radius:100px;padding:5px 16px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:22px;opacity:0;animation:fadeUp .6s .1s forwards}
+    .live-dot{width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.2);animation:livepulse 2s infinite}
+    @keyframes livepulse{0%,100%{box-shadow:0 0 0 3px rgba(34,197,94,.2)}50%{box-shadow:0 0 0 6px rgba(34,197,94,.05)}}
+    .hero h1{font-family:var(--fh);font-weight:400;font-size:clamp(2.3rem,4.3vw,3.7rem);line-height:1.1;letter-spacing:-.02em;color:var(--ink);opacity:0;animation:fadeUp .7s .18s forwards}
+    .hero h1 em{font-style:italic;color:var(--teal)}
+    .hero-desc{margin-top:18px;font-size:1.02rem;color:var(--muted);font-weight:300;line-height:1.78;max-width:480px;opacity:0;animation:fadeUp .7s .32s forwards}
+    .hero-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:22px;opacity:0;animation:fadeUp .7s .44s forwards}
+    .chip{background:var(--white);border:1px solid var(--border2);border-radius:6px;padding:4px 12px;font-size:.75rem;font-weight:500;color:var(--muted);transition:all .2s}
+    .chip:hover{border-color:var(--teal);color:var(--teal)}
+    .hero-actions{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap;opacity:0;animation:fadeUp .7s .54s forwards}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+    /* ══ HERO RIGHT — PRODUCT DEMO ══ */
+    .hero-demo{opacity:0;animation:fadeUp .7s .6s forwards}
+    .demo-device{background:var(--ink2);border-radius:22px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid rgba(255,255,255,.06)}
+    .demo-topbar{background:var(--ink3);padding:14px 20px;display:flex;align-items:center;gap:10px}
+    .demo-dots{display:flex;gap:6px}
+    .demo-dots span{width:10px;height:10px;border-radius:50%}
+    .dd1{background:#ff6058}.dd2{background:#ffc130}.dd3{background:#27c93f}
+    .demo-app-label{font-size:.72rem;font-weight:600;color:rgba(255,255,255,.45);letter-spacing:.06em;text-transform:uppercase;margin-left:6px}
+
+    .demo-wrap{position:relative}
+    .demo-stat{position:absolute;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:12px 16px;box-shadow:var(--shadow-lg)}
+    .ds-top{top:-18px;right:-18px}
+    .ds-bottom{bottom:-18px;left:-18px}
+    .ds-num{font-family:var(--fh);font-size:1.6rem;color:var(--teal);line-height:1}
+    .ds-label{font-size:.66rem;color:var(--muted);font-weight:500;margin-top:2px;white-space:nowrap}
+
+    /* ══ TRUST BAR ══ */
+    .trust{background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px 44px}
+    .trust-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+    .t-label{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sage)}
+    .t-sep{width:1px;height:18px;background:var(--border);flex-shrink:0}
+    .t-item{font-size:.78rem;color:var(--muted);font-weight:500;display:flex;align-items:center;gap:5px;white-space:nowrap}
+
+    /* ══ PILLARS ══ */
+    #pillars{padding:88px 0 70px;background:var(--offwhite)}
+    .pil-head{text-align:center;margin-bottom:48px;max-width:680px;margin-left:auto;margin-right:auto}
+    .pil-head .stag{justify-content:center}
+    .pil-head h2{margin-bottom:0}
+    .pil-head p{margin:14px auto 0}
+    .pillar4-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .pil4{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:28px 24px;transition:all .3s;display:flex;flex-direction:column;min-height:100%}
+    .pil4:hover{box-shadow:0 14px 44px rgba(13,31,15,.1);transform:translateY(-4px);border-color:rgba(15,118,110,.3)}
+    .pil4-ico{width:46px;height:46px;border-radius:12px;background:rgba(15,118,110,.09);border:1px solid rgba(15,118,110,.18);display:flex;align-items:center;justify-content:center;font-size:1.45rem;margin-bottom:18px}
+    .pil4 h3{font-family:var(--fh);font-weight:400;font-size:1.18rem;color:var(--ink);margin-bottom:8px}
+    .pil4 p{font-size:.83rem;color:var(--muted);font-weight:300;line-height:1.6;flex:1;margin-bottom:16px}
+    .pil4 a{font-size:.8rem;font-weight:700;color:var(--teal);display:inline-flex;align-items:center;gap:5px;transition:gap .2s}
+    .pil4 a:hover{gap:9px}
+
+    /* ══ PRODUCTS ══ */
+    #products{padding:100px 0;background:var(--ink);position:relative;overflow:hidden}
+    #products::before{content:'';position:absolute;top:-20%;right:-8%;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(15,118,110,.09) 0%,transparent 65%);pointer-events:none}
+    #products::after{content:'';position:absolute;bottom:-20%;left:-8%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(101,163,13,.06) 0%,transparent 65%);pointer-events:none}
+    .prod-head{text-align:center;margin-bottom:56px}
+    .prod-head .stag{justify-content:center;color:rgba(132,169,140,.85)}
+    .prod-head .stag::before{background:rgba(132,169,140,.85)}
+    .prod-head h2{color:var(--white);font-family:var(--fh);font-size:clamp(1.85rem,3.4vw,2.85rem);font-weight:400;line-height:1.18}
+    .prod-head h2 em{font-style:italic;color:var(--teal3)}
+    .prod-head p{color:rgba(255,255,255,.45);font-size:.97rem;margin:12px auto 0;max-width:560px;font-weight:300}
+    .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .pcard-wrap{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:18px;overflow:hidden;transition:all .35s;display:flex;flex-direction:column}
+    .pcard-wrap:hover{border-color:rgba(15,118,110,.4);background:rgba(255,255,255,.055);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.25)}
+    .pcard-wrap.feat{border-color:rgba(15,118,110,.32);background:rgba(15,118,110,.07)}
+    .pcard-top{padding:34px 34px 26px;flex:1}
+    .pcard-icon-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:22px}
+    .pcard-icon{width:54px;height:54px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:1.7rem;background:rgba(15,118,110,.18);border:1px solid rgba(15,118,110,.28)}
+    .badges{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+    .badge{font-size:.62rem;font-weight:700;padding:3px 9px;border-radius:100px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+    .b-live{background:rgba(34,197,94,.14);color:#4ade80;border:1px solid rgba(34,197,94,.28)}
+    .b-beta{background:rgba(251,191,36,.12);color:#fbbf24;border:1px solid rgba(251,191,36,.28)}
+    .b-free{background:rgba(15,118,110,.2);color:var(--teal3);border:1px solid rgba(15,118,110,.3)}
+    .pcard-name{font-family:var(--fh);font-size:1.75rem;font-weight:400;color:var(--white);margin-bottom:8px}
+    .pcard-tag{font-size:.93rem;color:rgba(255,255,255,.48);font-weight:300;line-height:1.58;margin-bottom:22px}
+    .pf-list{display:flex;flex-direction:column;gap:9px;margin-bottom:26px}
+    .pf-row{display:flex;align-items:flex-start;gap:9px;font-size:.83rem;color:rgba(255,255,255,.62)}
+    .pf-row::before{content:'✓';color:var(--teal3);font-weight:700;flex-shrink:0;font-size:.8rem;margin-top:1px}
+    .pcard-cta{display:inline-flex;align-items:center;gap:7px;font-size:.87rem;font-weight:600;color:var(--teal3);padding-bottom:2px;border-bottom:1px solid rgba(15,118,110,.35);transition:gap .2s}
+    .pcard-cta:hover{gap:12px}
+    .pcard-foot{padding:16px 34px;background:rgba(0,0,0,.18);border-top:1px solid rgba(255,255,255,.05);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+    .pf-tech{font-size:.68rem;color:rgba(255,255,255,.25);letter-spacing:.03em}
+    .prod-more{text-align:center;margin-top:40px;padding:0 44px}
+    .prod-more p{font-size:.85rem;color:rgba(255,255,255,.3);margin-bottom:16px}
+
+    /* ══ PROBLEM ══ */
+    #problem{padding:96px 0;background:var(--cream)}
+    .prob-inner{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+    .prob-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:22px;display:flex;gap:15px;align-items:flex-start;transition:all .25s;margin-bottom:14px}
+    .prob-card:last-child{margin-bottom:0}
+    .prob-card:hover{border-color:rgba(15,118,110,.28);box-shadow:var(--shadow);transform:translateX(4px)}
+    .prob-ico{width:38px;height:38px;border-radius:9px;background:rgba(15,118,110,.08);border:1px solid rgba(15,118,110,.15);display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex-shrink:0}
+    .prob-card h3{font-weight:600;font-size:.93rem;color:var(--ink);margin-bottom:4px}
+    .prob-card p{font-size:.82rem;color:var(--muted);line-height:1.62;font-weight:300}
+
+    /* ══ SERVICES ══ */
+    #services{padding:100px 0;background:var(--offwhite)}
+    .svc-hd{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;margin-bottom:52px;flex-wrap:wrap}
+    .pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .pillar{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;transition:all .3s}
+    .pillar:hover{box-shadow:0 10px 44px rgba(13,31,15,.1);transform:translateY(-4px)}
+    .pillar-top{padding:30px 26px 24px;border-bottom:1px solid var(--border)}
+    .p-ico{font-size:1.85rem;margin-bottom:14px;display:block}
+    .pillar h3{font-family:var(--fh);font-weight:400;font-size:1.32rem;color:var(--ink);margin-bottom:8px;line-height:1.22}
+    .pillar h3 em{color:var(--teal);font-style:italic}
+    .pillar-desc{font-size:.85rem;color:var(--muted);line-height:1.66;font-weight:300}
+    .pillar-svcs{padding:20px 26px;background:var(--cream)}
+    .pillar-svcs h4{font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:12px}
+    .sv{display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:1px solid var(--border);font-size:.81rem;color:var(--muted)}
+    .sv:last-child{border:none}
+    .sv::before{content:'→';color:var(--teal);font-weight:700;flex-shrink:0;margin-top:1px}
+    .pillar-ft{padding:16px 26px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);background:var(--white)}
+    .pft-from{font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;color:var(--sage);font-weight:700}
+    .pft-val{font-size:.78rem;color:var(--teal);font-weight:700}
+    .svc-note{background:var(--cream);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:var(--r);padding:18px 22px;margin-top:32px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+    .svc-note p{font-size:.86rem;color:var(--muted);font-weight:300;max-width:560px}
+    .svc-note p strong{color:var(--ink);font-weight:600}
+
+    /* ══ TOOLS ══ */
+    .tools-band{background:var(--cream2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:28px 44px}
+    .tools-in{max-width:var(--max);margin:0 auto}
+    .tl-label{font-size:.68rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--sage);text-align:center;margin-bottom:18px}
+    .tl-row{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap}
+    .tbadge{background:var(--white);border:1px solid var(--border);border-radius:6px;padding:8px 16px;font-size:.8rem;font-weight:600;color:var(--muted);letter-spacing:.02em;transition:all .2s}
+    .tbadge:hover{border-color:var(--teal);color:var(--teal);background:rgba(15,118,110,.04)}
+
+    /* ══ ABOUT ══ */
+    #about{padding:100px 0;background:var(--white)}
+    .about-grid{display:grid;grid-template-columns:380px 1fr;gap:72px;align-items:start}
+    .about-photo-col{position:sticky;top:88px}
+    .aph-wrap{position:relative}
+    .aph-main{width:100%;border-radius:18px;overflow:hidden;box-shadow:var(--shadow-lg)}
+    .aph-main img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top center}
+    .aph-drone{position:absolute;bottom:-20px;right:-20px;width:130px;height:100px;border-radius:12px;overflow:hidden;border:3px solid var(--white);box-shadow:var(--shadow-lg)}
+    .aph-drone img{width:100%;height:100%;object-fit:cover;object-position:top}
+    .aph-badge{position:absolute;top:-14px;left:-14px;background:var(--teal);color:var(--white);border-radius:10px;padding:10px 14px;box-shadow:var(--shadow-lg);text-align:center;min-width:80px}
+    .ab-num{font-family:var(--fh);font-size:1.7rem;line-height:1;color:var(--white)}
+    .ab-lbl{font-size:.6rem;color:rgba(255,255,255,.75);font-weight:500;margin-top:2px;white-space:nowrap}
+    .about-right .stag{margin-top:0}
+    .abt-name{font-family:var(--fh);font-size:1.95rem;color:var(--ink);margin-bottom:5px;line-height:1.15}
+    .abt-title{font-size:.88rem;color:var(--teal);font-weight:600;margin-bottom:22px;letter-spacing:.01em}
+    .abt-story{font-size:.97rem;color:var(--muted);line-height:1.82;font-weight:300;margin-bottom:20px}
+    .abt-story strong{color:var(--ink);font-weight:600}
+    .abt-story em{color:var(--teal);font-style:italic}
+    .cred-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:26px}
+    .cred-box{background:var(--cream);border:1px solid var(--border);border-radius:var(--r);padding:15px}
+    .cb-ico{font-size:1.1rem;margin-bottom:5px}
+    .cb-val{font-family:var(--fh);font-size:1.18rem;color:var(--teal);line-height:1}
+    .cb-lbl{font-size:.72rem;color:var(--muted);margin-top:2px;font-weight:400;line-height:1.3}
+    .pubs-box{background:var(--cream);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;margin-bottom:24px}
+    .pubs-hd{font-size:.68rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--sage);margin-bottom:12px}
+    .pub{font-size:.8rem;color:var(--muted);padding:8px 0;border-bottom:1px solid var(--border);line-height:1.5;font-weight:300}
+    .pub:last-child{border:none;padding-bottom:0}
+    .pub strong{color:var(--ink);font-weight:500}
+    .pub em{color:var(--teal);font-style:italic;font-size:.76rem}
+    .about-actions{display:flex;gap:12px;flex-wrap:wrap}
+
+    /* ══ CASE STUDIES ══ */
+    #work{padding:100px 0;background:var(--cream)}
+    .wk-hd{margin-bottom:50px}
+    .work-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .case{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;transition:all .3s}
+    .case:hover{box-shadow:0 10px 44px rgba(13,31,15,.1);transform:translateY(-3px)}
+    .case-bar{height:4px}
+    .case-body{padding:28px}
+    .case-cat{font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+    .case h3{font-family:var(--fh);font-weight:400;font-size:1.12rem;color:var(--ink);margin-bottom:9px;line-height:1.38}
+    .case p{font-size:.83rem;color:var(--muted);line-height:1.66;font-weight:300}
+    .case-result{margin-top:16px;padding:12px 14px;background:var(--cream);border-radius:var(--r);border-left:3px solid var(--teal)}
+    .cr-lbl{font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);margin-bottom:3px}
+    .cr-txt{font-size:.83rem;color:var(--ink);line-height:1.52}
+    .case-meta{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+    .case-meta span{font-size:.72rem;color:var(--muted)}
+
+    /* ══ TRAINING ══ */
+    #training{padding:88px 0;background:var(--ink)}
+    .training-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+    .tr-left .stag{color:rgba(132,169,140,.85)}
+    .tr-left .stag::before{background:rgba(132,169,140,.85)}
+    .tr-left h2{color:var(--white)}
+    .tr-left h2 em{color:var(--teal3)}
+    .tr-left .ssub{color:rgba(255,255,255,.47);max-width:420px}
+    .tr-left .btn-p{margin-top:26px;display:inline-flex}
+    .tc-list{display:flex;flex-direction:column;gap:12px}
+    .tc{background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);border-radius:var(--r);padding:18px 22px;display:flex;align-items:center;gap:14px;transition:all .25s}
+    .tc:hover{border-color:rgba(15,118,110,.4);background:rgba(255,255,255,.06)}
+    .tc-ico{font-size:1.3rem;flex-shrink:0}
+    .tc h4{font-weight:600;font-size:.9rem;color:var(--white);margin-bottom:2px}
+    .tc p{font-size:.78rem;color:rgba(255,255,255,.42);font-weight:300}
+    .tc-dur{margin-left:auto;font-size:.66rem;font-weight:700;padding:3px 9px;border-radius:100px;background:rgba(15,118,110,.2);color:var(--teal3);white-space:nowrap}
+
+    /* ══ ENGAGEMENT / PRICING ══ */
+    #pricing{padding:100px 0;background:var(--offwhite)}
+    .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:50px;align-items:start}
+    .prc{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:30px 26px;position:relative;transition:all .25s}
+    .prc:hover{box-shadow:var(--shadow-lg)}
+    .prc.feat{border-color:var(--teal);box-shadow:0 0 0 3px rgba(15,118,110,.1)}
+    .feat-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--teal);color:var(--white);font-size:.64rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:3px 14px;border-radius:100px;white-space:nowrap}
+    .prc-name{font-weight:700;font-size:.95rem;color:var(--ink);margin-bottom:6px}
+    .prc-desc{font-size:.8rem;color:var(--muted);font-weight:300;line-height:1.56;margin-bottom:18px}
+    .prc-amount{font-family:var(--fh);font-size:1.4rem;color:var(--teal);line-height:1;margin-bottom:2px}
+    .prc-unit{font-size:.72rem;color:var(--muted);margin-bottom:20px}
+    .prc-list{list-style:none;margin-bottom:22px;border-top:1px solid var(--border);padding-top:16px}
+    .prc-list li{font-size:.81rem;color:var(--muted);padding:5px 0;display:flex;align-items:flex-start;gap:7px;border-bottom:1px solid var(--border)}
+    .prc-list li:last-child{border:none}
+    .prc-list li::before{content:'✓';color:var(--teal);font-weight:700;flex-shrink:0}
+    .prc-btn{display:block;text-align:center;padding:11px;border-radius:var(--r);font-weight:600;font-size:.86rem;border:1.5px solid var(--teal);color:var(--teal);transition:all .2s}
+    .prc-btn:hover,.prc.feat .prc-btn{background:var(--teal);color:var(--white)}
+    .prc.feat .prc-btn:hover{background:var(--teal2)}
+    .price-foot{text-align:center;margin-top:36px;font-size:.85rem;color:var(--muted);font-weight:300}
+    .price-foot strong{color:var(--ink);font-weight:600}
+
+    /* ══ CONTACT ══ */
+    #contact{padding:100px 0;background:var(--white)}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+    .cl h2{margin-bottom:12px}
+    .cl .ssub{margin-bottom:32px}
+    .ci-list{display:flex;flex-direction:column;gap:16px}
+    .ci-row{display:flex;align-items:center;gap:13px}
+    .ci-ico{width:40px;height:40px;border-radius:9px;background:var(--cream);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+    .ci-txt strong{display:block;font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--sage);margin-bottom:1px}
+    .ci-txt a,.ci-txt span{font-size:.88rem;color:var(--ink);font-weight:500;transition:color .2s}
+    .ci-txt a:hover{color:var(--teal)}
+    .cf-box{background:var(--cream);border:1px solid var(--border);border-radius:var(--r2);padding:34px}
+    .cf-box h3{font-family:var(--fh);font-weight:400;font-size:1.1rem;color:var(--ink);margin-bottom:22px}
+    .fg{margin-bottom:13px}
+    .fg label{display:block;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+    .fg input,.fg select,.fg textarea{width:100%;background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:10px 13px;color:var(--ink);font-family:var(--fb);font-size:.89rem;transition:border-color .2s;outline:none}
+    .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(15,118,110,.07)}
+    .fg textarea{height:90px;resize:vertical}
+    .sbtn{width:100%;background:var(--teal);color:var(--white);border:none;padding:12px;border-radius:var(--r);font-weight:700;font-size:.89rem;cursor:pointer;font-family:var(--fb);transition:all .22s;margin-top:4px}
+    .sbtn:hover{background:var(--teal2);transform:translateY(-1px)}
+
+    /* ══ FOOTER ══ */
+    footer{background:var(--ink);padding:60px 44px 36px}
+    .ft-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px;margin-bottom:44px}
+    .ft-brand{display:flex;flex-direction:column;gap:12px}
+    .ft-tagline{font-size:.82rem;color:rgba(255,255,255,.38);line-height:1.65;max-width:260px}
+    .ft-col h4{font-size:.67rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:14px}
+    .ft-col a{display:block;font-size:.82rem;color:rgba(255,255,255,.42);margin-bottom:9px;transition:color .2s}
+    .ft-col a:hover{color:var(--teal3)}
+    .ft-copy{max-width:var(--max);margin:0 auto;border-top:1px solid rgba(255,255,255,.07);padding-top:22px;text-align:center;font-size:.72rem;color:rgba(255,255,255,.2)}
+    .ft-copy a{color:rgba(255,255,255,.28);transition:color .2s}
+    .ft-copy a:hover{color:var(--teal3)}
+
+    /* ══ MOBILE ══ */
+    @media(max-width:960px){
+      .nav-inner,.trust-inner{padding:0 20px}
+      .hero{grid-template-columns:1fr;padding:96px 20px 64px;gap:40px}
+      .hero-demo{order:-1}
+      .demo-stat{display:none}
+      .about-grid{grid-template-columns:1fr;gap:36px}
+      .about-photo-col{position:static}
+      .aph-main img{aspect-ratio:4/3}
+      .aph-drone,.aph-badge{display:none}
+      .prob-inner,.training-inner,.contact-grid{grid-template-columns:1fr;gap:36px}
+      .work-grid,.prod-grid,.pillar4-grid{grid-template-columns:1fr}
+      .pillar-grid,.price-grid{grid-template-columns:1fr}
+      .ft-inner{grid-template-columns:1fr;gap:28px}
+      section,#products,#problem,#training,#about,#work,#pricing,#contact,#services,#pillars{padding-left:20px;padding-right:20px}
+      .tools-band,.trust{padding-left:20px;padding-right:20px}
+      footer{padding:44px 20px 28px}
+      .nav-links{display:none}
+      .burger{display:flex}
+      .t-sep{display:none}
+      .cred-grid{grid-template-columns:1fr 1fr}
+      .svc-note{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ NAV ══════════════ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">
+      <svg class="logo-mark" width="36" height="36" viewBox="0 0 120 100" fill="none">
+        <path d="M5 72 Q60 62 115 72" stroke="#1a4a0a" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <ellipse cx="32" cy="62" rx="16" ry="16" fill="#1B5E20"/>
+        <ellipse cx="32" cy="62" rx="10" ry="10" fill="white"/>
+        <ellipse cx="32" cy="62" rx="5"  ry="5"  fill="#1B5E20"/>
+        <ellipse cx="62" cy="65" rx="10" ry="10" fill="#1B5E20"/>
+        <ellipse cx="62" cy="65" rx="5.5" ry="5.5" fill="white"/>
+        <ellipse cx="62" cy="65" rx="2.5" ry="2.5" fill="#1B5E20"/>
+        <path d="M38 46 L70 46 L74 52 L74 62 L38 62 Z" fill="#1B5E20"/>
+        <path d="M38 46 L38 32 L52 32 L56 38 L56 46 Z" fill="#245C1A"/>
+        <rect x="50" y="24" width="4" height="10" rx="2" fill="#1B5E20"/>
+        <line x1="84" y1="70" x2="84" y2="8"  stroke="#1B5E20" stroke-width="3.5" stroke-linecap="round"/>
+        <polyline points="83,42 66,42 66,30" stroke="#1B5E20" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="66" cy="30" r="4.5" fill="white" stroke="#1B5E20" stroke-width="2"/>
+        <circle cx="66" cy="30" r="1.8" fill="#1B5E20"/>
+        <polyline points="85,55 100,55 100,44" stroke="#1B5E20" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="100" cy="44" r="4.5" fill="white" stroke="#1B5E20" stroke-width="2"/>
+        <circle cx="100" cy="44" r="1.8" fill="#1B5E20"/>
+        <path d="M84,8 C78,-6 60,0 62,16 C64,28 80,26 84,8Z"  fill="#2E7D32"/>
+        <path d="M84,12 C90,-4 108,4 106,20 C104,32 88,28 84,12Z" fill="#388E3C"/>
+      </svg>
+      <div class="nav-wordmark">
+        <div class="nw-main">WonkaFarm<span> Brain</span></div>
+      </div>
+    </a>
+    <ul class="nav-links" id="nl">
+      <li><a href="#pillars">Solutions</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#services">Consultancy</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#contact" class="nav-cta">Book a Strategy Call</a></li>
+    </ul>
+    <button class="burger" onclick="toggleNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<div id="home">
+<div class="hero">
+  <!-- LEFT: Company value proposition -->
+  <div class="hero-left">
+    <div class="hero-eyebrow"><div class="live-dot"></div>WonkaFarm Brain is live — AI agricultural intelligence systems</div>
+    <h1>AI-Powered Agricultural<br/>Intelligence <em>Systems.</em></h1>
+    <p class="hero-desc">WonkaFarm Brain builds practical AI tools for crop advisory, field trial intelligence, image-based crop measurement, and crop-model decision support — serving governments, research institutions, agribusinesses, NGOs, AgTech startups, and farmers.</p>
+    <div class="hero-chips">
+      <span class="chip">💬 Crop Advisory Systems</span>
+      <span class="chip">🔬 Field Trial Intelligence</span>
+      <span class="chip">📸 Image-Based Crop Measurement</span>
+      <span class="chip">📈 Crop-Model Decision Support</span>
+      <span class="chip">🌍 Ethiopia · Ireland · Japan · Australia · USA</span>
+    </div>
+    <div class="hero-actions">
+      <a href="https://wa.me/YOURNUMBER?text=Hello+CropOracle" class="btn-p">Try CropOracle →</a>
+      <a href="#contact" class="btn-s">Request Enterprise Demo</a>
+      <a href="#contact" class="btn-t">Book a Strategy Call</a>
+    </div>
+  </div>
+
+  <!-- RIGHT: Product demo — no personal photo -->
+  <div class="hero-demo">
+    <div class="demo-wrap">
+
+      <!-- Top floating stat -->
+      <div class="demo-stat ds-top">
+        <div class="ds-num">20+</div>
+        <div class="ds-label">Years of modelling</div>
+      </div>
+
+      <!-- Main intelligence card -->
+      <div class="demo-device">
+
+        <!-- Card header -->
+        <div class="demo-topbar" style="justify-content:space-between;align-items:center">
+          <div style="display:flex;align-items:center;gap:8px">
+            <div class="demo-dots">
+              <span class="dd1"></span><span class="dd2"></span><span class="dd3"></span>
+            </div>
+            <span class="demo-app-label">Agricultural Intelligence Stack</span>
+          </div>
+          <span style="font-size:.62rem;padding:2px 9px;border-radius:100px;background:rgba(15,118,110,.25);color:#4ade80;font-weight:700;letter-spacing:.05em;text-transform:uppercase">Active</span>
+        </div>
+
+        <!-- Four product rows -->
+        <div style="padding:6px 0 0">
+
+          <!-- Row 1: CropOracle -->
+          <div style="display:flex;align-items:center;gap:14px;padding:15px 22px;border-bottom:1px solid rgba(255,255,255,.06);transition:background .2s" onmouseover="this.style.background='rgba(15,118,110,.07)'" onmouseout="this.style.background='transparent'">
+            <div style="width:38px;height:38px;border-radius:10px;background:rgba(15,118,110,.18);border:1px solid rgba(15,118,110,.3);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0">💬</div>
+            <div style="flex:1">
+              <div style="font-size:.87rem;font-weight:600;color:rgba(255,255,255,.9);margin-bottom:2px">CropOracle</div>
+              <div style="font-size:.73rem;color:rgba(255,255,255,.42);font-weight:300">WhatsApp AI crop advisory · farmers &amp; extension systems</div>
+            </div>
+            <div style="font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:100px;background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.25);white-space:nowrap">Live</div>
+          </div>
+
+          <!-- Row 2: FieldBrain AI -->
+          <div style="display:flex;align-items:center;gap:14px;padding:15px 22px;border-bottom:1px solid rgba(255,255,255,.06);transition:background .2s" onmouseover="this.style.background='rgba(15,118,110,.07)'" onmouseout="this.style.background='transparent'">
+            <div style="width:38px;height:38px;border-radius:10px;background:rgba(101,163,13,.15);border:1px solid rgba(101,163,13,.28);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0">🔬</div>
+            <div style="flex:1">
+              <div style="font-size:.87rem;font-weight:600;color:rgba(255,255,255,.9);margin-bottom:2px">FieldBrain AI</div>
+              <div style="font-size:.73rem;color:rgba(255,255,255,.42);font-weight:300">Field trial intelligence · research &amp; breeding teams</div>
+            </div>
+            <div style="font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:100px;background:rgba(101,163,13,.15);color:#a3e635;border:1px solid rgba(101,163,13,.3);white-space:nowrap">Demo</div>
+          </div>
+
+          <!-- Row 3: PlotScan -->
+          <div style="display:flex;align-items:center;gap:14px;padding:15px 22px;border-bottom:1px solid rgba(255,255,255,.06);transition:background .2s" onmouseover="this.style.background='rgba(15,118,110,.07)'" onmouseout="this.style.background='transparent'">
+            <div style="width:38px;height:38px;border-radius:10px;background:rgba(6,182,212,.14);border:1px solid rgba(6,182,212,.27);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0">📸</div>
+            <div style="flex:1">
+              <div style="font-size:.87rem;font-weight:600;color:rgba(255,255,255,.9);margin-bottom:2px">PlotScan</div>
+              <div style="font-size:.73rem;color:rgba(255,255,255,.42);font-weight:300">Phone-based image analysis · plot-level crop measurement</div>
+            </div>
+            <div style="font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:100px;background:rgba(6,182,212,.13);color:#22d3ee;border:1px solid rgba(6,182,212,.28);white-space:nowrap">Beta</div>
+          </div>
+
+          <!-- Row 4: Specialist Consultancy -->
+          <div style="display:flex;align-items:center;gap:14px;padding:15px 22px;transition:background .2s" onmouseover="this.style.background='rgba(15,118,110,.07)'" onmouseout="this.style.background='transparent'">
+            <div style="width:38px;height:38px;border-radius:10px;background:rgba(217,119,6,.15);border:1px solid rgba(217,119,6,.28);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0">📈</div>
+            <div style="flex:1">
+              <div style="font-size:.87rem;font-weight:600;color:rgba(255,255,255,.9);margin-bottom:2px">Specialist Consultancy</div>
+              <div style="font-size:.73rem;color:rgba(255,255,255,.42);font-weight:300">Crop-model decision support · APSIM/DSSAT · remote sensing</div>
+            </div>
+            <div style="font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:100px;background:rgba(217,119,6,.15);color:#fbbf24;border:1px solid rgba(217,119,6,.3);white-space:nowrap">Advisory</div>
+          </div>
+
+        </div>
+
+        <!-- Card footer -->
+        <div style="padding:13px 22px;background:rgba(0,0,0,.2);border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:.68rem;color:rgba(255,255,255,.28);letter-spacing:.03em">Crop models · AI · Remote sensing · Field data</span>
+          <a href="#contact" style="font-size:.72rem;font-weight:700;color:#4ade80;display:flex;align-items:center;gap:4px;transition:gap .2s" onmouseover="this.style.gap='8px'" onmouseout="this.style.gap='4px'">Enquire →</a>
+        </div>
+
+      </div>
+
+      <!-- Bottom floating stat -->
+      <div class="demo-stat ds-bottom">
+        <div class="ds-num">5</div>
+        <div class="ds-label">Countries of field data</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════ TRUST BAR ══════════════ -->
+<div class="trust">
+  <div class="trust-inner">
+    <span class="t-label">Built on</span>
+    <div class="t-sep"></div>
+    <span class="t-item">🎓 Computational Agronomist &amp; AI Systems Builder</span>
+    <div class="t-sep"></div>
+    <span class="t-item">📄 16 Peer-Reviewed Publications</span>
+    <div class="t-sep"></div>
+    <span class="t-item">🏛 Research Institutions Across 5 Countries</span>
+    <div class="t-sep"></div>
+    <span class="t-item">🌍 20+ Years Field &amp; Modelling Experience</span>
+    <div class="t-sep"></div>
+    <span class="t-item">🚁 Licensed UAV Operator · Pix4D Certified</span>
+  </div>
+</div>
+
+<!-- ══════════════ FOUR PILLARS ══════════════ -->
+<section id="pillars">
+  <div class="container">
+    <div class="pil-head reveal">
+      <div class="stag">What We Build</div>
+      <h2 class="sh">Four Ways We Build <em>Agricultural Intelligence</em></h2>
+      <p class="ssub" style="margin:14px auto 0">Each product and service line solves a specific, well-defined problem — from a single farmer's WhatsApp question to a government's digital advisory rollout.</p>
+    </div>
+    <div class="pillar4-grid">
+      <div class="pil4 reveal">
+        <div class="pil4-ico">💬</div>
+        <h3>CropOracle</h3>
+        <p>WhatsApp-based AI crop advisory for farmers, extension systems, NGOs, and governments. Text a crop problem, get an agronomic answer in under 60 seconds.</p>
+        <a href="#products">See CropOracle →</a>
+      </div>
+      <div class="pil4 reveal">
+        <div class="pil4-ico">🔬</div>
+        <h3>FieldBrain AI</h3>
+        <p>Field trial intelligence platform for research teams, agronomy trials, plant breeding, and project supervision — built for cleaner data and faster oversight.</p>
+        <a href="#products">See FieldBrain AI →</a>
+      </div>
+      <div class="pil4 reveal">
+        <div class="pil4-ico">📸</div>
+        <h3>PlotScan</h3>
+        <p>Phone-based image analysis for plot-level crop measurements — canopy cover, stand count, vigor, growth stage, and treatment comparison from a single photo.</p>
+        <a href="#products">See PlotScan →</a>
+      </div>
+      <div class="pil4 reveal">
+        <div class="pil4-ico">📈</div>
+        <h3>Specialist Consultancy</h3>
+        <p>APSIM/DSSAT crop modelling, remote sensing, drone analytics, AI advisory system design, soil carbon modelling, and digital agriculture strategy.</p>
+        <a href="#services">See Consultancy Services →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ PRODUCTS ══════════════ -->
+<section id="products">
+  <div class="container">
+    <div class="prod-head reveal">
+      <div class="stag">Our Products</div>
+      <h2>Practical AI Tools, <em>Built for Real Use</em></h2>
+      <p>Three deployable products covering crop advisory, field trial intelligence, and image-based crop measurement — each built from 20+ years of field science and delivered through channels people already use.</p>
+    </div>
+    <div class="prod-grid">
+      <div class="pcard-wrap feat reveal">
+        <div class="pcard-top">
+          <div class="pcard-icon-row">
+            <div class="pcard-icon">💬</div>
+            <div class="badges"><span class="badge b-live">Live</span><span class="badge b-free">Free to Try</span></div>
+          </div>
+          <div class="pcard-name">CropOracle</div>
+          <div class="pcard-tag">WhatsApp-based AI crop advisory for farmers, extension systems, NGOs, and governments. Text your crop problem — describe symptoms, soil, weather, crop stage — and get professional agronomic advice powered by AI and process-based crop models in under 60 seconds. No app. No account.</div>
+          <div class="pf-list">
+            <div class="pf-row">Text a crop problem in plain language — no photo needed</div>
+            <div class="pf-row">AI and crop models generate agronomic advice</div>
+            <div class="pf-row">Fertiliser rates, irrigation timing, pest and disease management</div>
+            <div class="pf-row">Crop-stage advisory based on location and conditions</div>
+            <div class="pf-row">Works in any language — globally accessible</div>
+            <div class="pf-row">Deployable for NGOs and government extension programmes</div>
+          </div>
+          <a href="https://wa.me/YOURNUMBER?text=Hello+CropOracle" class="pcard-cta">Try CropOracle on WhatsApp →</a>
+        </div>
+        <div class="pcard-foot">
+          <span class="pf-tech">Claude AI · Crop Models · WhatsApp Business API</span>
+          <span class="badge b-free">No credit card</span>
+        </div>
+      </div>
+      <div class="pcard-wrap reveal">
+        <div class="pcard-top">
+          <div class="pcard-icon-row">
+            <div class="pcard-icon">🔬</div>
+            <div class="badges"><span class="badge b-live">Live</span><span class="badge b-free">Demo Available</span></div>
+          </div>
+          <div class="pcard-name">FieldBrain AI</div>
+          <div class="pcard-tag">AI-powered field trial intelligence platform for agronomy, plant breeding, and agricultural research programmes — built to improve data quality, field supervision, and project progress monitoring.</div>
+          <div class="pf-list">
+            <div class="pf-row">Offline field data collection for research teams</div>
+            <div class="pf-row">Plot-level observations with GPS, photos, voice notes, and timestamps</div>
+            <div class="pf-row">Supervisor dashboard for progress and team monitoring</div>
+            <div class="pf-row">Missing-data detection and AI quality checks</div>
+            <div class="pf-row">Daily project summaries and early-warning alerts</div>
+            <div class="pf-row">Built for agronomy, breeding, and multi-location trials</div>
+          </div>
+          <a href="https://fieldbrain.netlify.app" class="pcard-cta">Request a FieldBrain Demo →</a>
+        </div>
+        <div class="pcard-foot">
+          <span class="pf-tech">Flutter · Supabase · AI Quality Control · Offline Sync</span>
+          <span class="badge b-live">Live Demo</span>
+        </div>
+      </div>
+      <div class="pcard-wrap reveal">
+        <div class="pcard-top">
+          <div class="pcard-icon-row">
+            <div class="pcard-icon">📸</div>
+            <div class="badges"><span class="badge b-beta">Beta</span><span class="badge b-free">Free Beta</span></div>
+          </div>
+          <div class="pcard-name">PlotScan</div>
+          <div class="pcard-tag">One phone photo per trial plot — get back multiple agronomic measurements instantly. Built for researchers running replicated field trials who need data, not clipboards.</div>
+          <div class="pf-list">
+            <div class="pf-row">Green canopy cover percentage per plot</div>
+            <div class="pf-row">NDVI proxy map from a phone RGB camera</div>
+            <div class="pf-row">Plant count and stand density</div>
+            <div class="pf-row">Estimated canopy height</div>
+            <div class="pf-row">Vigor score and growth stage</div>
+            <div class="pf-row">Ranked treatment-comparison report</div>
+          </div>
+          <a href="YOURPLOTSCANLINK" class="pcard-cta">Join the PlotScan Beta →</a>
+        </div>
+        <div class="pcard-foot">
+          <span class="pf-tech">YOLOv8 · SAM 2 · DepthAnything v2 · Claude Vision</span>
+          <span class="badge b-beta">Beta access</span>
+        </div>
+      </div>
+    </div>
+    <div class="prod-more reveal">
+      <p>Need something custom? We also build bespoke AI tools for agriculture on client request.</p>
+      <a href="#contact" class="btn-p">Discuss a Custom AI Tool →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ PROBLEM ══════════════ -->
+<section id="problem">
+  <div class="container">
+    <div class="prob-inner">
+      <div class="reveal">
+        <div class="stag">Problems We Solve</div>
+        <h2 class="sh">Practical agricultural intelligence should not <em>be out of reach.</em></h2>
+        <p class="ssub" style="margin-bottom:0">After 20+ years working in research institutions across Africa, Japan, Australia, and the USA, the same gap kept repeating: the tools that could improve agricultural decisions were too expensive, too complex, or simply unavailable to the people and organisations that needed them most. WonkaFarm Brain builds AI-powered agricultural intelligence systems that close that gap — for farmers, research teams, governments, and agribusinesses alike.</p>
+      </div>
+      <div class="reveal">
+        <div class="prob-card">
+          <div class="prob-ico">🌾</div>
+          <div>
+            <h3>Help farmers receive better advice</h3>
+            <p>CropOracle delivers AI-powered, science-backed crop advice over WhatsApp — no app, no specialist hardware, no cost to the farmer.</p>
+          </div>
+        </div>
+        <div class="prob-card">
+          <div class="prob-ico">🔬</div>
+          <div>
+            <h3>Help research teams collect cleaner field data</h3>
+            <p>FieldBrain AI and PlotScan replace paper clipboards and manual measurement with structured, quality-checked field data collected from a phone.</p>
+          </div>
+        </div>
+        <div class="prob-card">
+          <div class="prob-ico">🏛</div>
+          <div>
+            <h3>Help governments scale digital advisory systems</h3>
+            <p>We design and deploy AI-powered advisory systems that extension programmes and ministries can roll out across regions without specialist in-house teams.</p>
+          </div>
+        </div>
+        <div class="prob-card">
+          <div class="prob-ico">🛰</div>
+          <div>
+            <h3>Help agribusinesses convert imagery and models into decisions</h3>
+            <p>Drone and satellite imagery, soil data, and crop models only matter if they change a decision — that is the layer we build and deliver.</p>
+          </div>
+        </div>
+        <div class="prob-card">
+          <div class="prob-ico">🤖</div>
+          <div>
+            <h3>Help organisations build practical AI tools for agriculture</h3>
+            <p>From NGOs to AgTech startups, we design, build, and integrate AI tools that are grounded in agronomic science — not generic chat interfaces.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ SERVICES ══════════════ -->
+<section id="services">
+  <div class="container">
+    <div class="svc-hd">
+      <div>
+        <div class="stag reveal">Consultancy</div>
+        <h2 class="sh reveal">Specialist Consultancy <em>Services</em></h2>
+      </div>
+      <p class="ssub reveal">One important business line among four — specialist crop-model decision support, remote sensing, and digital agriculture strategy, grounded in peer-reviewed science and real field experience across five countries.</p>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar reveal">
+        <div class="pillar-top">
+          <span class="p-ico">📈</span>
+          <h3>Crop-Model <em>Decision Support</em></h3>
+          <p class="pillar-desc">Process-based crop modelling (APSIM, DSSAT) calibrated and validated for a specific farm, region, or global context — from yield forecasting and climate-risk prediction to fertilizer, irrigation, and rotation decisions.</p>
+        </div>
+        <div class="pillar-svcs">
+          <h4>Services</h4>
+          <div class="sv">APSIM and DSSAT model calibration and validation</div>
+          <div class="sv">Yield and climate-risk prediction</div>
+          <div class="sv">Fertilizer, irrigation, and rotation decision support</div>
+          <div class="sv">Grant and proposal technical support</div>
+        </div>
+        <div class="pillar-ft">
+          <div><div class="pft-from">Engagement</div><div class="pft-val">Custom scope</div></div>
+          <a href="#contact" class="btn-ghost">Request a Proposal →</a>
+        </div>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-top">
+          <span class="p-ico">🛰</span>
+          <h3>Remote Sensing &amp; <em>MRV</em></h3>
+          <p class="pillar-desc">Converting UAV and satellite imagery into decision-ready outputs — from single-farm yield maps to landscape-scale soil carbon and MRV assessments, grounded in peer-reviewed agronomic science.</p>
+        </div>
+        <div class="pillar-svcs">
+          <h4>Services</h4>
+          <div class="sv">UAV (Pix4D) and satellite imagery analytics</div>
+          <div class="sv">Soil carbon and MRV modelling</div>
+          <div class="sv">Management-zone delineation and NDVI stress analysis</div>
+          <div class="sv">Field trial digitalization</div>
+        </div>
+        <div class="pillar-ft">
+          <div><div class="pft-from">Engagement</div><div class="pft-val">Custom scope</div></div>
+          <a href="#contact" class="btn-ghost">Request a Proposal →</a>
+        </div>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-top">
+          <span class="p-ico">🤖</span>
+          <h3>AI Advisory &amp; <em>Digital Strategy</em></h3>
+          <p class="pillar-desc">Designing and deploying AI-powered advisory systems that integrate crop-model outputs with machine learning — delivering evidence-based decisions at farm, regional, and policy scale.</p>
+        </div>
+        <div class="pillar-svcs">
+          <h4>Services</h4>
+          <div class="sv">AI advisory platform design and deployment</div>
+          <div class="sv">Custom WhatsApp crop-advisory system build</div>
+          <div class="sv">Digital agriculture strategy for organizations and governments</div>
+          <div class="sv">Research programme digitalisation and scale-up</div>
+        </div>
+        <div class="pillar-ft">
+          <div><div class="pft-from">Engagement</div><div class="pft-val">Custom scope</div></div>
+          <a href="#contact" class="btn-ghost">Request a Proposal →</a>
+        </div>
+      </div>
+    </div>
+    <div class="svc-note reveal">
+      <p><strong>Consultancy is one of four ways we work with you</strong> — alongside CropOracle, FieldBrain AI, and PlotScan. Every engagement is scoped to the specific project, with custom pricing based on size and complexity.</p>
+      <a href="#contact" class="btn-p">Discuss a Consultancy Project →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ TOOLS ══════════════ -->
+<div class="tools-band">
+  <div class="tools-in">
+    <div class="tl-label">Tools &amp; Technologies</div>
+    <div class="tl-row">
+      <span class="tbadge">Crop Models</span>
+      <span class="tbadge">APSIM · DSSAT</span>
+      <span class="tbadge">Python</span>
+      <span class="tbadge">R</span>
+      <span class="tbadge">Google Earth Engine</span>
+      <span class="tbadge">ArcGIS / QGIS</span>
+      <span class="tbadge">TensorFlow</span>
+      <span class="tbadge">Claude AI</span>
+      <span class="tbadge">WhatsApp API</span>
+      <span class="tbadge">YOLOv8</span>
+      <span class="tbadge">SAM 2</span>
+      <span class="tbadge">Pix4D</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ ABOUT ══════════════ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <!-- Photo column — only here -->
+      <div class="about-photo-col reveal">
+        <div class="aph-wrap">
+          <div class="aph-badge">
+            <div class="ab-num">16</div>
+            <div class="ab-lbl">Publications</div>
+          </div>
+          <div class="aph-main">
+            <img src="data:image/jpeg;base64,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" alt="Dr. Fekremariam Mihretie"/>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story and credentials -->
+      <div class="about-right reveal">
+        <div class="stag">About WonkaFarm Brain</div>
+        <div class="abt-name">Dr. Fekremariam Asargew Mihretie</div>
+        <div class="abt-title">Computational Agronomist &amp; AI Systems Builder · Founder, WonkaFarm Brain</div>
+
+        <p class="abt-story">As a computational agronomist with a <strong>PhD in Global Dryland Science from Tottori University, Japan</strong>, I have spent over 20 years working at the intersection of crop science, soil management, AI, and digital technology — conducting research and consultancy across <em>Ethiopia, Ireland, Japan, Australia, and the United States</em>.</p>
+
+        <p class="abt-story">After years working with crop models, drones, remote sensing, and AI systems, I kept seeing the same gap repeat: the technology that could improve agricultural decisions was too expensive, too complex, or simply unavailable to the people and organisations that needed it most. I founded WonkaFarm Brain to close that gap — building AI-powered agricultural intelligence systems that turn crop advisory, field data, imagery, and crop-model outputs into practical decisions for farmers, research teams, governments, and agribusinesses.</p>
+
+        <p class="abt-story">Currently a <strong>Computational Agronomist based in the United States</strong>, with previous research roles and international consultancy across <strong>Ethiopia, Ireland, Japan, Australia, and the United States</strong> — working with research institutions, development organisations, and government programmes. Experience spans <strong>APSIM, DSSAT, AI, drones, remote sensing, RGB imagery, field sensors, and crop physiology</strong>. Research published in <em>Field Crops Research, Agricultural Systems, Science of the Total Environment, European Journal of Agronomy</em>, and more.</p>
+
+        <div class="cred-grid">
+          <div class="cred-box"><div class="cb-ico">🌍</div><div class="cb-val">5+</div><div class="cb-lbl">Countries of research and field experience</div></div>
+          <div class="cred-box"><div class="cb-ico">📄</div><div class="cb-val">16</div><div class="cb-lbl">Peer-reviewed journal publications</div></div>
+          <div class="cred-box"><div class="cb-ico">🌾</div><div class="cb-val">20+</div><div class="cb-lbl">Years of field, modelling, and AI systems experience</div></div>
+          <div class="cred-box"><div class="cb-ico">🚁</div><div class="cb-val">UAV</div><div class="cb-lbl">Licensed drone operator · Pix4D certified</div></div>
+        </div>
+
+        <div class="pubs-box">
+          <div class="pubs-hd">Selected Publications</div>
+          <div class="pub"><strong>Mihretie et al. (2024)</strong> — Water stress changes the relationship between photosynthesis and stomatal conductance. <em>Science of The Total Environment</em></div>
+          <div class="pub"><strong>Mihretie et al. (2022)</strong> — Low-risk and profitable crop management for irrigated teff in Ethiopia. <em>European Journal of Agronomy</em></div>
+          <div class="pub"><strong>Mihretie et al. (2022)</strong> — Cropping practices and soil properties explaining yield variability in rainfed teff systems. <em>Agricultural Systems</em></div>
+          <div class="pub"><strong>Mihretie et al. (2021)</strong> — Tillage and sowing options for teff productivity in subtropical highland environments. <em>Field Crops Research</em></div>
+        </div>
+
+        <div style="background:var(--cream);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px;margin-bottom:22px;border-left:3px solid var(--teal)">
+          <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);margin-bottom:6px">Our Team Approach</div>
+          <div style="font-size:.84rem;color:var(--muted);line-height:1.6;font-weight:300">WonkaFarm Brain brings together a network of specialist agronomists, crop modellers, remote sensing experts, and AI engineers — assembled per project to ensure the right expertise for each engagement. Every project is led by Dr. Mihretie and supported by domain specialists as required.</div>
+        </div>
+        <div class="about-actions">
+          <a href="mailto:fekre@digitalagsystems.org" class="btn-p">Get In Touch →</a>
+          <a href="#contact" class="btn-s">Book a Strategy Call</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CASE STUDIES ══════════════ -->
+<section id="work">
+  <div class="container">
+    <div class="wk-hd">
+      <div class="stag reveal">Evidence of Work</div>
+      <h2 class="sh reveal">Results <em>Delivered</em></h2>
+      <p class="ssub reveal">Research and consultancy engagements demonstrating methodology and impact across continents and client types.</p>
+    </div>
+    <div class="work-grid">
+      <div class="case reveal">
+        <div class="case-bar" style="background:linear-gradient(90deg,#0f766e,#65a30d)"></div>
+        <div class="case-body">
+          <div class="case-cat">Crop Modelling · International Consultancy · Africa &amp; Central Asia</div>
+          <h3>Sustainable Cropping Systems for Dryland Farming — Morocco, Egypt, Uzbekistan</h3>
+          <p>Designed sustainable soil management and cropping strategies for dryland farming contexts across multiple countries in Africa and Central Asia. Delivered hands-on crop-model training to multidisciplinary international research teams.</p>
+          <div class="case-result">
+            <div class="cr-lbl">Outcome</div>
+            <div class="cr-txt">Process-based crop-model scenarios delivered for contrasting dryland environments. Research teams trained for independent ongoing modelling. Full remote international consultancy completed on time.</div>
+          </div>
+          <div class="case-meta"><span>📍 Africa &amp; Central Asia</span><span>🌍 International Consultancy</span></div>
+        </div>
+      </div>
+      <div class="case reveal">
+        <div class="case-bar" style="background:linear-gradient(90deg,#65a30d,#0f766e)"></div>
+        <div class="case-body">
+          <div class="case-cat">Crop Modelling · Legume Systems · Australia</div>
+          <h3>Legume-Based Rotation Optimisation — South-Eastern Australian Cropping Systems</h3>
+          <p>Led field experiments and crop-model simulation (APSIM Next Gen) on legume-based crop rotations — modelling nitrogen dynamics, soil carbon, profitability, and fertiliser-use efficiency across south-eastern Australian cropping systems under multiple climate scenarios.</p>
+          <div class="case-result">
+            <div class="cr-lbl">Outcome</div>
+            <div class="cr-txt">Crop-model simulation of nitrogen dynamics and yield outcomes across climate scenarios delivered. Findings provide evidence-based recommendations for commercial grain farmers across south-eastern Australia.</div>
+          </div>
+          <div class="case-meta"><span>📍 South-Eastern Australia</span><span>🌾 Legume-Based Systems</span></div>
+        </div>
+      </div>
+      <div class="case reveal">
+        <div class="case-bar" style="background:linear-gradient(90deg,#0f766e,#1d4ed8)"></div>
+        <div class="case-body">
+          <div class="case-cat">Water Stress · Crop Physiology · Japan · 2022–2023</div>
+          <h3>Photosynthesis–Stomatal Conductance Under Progressive Drought in Rice</h3>
+          <p>Investigated physiological mechanisms of rice response to soil water stress in Japan under controlled conditions. Quantified changes in the stomatal conductance–photosynthesis relationship under progressive drought.</p>
+          <div class="case-result">
+            <div class="cr-lbl">Outcome</div>
+            <div class="cr-txt">Published in Science of the Total Environment (2024). Findings improve drought-stress simulation in crop models — directly applicable to climate-smart agriculture globally.</div>
+          </div>
+          <div class="case-meta"><span>📍 Japan</span><span>📄 Published STE 2024</span></div>
+        </div>
+      </div>
+      <div class="case reveal">
+        <div class="case-bar" style="background:linear-gradient(90deg,#d97706,#0f766e)"></div>
+        <div class="case-body">
+          <div class="case-cat">Smallholder Systems · Ethiopia · ARARI · 2005–2015</div>
+          <h3>Smallholder Crop Management Programme — Ethiopian Highlands</h3>
+          <p>Led a 10-year research programme at ARARI developing and promoting improved soil and nutrient management for Ethiopian highland crops — sorghum, wheat, maize, teff, finger millet. Transitioning smallholders to evidence-based nutrient management.</p>
+          <div class="case-result">
+            <div class="cr-lbl">Outcome</div>
+            <div class="cr-txt">Multiple publications in Field Crops Research, Agronomy Journal. Improved teff management recommendations adopted across the Amhara Region, benefiting thousands of smallholder households.</div>
+          </div>
+          <div class="case-meta"><span>📍 Ethiopian Highlands</span><span>🌱 Smallholder Systems</span><span>⏱ 10 years</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ TRAINING ══════════════ -->
+<section id="training">
+  <div class="container">
+    <div class="training-inner">
+      <div class="tr-left reveal">
+        <div class="stag">Training &amp; Capacity Building</div>
+        <h2 class="sh">Training the next generation of <em>digital agronomists.</em></h2>
+        <p class="ssub">Hands-on training in crop modelling, AI farm advisory tools, remote sensing, and digital agriculture — for researchers, postgraduates, NGO staff, and government agricultural programmes. Remote or on-site worldwide.</p>
+        <a href="#contact" class="btn-p">Request a Proposal →</a>
+      </div>
+      <div class="tc-list reveal">
+        <div class="tc">
+          <div class="tc-ico">📈</div>
+          <div><h4>Crop Model Training (APSIM, DSSAT)</h4><p>Calibration, validation, and scenario analysis using process-based crop models — tailored to a specific farm, region, and context.</p></div>
+          <div class="tc-dur">3–5 days</div>
+        </div>
+        <div class="tc">
+          <div class="tc-ico">🌾</div>
+          <div><h4>Model Calibration &amp; Validation</h4><p>Calibrating and validating crop models for farm-specific, regional, or global contexts — from field scale to policy scale.</p></div>
+          <div class="tc-dur">3–5 days</div>
+        </div>
+        <div class="tc">
+          <div class="tc-ico">🤖</div>
+          <div><h4>AI Tools for Agronomists</h4><p>Understanding and using AI-powered crop advisory tools — including CropOracle text advisory and PlotScan image analysis. No coding required.</p></div>
+          <div class="tc-dur">1–2 days</div>
+        </div>
+        <div class="tc">
+          <div class="tc-ico">🛰</div>
+          <div><h4>Remote Sensing &amp; Drone Analytics</h4><p>UAV (Pix4D) and satellite imagery processing — yield maps, NDVI analysis, management zones, and agronomic recommendations from drone data.</p></div>
+          <div class="tc-dur">2–3 days</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ ENGAGEMENT MODELS ══════════════ -->
+<section id="pricing">
+  <div class="container">
+    <div class="stag reveal">Working With Us</div>
+    <h2 class="sh reveal">Clear Engagement Models.<em>Custom Scope.</em></h2>
+    <p class="ssub reveal">Every product and consultancy engagement is scoped to your specific need. Below are the common ways organisations work with WonkaFarm Brain — final scope and pricing confirmed at a free strategy call.</p>
+    <div class="price-grid">
+      <div class="prc reveal">
+        <div class="prc-name">Try a Product</div>
+        <p class="prc-desc">Start with CropOracle or PlotScan directly — free to try, no commitment required.</p>
+        <div class="prc-amount">Free to Try</div>
+        <div class="prc-unit">CropOracle &amp; PlotScan beta</div>
+        <ul class="prc-list">
+          <li>CropOracle — WhatsApp crop advisory</li>
+          <li>PlotScan — free beta image analysis</li>
+          <li>No credit card, no obligation</li>
+          <li>Upgrade to enterprise deployment anytime</li>
+        </ul>
+        <a href="https://wa.me/YOURNUMBER?text=Hello+CropOracle" class="prc-btn">Try CropOracle →</a>
+      </div>
+      <div class="prc feat reveal">
+        <div class="feat-badge">Most Requested</div>
+        <div class="prc-name">Project Engagement</div>
+        <p class="prc-desc">A defined consultancy project — crop modelling, remote sensing, MRV, or AI advisory system design.</p>
+        <div class="prc-amount">Request a Proposal</div>
+        <div class="prc-unit">Custom scope based on project size</div>
+        <ul class="prc-list">
+          <li>Crop-model or remote-sensing analysis</li>
+          <li>AI advisory system design and build</li>
+          <li>Full technical report and presentation</li>
+          <li>Scope and timeline confirmed before start</li>
+        </ul>
+        <a href="#contact" class="prc-btn">Request a Proposal →</a>
+      </div>
+      <div class="prc reveal">
+        <div class="prc-name">Enterprise &amp; Retainer</div>
+        <p class="prc-desc">Ongoing advisory deployment or monthly support for governments, NGOs, and AgTech companies.</p>
+        <div class="prc-amount">Pricing on Request</div>
+        <div class="prc-unit">Enterprise demo available</div>
+        <ul class="prc-list">
+          <li>FieldBrain AI enterprise deployment</li>
+          <li>CropOracle scaled advisory rollout</li>
+          <li>Monthly modelling and advisory retainer</li>
+          <li>Priority turnaround and training included</li>
+        </ul>
+        <a href="#contact" class="prc-btn">Request Enterprise Demo →</a>
+      </div>
+    </div>
+    <div class="price-foot reveal">Not sure where to start? <strong>Book a free strategy call</strong> and we'll recommend the right product or engagement for your goals.</div>
+  </div>
+</section>
+
+<!-- ══════════════ CONTACT ══════════════ -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="cl reveal">
+        <div class="stag">Get In Touch</div>
+        <h2 class="sh">Let's talk about <em>your project.</em></h2>
+        <p class="ssub">Whether you need a rapid crop-model diagnostic, a full consultancy engagement, an enterprise CropOracle or FieldBrain deployment, or just want to try PlotScan — start with a free 30-minute strategy call. No obligation.</p>
+        <div class="ci-list">
+          <div class="ci-row">
+            <div class="ci-ico">📧</div>
+            <div class="ci-txt"><strong>Email</strong><a href="mailto:fekre@digitalagsystems.org">fekre@digitalagsystems.org</a></div>
+          </div>
+          <div class="ci-row">
+            <div class="ci-ico">💬</div>
+            <div class="ci-txt"><strong>Try CropOracle — WhatsApp</strong><a href="https://wa.me/YOURNUMBER?text=Hello+CropOracle">Text your crop question →</a></div>
+          </div>
+          <div class="ci-row">
+            <div class="ci-ico">🔬</div>
+            <div class="ci-txt"><strong>Request a FieldBrain AI Demo</strong><a href="https://fieldbrain.netlify.app">View live demo →</a></div>
+          </div>
+          <div class="ci-row">
+            <div class="ci-ico">📸</div>
+            <div class="ci-txt"><strong>Join the PlotScan Beta</strong><a href="YOURPLOTSCANLINK">Access free beta →</a></div>
+          </div>
+          <div class="ci-row">
+            <div class="ci-ico">📅</div>
+            <div class="ci-txt"><strong>Book a Free Strategy Call</strong><a href="mailto:fekre@digitalagsystems.org">Email to schedule</a></div>
+          </div>
+          <div class="ci-row">
+            <div class="ci-ico">🌐</div>
+            <div class="ci-txt"><strong>Website</strong><a href="https://www.digitalagsystems.org" target="_blank" rel="noopener">digitalagsystems.org</a></div>
+          </div>
+          <div class="ci-row">
+            <div class="ci-ico">🌍</div>
+            <div class="ci-txt"><strong>Base &amp; Coverage</strong><span>United States · Remote worldwide</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="cf-box reveal">
+        <h3>Send a Message</h3>
+        <form onsubmit="handleForm(event)">
+          <div class="fg"><label>Your Name</label><input type="text" placeholder="Dr. Jane Smith" required/></div>
+          <div class="fg"><label>Organisation</label><input type="text" placeholder="Government / NGO / University / Agribusiness / AgTech"/></div>
+          <div class="fg"><label>Email Address</label><input type="email" placeholder="jane@organisation.com" required/></div>
+          <div class="fg">
+            <label>How Can We Help?</label>
+            <select>
+              <option value="">Select...</option>
+              <option>Try CropOracle (WhatsApp crop advisory)</option>
+              <option>Request a FieldBrain AI Demo</option>
+              <option>Join the PlotScan Beta</option>
+              <option>Crop-Model Decision Support (APSIM / DSSAT)</option>
+              <option>Remote Sensing / Drone Analytics / Soil Carbon &amp; MRV</option>
+              <option>AI Advisory Platform Design</option>
+              <option>Digital Agriculture Strategy for Organisations/Governments</option>
+              <option>Training Programme</option>
+              <option>Grant &amp; Proposal Technical Support</option>
+              <option>Custom AI Tool Development</option>
+              <option>Not sure — let's talk</option>
+            </select>
+          </div>
+          <div class="fg"><label>Tell Us About Your Project</label><textarea placeholder="Describe your crop, location, organisation, and the problem you are trying to solve..."></textarea></div>
+          <button type="submit" class="sbtn">Request a Proposal →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-brand">
+      <div style="display:flex;align-items:center;gap:10px">
+        <svg width="32" height="32" viewBox="0 0 120 100" fill="none">
+          <path d="M5 72 Q60 62 115 72" stroke="#1a4a0a" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <ellipse cx="32" cy="62" rx="16" ry="16" fill="#1B5E20"/>
+          <ellipse cx="32" cy="62" rx="10" ry="10" fill="white"/>
+          <ellipse cx="32" cy="62" rx="5"  ry="5"  fill="#1B5E20"/>
+          <ellipse cx="62" cy="65" rx="10" ry="10" fill="#1B5E20"/>
+          <ellipse cx="62" cy="65" rx="5.5" ry="5.5" fill="white"/>
+          <ellipse cx="62" cy="65" rx="2.5" ry="2.5" fill="#1B5E20"/>
+          <path d="M38 46 L70 46 L74 52 L74 62 L38 62 Z" fill="#1B5E20"/>
+          <path d="M38 46 L38 32 L52 32 L56 38 L56 46 Z" fill="#245C1A"/>
+          <rect x="50" y="24" width="4" height="10" rx="2" fill="#1B5E20"/>
+          <line x1="84" y1="70" x2="84" y2="8"  stroke="#1B5E20" stroke-width="3.5" stroke-linecap="round"/>
+          <polyline points="83,42 66,42 66,30" stroke="#1B5E20" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="66" cy="30" r="4.5" fill="white" stroke="#1B5E20" stroke-width="2"/>
+          <circle cx="66" cy="30" r="1.8" fill="#1B5E20"/>
+          <polyline points="85,55 100,55 100,44" stroke="#1B5E20" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="100" cy="44" r="4.5" fill="white" stroke="#1B5E20" stroke-width="2"/>
+          <circle cx="100" cy="44" r="1.8" fill="#1B5E20"/>
+          <path d="M84,8 C78,-6 60,0 62,16 C64,28 80,26 84,8Z"  fill="#2E7D32"/>
+          <path d="M84,12 C90,-4 108,4 106,20 C104,32 88,28 84,12Z" fill="#388E3C"/>
+        </svg>
+        <div style="font-family:'Arial Black',Arial,sans-serif;font-size:.95rem;letter-spacing:2px;color:white">WonkaFarm<span style="color:#4ade80"> Brain</span></div>
+      </div>
+      <div class="ft-tagline">AI-powered agricultural intelligence systems — crop advisory, field trial intelligence, image-based crop measurement, and crop-model decision support.</div>
+    </div>
+    <div class="ft-col">
+      <h4>Products</h4>
+      <a href="https://wa.me/YOURNUMBER">CropOracle — WhatsApp Advisory</a>
+      <a href="https://fieldbrain.netlify.app">FieldBrain AI — Field Trial Intelligence</a>
+      <a href="YOURPLOTSCANLINK">PlotScan — Image-Based Measurement</a>
+      <a href="#contact">Custom AI Tool Request</a>
+    </div>
+    <div class="ft-col">
+      <h4>Company</h4>
+      <a href="#services">Specialist Consultancy</a>
+      <a href="#training">Training Programmes</a>
+      <a href="#about">About the Founder</a>
+      <a href="#work">Our Work</a>
+      <a href="#pricing">Engagement Models</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+  <div class="ft-copy">
+    © 2026 WonkaFarm Brain · Built on peer-reviewed science ·
+    <a href="https://www.digitalagsystems.org" target="_blank" rel="noopener">digitalagsystems.org</a> ·
+    <a href="mailto:fekre@digitalagsystems.org">fekre@digitalagsystems.org</a> ·
+    United States
+  </div>
+</footer>
+
+<script>
+  /* scroll reveal */
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e,i) => {
+      if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('vis'), i*70); obs.unobserve(e.target); }
+    });
+  },{threshold:0.07});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  /* mobile nav */
+  let open=false;
+  function toggleNav(){
+    const nl=document.getElementById('nl'); open=!open;
+    nl.style.cssText = open
+      ? 'display:flex;flex-direction:column;gap:14px;position:absolute;top:68px;left:0;right:0;background:rgba(250,250,248,.98);padding:16px 24px 24px;border-bottom:1px solid #dde8de;box-shadow:0 8px 24px rgba(13,31,15,.1);z-index:299'
+      : '';
+  }
+  document.querySelectorAll('#nl a').forEach(a=>{
+    a.addEventListener('click',()=>{ if(window.innerWidth<=960){ document.getElementById('nl').style.cssText=''; open=false; }});
+  });
+
+  /* nav shadow */
+  window.addEventListener('scroll',()=>{
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY>30);
+  });
+
+  /* form */
+  function handleForm(e){
+    e.preventDefault();
+    const btn=e.target.querySelector('.sbtn');
+    btn.textContent="✓ Request sent — we'll reply within 24 hours";
+    btn.style.background='var(--teal2)';
+    btn.disabled=true;
+  }
+</script>
+</body>
+</html>
