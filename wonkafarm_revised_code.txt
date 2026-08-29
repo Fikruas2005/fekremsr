@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WonkaFarm Brain | Agricultural Intelligence Systems</title>
+  <meta name="description" content="WonkaFarm Brain builds agricultural intelligence systems that combine agronomic science, crop models, remote sensing, computer vision and AI to turn field data into better decisions." />
+  <meta name="keywords" content="WonkaFarm Brain, agricultural intelligence, computational agronomy, crop models, CropOracle, FieldBrain, PlotScan, remote sensing, digital agriculture, AI agriculture" />
+  <meta name="theme-color" content="#0d1f0f" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0d1f0f;
+      --ink-2: #16341c;
+      --green: #0f766e;
+      --green-2: #0d9488;
+      --green-3: #14b8a6;
+      --sage: #78927c;
+      --cream: #f5f2ec;
+      --off: #fafaf8;
+      --white: #ffffff;
+      --muted: #607064;
+      --border: #dce7dd;
+      --shadow: 0 16px 50px rgba(13,31,15,.10);
+      --fh: 'DM Serif Display', serif;
+      --fb: 'Outfit', sans-serif;
+      --max: 1160px;
+      --r: 14px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--fb); color: var(--ink); background: var(--off); line-height: 1.65; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button, input, select, textarea { font: inherit; }
+
+    .container { width: min(var(--max), calc(100% - 48px)); margin: 0 auto; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--green); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; margin-bottom: 14px; }
+    .eyebrow::before { content: ''; width: 20px; height: 2px; background: var(--green); }
+    .section-title { font: 400 clamp(2rem, 4vw, 3.35rem)/1.08 var(--fh); letter-spacing: -.02em; }
+    .section-title em { color: var(--green); font-style: italic; }
+    .section-lead { color: var(--muted); max-width: 680px; margin-top: 16px; font-weight: 300; font-size: 1.02rem; }
+    .muted { color: var(--muted); }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 0 22px; border-radius: 9px; font-size: .9rem; font-weight: 600; transition: .2s ease; border: 1px solid transparent; cursor: pointer; }
+    .btn-primary { background: var(--green); color: var(--white); }
+    .btn-primary:hover { background: var(--green-2); transform: translateY(-1px); }
+    .btn-secondary { border-color: var(--border); background: var(--white); color: var(--ink); }
+    .btn-secondary:hover { border-color: var(--green); color: var(--green); }
+    .text-link { color: var(--green); font-weight: 600; font-size: .88rem; }
+    .text-link:hover { color: var(--green-2); }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; height: 70px; z-index: 1000; background: rgba(250,250,248,.96); border-bottom: 1px solid var(--border); backdrop-filter: blur(14px); }
+    nav.scrolled { box-shadow: 0 5px 24px rgba(13,31,15,.07); }
+    .nav-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand-mark { width: 38px; height: 38px; flex: 0 0 auto; }
+    .brand-name { font-family: var(--fh); font-size: 1.12rem; line-height: 1; }
+    .brand-name span { color: var(--green); }
+    .nav-links { display: flex; list-style: none; gap: 27px; align-items: center; }
+    .nav-links a { font-size: .84rem; color: var(--muted); font-weight: 500; }
+    .nav-links a:hover { color: var(--green); }
+    .nav-links .nav-cta { color: white; background: var(--green); padding: 9px 16px; border-radius: 8px; }
+    .burger { display: none; background: none; border: 0; cursor: pointer; }
+    .burger span { display: block; width: 23px; height: 2px; background: var(--ink); margin: 5px 0; }
+
+    /* HERO */
+    .hero-wrap { background: linear-gradient(150deg, #fbfcfa 0%, #edf4ee 100%); border-bottom: 1px solid var(--border); }
+    .hero { min-height: 92vh; padding: 132px 0 84px; display: grid; grid-template-columns: 1.05fr .95fr; gap: 70px; align-items: center; }
+    .hero-pill { display: inline-flex; align-items: center; gap: 9px; padding: 6px 13px; border: 1px solid rgba(15,118,110,.18); background: rgba(15,118,110,.06); border-radius: 999px; color: var(--green); font-size: .72rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 22px; }
+    .hero-pill::before { content: ''; width: 7px; height: 7px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 0 4px rgba(34,197,94,.12); }
+    .hero h1 { font: 400 clamp(3rem, 6vw, 5.3rem)/.98 var(--fh); letter-spacing: -.035em; max-width: 760px; }
+    .hero h1 em { color: var(--green); font-style: italic; }
+    .hero p { margin-top: 22px; color: var(--muted); font-size: 1.08rem; max-width: 620px; font-weight: 300; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+    .hero-meta { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 30px; color: var(--muted); font-size: .78rem; }
+    .hero-meta span { display: flex; align-items: center; gap: 6px; }
+    .hero-meta span::before { content: '•'; color: var(--green); font-size: 1.1rem; }
+
+    .intelligence-card { background: var(--ink); color: white; border-radius: 22px; padding: 28px; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+    .intelligence-card::before { content: ''; position: absolute; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(20,184,166,.16), transparent 68%); top: -220px; right: -160px; }
+    .ic-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,.09); position: relative; }
+    .ic-kicker { color: var(--green-3); font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .ic-status { font-size: .62rem; padding: 4px 9px; border-radius: 999px; background: rgba(34,197,94,.12); color: #4ade80; border: 1px solid rgba(34,197,94,.20); }
+    .ic-flow { padding-top: 12px; position: relative; }
+    .flow-row { display: grid; grid-template-columns: 52px 1fr auto; gap: 14px; align-items: center; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,.07); }
+    .flow-row:last-child { border-bottom: 0; }
+    .flow-num { width: 42px; height: 42px; border-radius: 11px; background: rgba(20,184,166,.12); border: 1px solid rgba(20,184,166,.22); display: flex; align-items: center; justify-content: center; color: var(--green-3); font-weight: 700; }
+    .flow-title { font-size: .93rem; font-weight: 600; }
+    .flow-copy { font-size: .75rem; color: rgba(255,255,255,.48); margin-top: 2px; }
+    .flow-arrow { color: var(--green-3); }
+
+    /* TRUST / AUDIENCE */
+    .audience-bar { background: white; border-bottom: 1px solid var(--border); }
+    .audience-inner { min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .audience-label { color: var(--sage); text-transform: uppercase; letter-spacing: .11em; font-size: .67rem; font-weight: 700; }
+    .audience-items { display: flex; align-items: center; gap: 26px; flex-wrap: wrap; color: var(--muted); font-size: .82rem; font-weight: 500; }
+
+    /* SHARED SECTIONS */
+    section { padding: 104px 0; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 40px; margin-bottom: 48px; }
+
+    /* PLATFORM */
+    #platform { background: var(--cream); }
+    .platform-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+    .platform-step { background: white; border: 1px solid var(--border); border-radius: var(--r); padding: 26px 22px; position: relative; }
+    .platform-step:not(:last-child)::after { content: '→'; position: absolute; right: -12px; top: 50%; transform: translateY(-50%); z-index: 2; color: var(--green); background: var(--cream); width: 23px; height: 23px; display: grid; place-items: center; border-radius: 50%; font-weight: 700; }
+    .step-no { color: var(--green); font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; }
+    .platform-step h3 { font: 400 1.4rem/1.15 var(--fh); margin-bottom: 9px; }
+    .platform-step p { color: var(--muted); font-size: .83rem; font-weight: 300; }
+    .data-strip { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .data-strip span { padding: 7px 10px; background: rgba(15,118,110,.06); border: 1px solid rgba(15,118,110,.12); border-radius: 7px; color: var(--green); font-size: .72rem; font-weight: 600; }
+
+    /* PRODUCTS */
+    #products { background: var(--ink); color: white; }
+    #products .eyebrow { color: var(--green-3); }
+    #products .eyebrow::before { background: var(--green-3); }
+    #products .section-title em { color: var(--green-3); }
+    #products .section-lead { color: rgba(255,255,255,.48); }
+    .product-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .product-card { display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.035); border-radius: 18px; padding: 28px; min-height: 100%; transition: .25s ease; }
+    .product-card:hover { border-color: rgba(20,184,166,.35); background: rgba(255,255,255,.055); transform: translateY(-3px); }
+    .product-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .product-icon { width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; background: rgba(20,184,166,.12); border: 1px solid rgba(20,184,166,.22); font-size: 1.35rem; }
+    .status { padding: 4px 9px; border-radius: 999px; font-size: .62rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .live { color: #4ade80; background: rgba(34,197,94,.11); border: 1px solid rgba(34,197,94,.20); }
+    .demo { color: #5eead4; background: rgba(20,184,166,.11); border: 1px solid rgba(20,184,166,.20); }
+    .beta { color: #fbbf24; background: rgba(251,191,36,.10); border: 1px solid rgba(251,191,36,.18); }
+    .product-card h3 { font: 400 1.75rem/1.1 var(--fh); margin-top: 22px; }
+    .product-card p { color: rgba(255,255,255,.52); font-size: .87rem; margin-top: 10px; font-weight: 300; }
+    .product-points { list-style: none; margin: 18px 0 24px; }
+    .product-points li { color: rgba(255,255,255,.66); font-size: .79rem; padding: 6px 0; display: flex; gap: 9px; }
+    .product-points li::before { content: '✓'; color: var(--green-3); font-weight: 700; }
+    .product-card .text-link { color: var(--green-3); margin-top: auto; }
+
+    /* SOLUTIONS */
+    #solutions { background: white; }
+    .solution-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .solution-card { border: 1px solid var(--border); border-radius: var(--r); padding: 25px; }
+    .solution-card h3 { font: 400 1.32rem/1.2 var(--fh); margin-bottom: 8px; }
+    .solution-card p { color: var(--muted); font-size: .84rem; font-weight: 300; }
+    .solution-icon { font-size: 1.4rem; margin-bottom: 14px; }
+
+    /* SCIENCE */
+    #science { background: var(--cream); }
+    .science-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 72px; align-items: center; }
+    .science-box { background: var(--ink); color: white; border-radius: 20px; padding: 32px; box-shadow: var(--shadow); }
+    .science-box h3 { font: 400 1.7rem/1.15 var(--fh); margin-bottom: 16px; }
+    .science-box p { color: rgba(255,255,255,.52); font-size: .88rem; }
+    .science-layer { margin-top: 18px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.08); }
+    .science-layer strong { color: var(--green-3); display: block; font-size: .76rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; }
+    .science-copy p { color: var(--muted); margin-top: 16px; font-weight: 300; }
+    .science-facts { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 26px; }
+    .fact { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .fact strong { display: block; font-family: var(--fh); font-size: 1.4rem; color: var(--green); }
+    .fact span { color: var(--muted); font-size: .72rem; }
+
+    /* COMPANY */
+    #company { background: white; }
+    .company-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 60px; align-items: start; }
+    .company-copy p { color: var(--muted); font-weight: 300; margin-top: 15px; }
+    .company-card { background: var(--cream); border: 1px solid var(--border); border-radius: 18px; padding: 28px; }
+    .company-card h3 { font: 400 1.5rem/1.2 var(--fh); }
+    .company-card p { color: var(--muted); font-size: .84rem; margin-top: 10px; }
+    .leader { margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--border); }
+    .leader strong { display: block; }
+    .leader span { color: var(--green); font-size: .8rem; font-weight: 600; }
+
+    /* ENGAGE */
+    #engage { background: var(--ink); color: white; }
+    #engage .section-title em { color: var(--green-3); }
+    #engage .section-lead { color: rgba(255,255,255,.48); }
+    .engage-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 42px; }
+    .engage-card { border: 1px solid rgba(255,255,255,.09); border-radius: 16px; padding: 25px; background: rgba(255,255,255,.03); }
+    .engage-card h3 { font: 400 1.25rem/1.2 var(--fh); }
+    .engage-card p { color: rgba(255,255,255,.48); font-size: .82rem; margin-top: 8px; }
+
+    /* CONTACT */
+    #contact { background: var(--off); }
+    .contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 68px; align-items: start; }
+    .contact-list { margin-top: 26px; display: grid; gap: 14px; }
+    .contact-line { display: flex; gap: 12px; align-items: center; }
+    .contact-line .icon { width: 38px; height: 38px; border-radius: 9px; display: grid; place-items: center; background: white; border: 1px solid var(--border); }
+    .contact-line small { display: block; color: var(--sage); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; }
+    .contact-line a, .contact-line span { font-size: .86rem; font-weight: 500; }
+    .form-box { background: white; border: 1px solid var(--border); border-radius: 18px; padding: 30px; box-shadow: 0 8px 30px rgba(13,31,15,.05); }
+    .form-box h3 { font: 400 1.45rem/1.2 var(--fh); margin-bottom: 20px; }
+    .field { margin-bottom: 14px; }
+    .field label { display: block; color: var(--muted); font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; font-weight: 700; margin-bottom: 6px; }
+    .field input, .field select, .field textarea { width: 100%; padding: 11px 13px; border: 1px solid var(--border); border-radius: 8px; outline: none; color: var(--ink); background: var(--off); }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(15,118,110,.07); }
+    .field textarea { min-height: 110px; resize: vertical; }
+    .form-note { color: var(--muted); font-size: .72rem; margin-top: 10px; }
+
+    footer { background: #08170a; color: white; padding: 54px 0 28px; }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 50px; }
+    .footer-tag { color: rgba(255,255,255,.36); font-size: .82rem; max-width: 320px; margin-top: 12px; }
+    .footer-col h4 { color: var(--sage); font-size: .67rem; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 13px; }
+    .footer-col a { display: block; color: rgba(255,255,255,.42); font-size: .8rem; margin: 8px 0; }
+    .footer-col a:hover { color: var(--green-3); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.07); margin-top: 38px; padding-top: 20px; color: rgba(255,255,255,.22); font-size: .72rem; text-align: center; }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: .55s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 960px) {
+      .nav-links { display: none; }
+      .burger { display: block; }
+      .nav-links.open { display: flex; position: absolute; top: 70px; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; background: rgba(250,250,248,.99); border-bottom: 1px solid var(--border); padding: 12px 24px 20px; box-shadow: 0 8px 20px rgba(13,31,15,.08); }
+      .nav-links.open li a { display: block; padding: 10px 0; }
+      .nav-links.open .nav-cta { text-align: center; margin-top: 6px; }
+      .hero, .science-grid, .company-grid, .contact-grid { grid-template-columns: 1fr; }
+      .hero { gap: 42px; padding-top: 112px; }
+      .platform-grid { grid-template-columns: 1fr 1fr; }
+      .platform-step::after { display: none !important; }
+      .product-grid, .solution-grid, .engage-grid { grid-template-columns: 1fr; }
+      .science-facts { grid-template-columns: 1fr 1fr 1fr; }
+      .section-head { align-items: start; flex-direction: column; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    }
+
+    @media (max-width: 620px) {
+      .container { width: min(var(--max), calc(100% - 32px)); }
+      section { padding: 82px 0; }
+      .hero { min-height: auto; padding-bottom: 64px; }
+      .hero h1 { font-size: clamp(2.8rem, 14vw, 4rem); }
+      .platform-grid, .science-facts { grid-template-columns: 1fr; }
+      .audience-inner { padding: 16px 0; }
+      .audience-items { gap: 12px 20px; }
+      .flow-row { grid-template-columns: 44px 1fr; }
+      .flow-arrow { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="#home" aria-label="WonkaFarm Brain home">
+      <svg class="brand-mark" viewBox="0 0 120 100" fill="none" aria-hidden="true">
+        <path d="M5 72 Q60 62 115 72" stroke="#1a4a0a" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <ellipse cx="32" cy="62" rx="16" ry="16" fill="#1B5E20"/><ellipse cx="32" cy="62" rx="10" ry="10" fill="white"/><ellipse cx="32" cy="62" rx="5" ry="5" fill="#1B5E20"/>
+        <ellipse cx="62" cy="65" rx="10" ry="10" fill="#1B5E20"/><ellipse cx="62" cy="65" rx="5.5" ry="5.5" fill="white"/><ellipse cx="62" cy="65" rx="2.5" ry="2.5" fill="#1B5E20"/>
+        <path d="M38 46 L70 46 L74 52 L74 62 L38 62 Z" fill="#1B5E20"/><path d="M38 46 L38 32 L52 32 L56 38 L56 46 Z" fill="#245C1A"/>
+        <rect x="50" y="24" width="4" height="10" rx="2" fill="#1B5E20"/>
+        <line x1="84" y1="70" x2="84" y2="8" stroke="#1B5E20" stroke-width="3.5" stroke-linecap="round"/>
+        <polyline points="83,42 66,42 66,30" stroke="#1B5E20" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="66" cy="30" r="4.5" fill="white" stroke="#1B5E20" stroke-width="2"/><circle cx="66" cy="30" r="1.8" fill="#1B5E20"/>
+        <polyline points="85,55 100,55 100,44" stroke="#1B5E20" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="100" cy="44" r="4.5" fill="white" stroke="#1B5E20" stroke-width="2"/><circle cx="100" cy="44" r="1.8" fill="#1B5E20"/>
+        <path d="M84,8 C78,-6 60,0 62,16 C64,28 80,26 84,8Z" fill="#2E7D32"/><path d="M84,12 C90,-4 108,4 106,20 C104,32 88,28 84,12Z" fill="#388E3C"/>
+      </svg>
+      <div class="brand-name">WonkaFarm<span> Brain</span></div>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#platform">Platform</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#solutions">Solutions</a></li>
+      <li><a href="#science">Science</a></li>
+      <li><a href="#company">Company</a></li>
+      <li><a href="#contact" class="nav-cta">Request a Demo</a></li>
+    </ul>
+
+    <button class="burger" id="burger" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<header class="hero-wrap" id="home">
+  <div class="container hero">
+    <div>
+      <div class="hero-pill">Agricultural intelligence systems</div>
+      <h1>Building the <em>intelligence layer</em> for agriculture.</h1>
+      <p>WonkaFarm Brain combines agronomic science, crop models, field data, remote sensing, computer vision and AI to help agricultural organizations understand what is happening, predict what happens next, and make better decisions.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact">Request a Demo →</a>
+        <a class="btn btn-secondary" href="#products">Explore Our Technology</a>
+      </div>
+      <div class="hero-meta">
+        <span>Crop &amp; field intelligence</span>
+        <span>Research &amp; R&amp;D</span>
+        <span>Decision support</span>
+      </div>
+    </div>
+
+    <div class="intelligence-card" aria-label="WonkaFarm intelligence flow">
+      <div class="ic-head">
+        <div>
+          <div class="ic-kicker">WonkaFarm Intelligence Stack</div>
+          <div style="font:400 1.35rem var(--fh);margin-top:3px">From observation to action</div>
+        </div>
+        <div class="ic-status">Active</div>
+      </div>
+      <div class="ic-flow">
+        <div class="flow-row"><div class="flow-num">01</div><div><div class="flow-title">Observe</div><div class="flow-copy">Field data · imagery · weather · sensors</div></div><div class="flow-arrow">→</div></div>
+        <div class="flow-row"><div class="flow-num">02</div><div><div class="flow-title">Understand</div><div class="flow-copy">Agronomy · crop physiology · process models</div></div><div class="flow-arrow">→</div></div>
+        <div class="flow-row"><div class="flow-num">03</div><div><div class="flow-title">Predict</div><div class="flow-copy">Growth · stress · yield · resource response · risk</div></div><div class="flow-arrow">→</div></div>
+        <div class="flow-row"><div class="flow-num">04</div><div><div class="flow-title">Decide</div><div class="flow-copy">AI-assisted recommendations and decision support</div></div><div class="flow-arrow">✓</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="audience-bar">
+  <div class="container audience-inner">
+    <div class="audience-label">Built for</div>
+    <div class="audience-items"><span>Agribusiness</span><span>Research &amp; R&amp;D</span><span>Governments</span><span>Development Organizations</span><span>Farmers &amp; Advisors</span></div>
+  </div>
+</div>
+
+<section id="platform">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Our Platform</div>
+        <h2 class="section-title">Agricultural intelligence, <em>from field to decision.</em></h2>
+      </div>
+      <p class="section-lead">Agriculture generates data everywhere. Our role is to connect those observations with biological understanding and predictive models so the data become useful decisions.</p>
+    </div>
+
+    <div class="platform-grid reveal">
+      <div class="platform-step"><div class="step-no">01 · Observe</div><h3>Measure the system</h3><p>Bring together field observations, imagery, weather, soil information, sensors and research measurements.</p><div class="data-strip"><span>Satellite</span><span>UAV</span><span>Phone imagery</span><span>Weather</span></div></div>
+      <div class="platform-step"><div class="step-no">02 · Understand</div><h3>Apply agronomic science</h3><p>Use crop physiology, cropping-systems knowledge and process-based models to interpret what the observations mean.</p><div class="data-strip"><span>Agronomy</span><span>APSIM</span><span>DSSAT</span><span>Physiology</span></div></div>
+      <div class="platform-step"><div class="step-no">03 · Predict</div><h3>Look ahead</h3><p>Estimate crop growth, yield, resource response, environmental stress and management outcomes under changing conditions.</p><div class="data-strip"><span>Yield</span><span>Stress</span><span>Water</span><span>Risk</span></div></div>
+      <div class="platform-step"><div class="step-no">04 · Decide</div><h3>Turn analysis into action</h3><p>Deliver understandable, AI-assisted insights through products, dashboards, messaging interfaces or integrated systems.</p><div class="data-strip"><span>Advisory</span><span>Alerts</span><span>APIs</span><span>Decision support</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="products">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Products</div>
+        <h2 class="section-title">One intelligence system. <em>Multiple ways to use it.</em></h2>
+      </div>
+      <p class="section-lead">Our products are different interfaces into the same core idea: connect agricultural observations, models and AI to make field information more useful.</p>
+    </div>
+
+    <div class="product-grid">
+      <article class="product-card reveal">
+        <div class="product-top"><div class="product-icon">🌱</div><span class="status live">Live</span></div>
+        <h3>CropOracle</h3>
+        <p>Conversational crop intelligence delivered through familiar messaging channels. CropOracle combines agronomic knowledge, crop-model outputs and AI to make complex agricultural information easier to access.</p>
+        <ul class="product-points"><li>Location- and crop-aware advisory</li><li>Crop-model and weather scenario interpretation</li><li>Designed for farmers, advisors and extension systems</li><li>Accessible without specialized modeling software</li></ul>
+        <!-- Replace YOURNUMBER with your real WhatsApp number before publishing -->
+        <a class="text-link" href="https://wa.me/YOURNUMBER?text=Hello+CropOracle">Explore CropOracle →</a>
+      </article>
+
+      <article class="product-card reveal">
+        <div class="product-top"><div class="product-icon">🧠</div><span class="status demo">Demo</span></div>
+        <h3>FieldBrain AI</h3>
+        <p>Field-trial intelligence for agronomy, breeding and research programs. FieldBrain connects observations, field progress, images and data-quality checks to improve research execution and interpretation.</p>
+        <ul class="product-points"><li>Plot-level digital data collection</li><li>GPS, images, timestamps and field notes</li><li>Progress monitoring and data-quality checks</li><li>Designed for multi-location research programs</li></ul>
+        <a class="text-link" href="https://fieldbrain.netlify.app" target="_blank" rel="noopener">View FieldBrain Demo →</a>
+      </article>
+
+      <article class="product-card reveal">
+        <div class="product-top"><div class="product-icon">📸</div><span class="status beta">Beta</span></div>
+        <h3>PlotScan</h3>
+        <p>Computer-vision crop measurement from ordinary field images. PlotScan is being developed to turn phone imagery into repeatable agronomic measurements for researchers and field teams.</p>
+        <ul class="product-points"><li>Canopy and greenness measurements</li><li>Plant and stand assessment</li><li>Image-based crop growth traits</li><li>Treatment comparison and field reporting</li></ul>
+        <!-- Replace YOURPLOTSCANLINK with the production URL before publishing -->
+        <a class="text-link" href="YOURPLOTSCANLINK">Explore PlotScan →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="solutions">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Applications</div>
+        <h2 class="section-title">Built around agricultural <em>problems, not buzzwords.</em></h2>
+      </div>
+      <p class="section-lead">We combine technologies according to the biological and management question being solved.</p>
+    </div>
+
+    <div class="solution-grid">
+      <div class="solution-card reveal"><div class="solution-icon">🌾</div><h3>Crop Monitoring</h3><p>Track crop establishment, growth, stress and productivity using field data and imagery.</p></div>
+      <div class="solution-card reveal"><div class="solution-icon">📈</div><h3>Yield &amp; Risk Intelligence</h3><p>Estimate production outcomes and evaluate how management and weather influence risk.</p></div>
+      <div class="solution-card reveal"><div class="solution-icon">💧</div><h3>Water &amp; Nutrient Intelligence</h3><p>Understand crop responses to water and nutrient availability and evaluate management options.</p></div>
+      <div class="solution-card reveal"><div class="solution-icon">🌿</div><h3>Crop–Weed Intelligence</h3><p>Quantify crop competition, stress and potential yield impacts to support better weed-management decisions.</p></div>
+      <div class="solution-card reveal"><div class="solution-icon">🧪</div><h3>Agricultural Research</h3><p>Connect experiments, imagery, environmental data, statistics and models in one decision workflow.</p></div>
+      <div class="solution-card reveal"><div class="solution-icon">🌍</div><h3>Climate Intelligence</h3><p>Evaluate crop and management responses to weather variability and future climate scenarios.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="science">
+  <div class="container science-grid">
+    <div class="science-box reveal">
+      <h3>Agriculture is a biological system.</h3>
+      <p>AI is most useful when it is connected to the science of how crops actually grow and respond to their environment.</p>
+      <div class="science-layer"><strong>Crop models</strong><p>Represent biological processes and management responses.</p></div>
+      <div class="science-layer"><strong>Remote sensing &amp; field measurements</strong><p>Show what is happening across plots, fields and landscapes.</p></div>
+      <div class="science-layer"><strong>Machine learning &amp; AI</strong><p>Detect patterns, integrate information and communicate results.</p></div>
+    </div>
+
+    <div class="science-copy reveal">
+      <div class="eyebrow">Scientific Foundation</div>
+      <h2 class="section-title">Science behind the <em>intelligence.</em></h2>
+      <p>WonkaFarm Brain is grounded in more than two decades of experience in agronomy, cropping systems, field experimentation, crop modeling, crop physiology, remote sensing and agricultural data analysis across diverse production environments.</p>
+      <p>That experience shapes a simple design principle: start with the agricultural problem, integrate the right evidence, and use technology to produce a decision that matters.</p>
+      <div class="science-facts"><div class="fact"><strong>20+</strong><span>Years of agronomic experience</span></div><div class="fact"><strong>5</strong><span>Countries of research experience</span></div><div class="fact"><strong>16+</strong><span>Peer-reviewed publications</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="company">
+  <div class="container company-grid">
+    <div class="company-copy reveal">
+      <div class="eyebrow">Company</div>
+      <h2 class="section-title">Agronomic science meets <em>digital intelligence.</em></h2>
+      <p>WonkaFarm Brain is a U.S.-based agricultural technology company developing intelligent systems at the intersection of agronomy, crop modeling, remote sensing, computer vision and artificial intelligence.</p>
+      <p>Our mission is to transform agricultural science and data into intelligence that improves decisions from the field to the agricultural system.</p>
+      <p>Our vision is an agricultural future where fields can be observed, understood and predicted with the support of intelligent agronomic systems.</p>
+    </div>
+
+    <aside class="company-card reveal">
+      <div class="eyebrow">Leadership</div>
+      <h3>Founder-led, science-first.</h3>
+      <p>The company is led by a computational agronomist with experience spanning field agronomy, crop modeling, crop physiology, sensing and digital agriculture.</p>
+      <div class="leader"><strong>Dr. Fekremariam Asargew Mihretie</strong><span>Founder, CEO &amp; Chief Scientist</span></div>
+    </aside>
+  </div>
+</section>
+
+<section id="engage">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow" style="color:var(--green-3)">Work With Us</div>
+      <h2 class="section-title">Start with a focused problem. <em>Build toward scale.</em></h2>
+      <p class="section-lead">We work with organizations that want to test, validate or integrate agricultural intelligence into real research and production workflows.</p>
+    </div>
+    <div class="engage-grid">
+      <div class="engage-card reveal"><h3>Pilot a Solution</h3><p>Test a WonkaFarm capability on a defined crop, geography, field program or decision problem.</p></div>
+      <div class="engage-card reveal"><h3>Develop a System</h3><p>Combine field data, sensing, crop models and AI around a specific organizational need.</p></div>
+      <div class="engage-card reveal"><h3>Integrate &amp; Collaborate</h3><p>Connect our capabilities with existing research, digital agriculture or decision-support systems.</p></div>
+    </div>
+    <div style="margin-top:30px" class="reveal"><a class="btn btn-primary" href="#contact">Discuss a Pilot →</a></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container contact-grid">
+    <div class="reveal">
+      <div class="eyebrow">Contact</div>
+      <h2 class="section-title">Let's build better agricultural <em>decisions.</em></h2>
+      <p class="section-lead">Tell us the crop, geography, field program or agricultural decision you are working on. We can discuss whether a product, pilot or technical collaboration is the right fit.</p>
+      <div class="contact-list">
+        <div class="contact-line"><div class="icon">✉️</div><div><small>Email</small><a href="mailto:fekre@digitalagsystems.org">fekre@digitalagsystems.org</a></div></div>
+        <div class="contact-line"><div class="icon">🌍</div><div><small>Base</small><span>United States · Collaboration worldwide</span></div></div>
+        <div class="contact-line"><div class="icon">🧠</div><div><small>FieldBrain</small><a href="https://fieldbrain.netlify.app" target="_blank" rel="noopener">Open interactive demo</a></div></div>
+      </div>
+    </div>
+
+    <div class="form-box reveal">
+      <h3>Start a Conversation</h3>
+      <form id="contactForm">
+        <div class="field"><label for="name">Name</label><input id="name" type="text" placeholder="Your name" required /></div>
+        <div class="field"><label for="org">Organization</label><input id="org" type="text" placeholder="Company, university, NGO or agency" /></div>
+        <div class="field"><label for="email">Email</label><input id="email" type="email" placeholder="you@organization.com" required /></div>
+        <div class="field"><label for="interest">Interested in</label><select id="interest"><option>Product demo</option><option>Pilot project</option><option>Agricultural intelligence system</option><option>Research collaboration</option><option>Crop modeling / remote sensing support</option><option>Other</option></select></div>
+        <div class="field"><label for="message">Project or challenge</label><textarea id="message" placeholder="Briefly describe the crop, location, data and decision you are working on."></textarea></div>
+        <button class="btn btn-primary" type="submit" style="width:100%">Create Email →</button>
+        <p class="form-note">This button opens your email application with the form details pre-filled. It does not send data to a server.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <div class="brand"><svg class="brand-mark" viewBox="0 0 120 100" fill="none" aria-hidden="true"><path d="M5 72 Q60 62 115 72" stroke="#2E7D32" stroke-width="3" fill="none"/><ellipse cx="32" cy="62" rx="16" ry="16" fill="#2E7D32"/><ellipse cx="32" cy="62" rx="10" ry="10" fill="white"/><ellipse cx="62" cy="65" rx="10" ry="10" fill="#2E7D32"/><ellipse cx="62" cy="65" rx="5.5" ry="5.5" fill="white"/><path d="M38 46 L70 46 L74 52 L74 62 L38 62 Z" fill="#2E7D32"/><line x1="84" y1="70" x2="84" y2="8" stroke="#2E7D32" stroke-width="3.5"/><path d="M84,8 C78,-6 60,0 62,16 C64,28 80,26 84,8Z" fill="#4ade80"/><path d="M84,12 C90,-4 108,4 106,20 C104,32 88,28 84,12Z" fill="#22c55e"/></svg><div class="brand-name">WonkaFarm<span> Brain</span></div></div>
+      <p class="footer-tag">Building the intelligence layer for agriculture through agronomic science, crop models, sensing and AI.</p>
+    </div>
+    <div class="footer-col"><h4>Technology</h4><a href="#platform">Platform</a><a href="#products">Products</a><a href="#solutions">Solutions</a><a href="#science">Science</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="#company">About</a><a href="#engage">Work With Us</a><a href="#contact">Contact</a><a href="mailto:fekre@digitalagsystems.org">Email</a></div>
+  </div>
+  <div class="container footer-bottom">© 2026 WonkaFarm Brain · United States</div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+
+  burger.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    burger.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+  }));
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  document.getElementById('contactForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const org = document.getElementById('org').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const interest = document.getElementById('interest').value;
+    const message = document.getElementById('message').value.trim();
+
+    const subject = `WonkaFarm Brain inquiry — ${interest}`;
+    const body = [
+      `Name: ${name}`,
+      `Organization: ${org || 'Not provided'}`,
+      `Email: ${email}`,
+      `Interest: ${interest}`,
+      '',
+      'Project / challenge:',
+      message || 'Not provided'
+    ].join('\n');
+
+    window.location.href = `mailto:fekre@digitalagsystems.org?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+</script>
+</body>
+</html>
