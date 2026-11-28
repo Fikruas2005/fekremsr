@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WonkaFarm Brain | Agricultural AI &amp; Technology Solutions</title>
+  <meta name="description" content="Agricultural AI solutions, business automation, predictive analytics, risk intelligence and custom software for agriculture."/>
+  <meta name="keywords" content="agricultural AI solutions, agribusiness automation, agricultural software, predictive analytics, WonkaFarm Brain"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --ink:#0d1f0f;
+      --ink2:#132718;
+      --ink3:#1a3620;
+      --teal:#0f766e;
+      --teal2:#0d9488;
+      --teal3:#14b8a6;
+      --lime:#65a30d;
+      --lime2:#84cc16;
+      --sage:#84a98c;
+      --cream:#f8f5f0;
+      --cream2:#f0ebe3;
+      --offwhite:#fafaf8;
+      --white:#ffffff;
+      --muted:#5c6e5f;
+      --border:#dde8de;
+      --border2:#c8daca;
+      --gold:#d97706;
+      --shadow:0 2px 24px rgba(13,31,15,.07);
+      --shadow-lg:0 12px 56px rgba(13,31,15,.14);
+      --fh:'DM Serif Display',serif;
+      --fb:'Outfit',sans-serif;
+      --max:1140px;
+      --r:8px;
+      --r2:14px;
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--offwhite);color:var(--ink);font-family:var(--fb);font-size:16px;line-height:1.65;overflow-x:hidden}
+    img{display:block;max-width:100%}
+    a{text-decoration:none}
+    .container{max-width:var(--max);margin:0 auto;padding:0 44px}
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.vis{opacity:1;transform:translateY(0)}
+    .stag{display:inline-flex;align-items:center;gap:7px;font-size:.7rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
+    .stag::before{content:'';display:block;width:18px;height:2px;background:var(--teal);border-radius:2px}
+    h2.sh{font-family:var(--fh);font-size:clamp(1.85rem,3.4vw,2.85rem);font-weight:400;line-height:1.18;letter-spacing:-.015em;color:var(--ink)}
+    h2.sh em{font-style:italic;color:var(--teal)}
+    .ssub{font-size:.97rem;color:var(--muted);font-weight:300;line-height:1.78;max-width:510px;margin-top:12px}
+    .btn-p{display:inline-flex;align-items:center;gap:7px;background:var(--teal);color:var(--white);padding:13px 28px;border-radius:var(--r);font-weight:600;font-size:.9rem;transition:all .22s;border:none;cursor:pointer;font-family:var(--fb)}
+    .btn-p:hover{background:var(--teal2);transform:translateY(-2px);box-shadow:0 6px 20px rgba(15,118,110,.3)}
+    .btn-s{display:inline-flex;align-items:center;gap:7px;background:transparent;color:var(--ink);padding:13px 28px;border-radius:var(--r);font-weight:500;font-size:.9rem;border:1.5px solid var(--border2);transition:all .22s}
+    .btn-s:hover{border-color:var(--teal);color:var(--teal)}
+    .btn-ghost{display:inline-flex;align-items:center;gap:6px;font-size:.87rem;font-weight:600;color:var(--teal);transition:gap .2s}
+    .btn-ghost:hover{gap:10px}
+
+    /* ══ LOGO SVG inline ══ */
+    .logo-mark{flex-shrink:0}
+
+    /* ══ NAV ══ */
+    nav{position:fixed;top:0;left:0;right:0;z-index:300;height:68px;display:flex;align-items:center;background:rgba(250,250,248,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+    nav.scrolled{box-shadow:0 2px 24px rgba(13,31,15,.08)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:var(--max);margin:0 auto;padding:0 44px}
+    .nav-logo{display:flex;align-items:center;gap:11px}
+    .nav-wordmark{line-height:1.15}
+    .nw-main{font-family:var(--fh);font-size:1.1rem;color:var(--ink)}
+    .nw-main span{color:var(--teal)}
+    .nw-sub{font-size:.6rem;color:var(--sage);letter-spacing:.05em;font-weight:400;font-family:var(--fb)}
+    .nav-links{display:flex;align-items:center;gap:24px;list-style:none}
+    .nav-links a{font-size:.85rem;font-weight:500;color:var(--muted);transition:color .2s}
+    .nav-links a:hover{color:var(--teal)}
+    .nav-cta{background:var(--teal)!important;color:var(--white)!important;padding:8px 20px;border-radius:var(--r);font-weight:600!important}
+    .nav-cta:hover{background:var(--teal2)!important}
+    .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+    .burger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all .3s}
+
+    /* ══ HERO ══ */
+    #home{background:linear-gradient(160deg,var(--offwhite) 0%,#eef5ee 100%);padding-top:0}
+    .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:60px;padding:110px 44px 80px;max-width:var(--max);margin:0 auto}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(15,118,110,.07);border:1px solid rgba(15,118,110,.18);border-radius:100px;padding:5px 16px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:22px;opacity:0;animation:fadeUp .6s .1s forwards}
+    .live-dot{width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.2);animation:livepulse 2s infinite}
+    @keyframes livepulse{0%,100%{box-shadow:0 0 0 3px rgba(34,197,94,.2)}50%{box-shadow:0 0 0 6px rgba(34,197,94,.05)}}
+    .hero h1{font-family:var(--fh);font-weight:400;font-size:clamp(2.5rem,4.8vw,4.2rem);line-height:1.08;letter-spacing:-.022em;color:var(--ink);opacity:0;animation:fadeUp .7s .18s forwards}
+    .hero h1 em{font-style:italic;color:var(--teal)}
+    .hero-desc{margin-top:18px;font-size:1.02rem;color:var(--muted);font-weight:300;line-height:1.78;max-width:460px;opacity:0;animation:fadeUp .7s .32s forwards}
+    .hero-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:22px;opacity:0;animation:fadeUp .7s .44s forwards}
+    .chip{background:var(--white);border:1px solid var(--border2);border-radius:6px;padding:4px 12px;font-size:.75rem;font-weight:500;color:var(--muted);transition:all .2s}
+    .chip:hover{border-color:var(--teal);color:var(--teal)}
+    .hero-actions{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap;opacity:0;animation:fadeUp .7s .54s forwards}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+    /* ══ HERO RIGHT — PRODUCT DEMO ══ */
+    .hero-demo{opacity:0;animation:fadeUp .7s .6s forwards}
+    .demo-device{background:var(--ink2);border-radius:22px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid rgba(255,255,255,.06)}
+    .demo-topbar{background:var(--ink3);padding:14px 20px;display:flex;align-items:center;gap:10px}
+    .demo-dots{display:flex;gap:6px}
+    .demo-dots span{width:10px;height:10px;border-radius:50%}
+    .dd1{background:#ff6058}.dd2{background:#ffc130}.dd3{background:#27c93f}
+    .demo-app-label{font-size:.72rem;font-weight:600;color:rgba(255,255,255,.45);letter-spacing:.06em;text-transform:uppercase;margin-left:6px}
+    .demo-wa{padding:16px}
+    .wa-header{background:#075E54;border-radius:10px 10px 0 0;padding:12px 16px;display:flex;align-items:center;gap:10px;margin:-16px -16px 0}
+    .wa-avatar{width:34px;height:34px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:700;color:white;flex-shrink:0}
+    .wa-name{font-size:.88rem;font-weight:600;color:white}
+    .wa-status{font-size:.7rem;color:rgba(255,255,255,.6)}
+    .wa-msgs{padding:14px 0;display:flex;flex-direction:column;gap:10px}
+    .msg{max-width:85%;padding:9px 13px;border-radius:10px;font-size:.8rem;line-height:1.45}
+    .msg-in{background:rgba(255,255,255,.08);color:rgba(255,255,255,.75);border-radius:10px 10px 10px 2px;align-self:flex-start}
+    .msg-out{background:#005C4B;color:rgba(255,255,255,.9);border-radius:10px 10px 2px 10px;align-self:flex-end}
+    .msg-photo{background:rgba(255,255,255,.05);border:1px dashed rgba(255,255,255,.15);border-radius:8px;padding:12px;display:flex;align-items:center;gap:8px;margin-bottom:6px}
+    .photo-icon{font-size:1.4rem}
+    .photo-label{font-size:.75rem;color:rgba(255,255,255,.5)}
+    .msg-result{background:rgba(15,118,110,.25);border:1px solid rgba(15,118,110,.4);border-radius:10px 10px 2px 10px;padding:12px 14px;align-self:flex-end;max-width:90%}
+    .mr-title{font-size:.72rem;font-weight:700;color:var(--teal3);letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px}
+    .mr-metric{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.76rem}
+    .mr-metric:last-child{border:none}
+    .mr-label{color:rgba(255,255,255,.55)}
+    .mr-val{font-weight:700;color:var(--teal3)}
+    .mr-val.good{color:#4ade80}
+    .mr-val.warn{color:#fbbf24}
+    .demo-tabs{display:flex;gap:0;border-top:1px solid rgba(255,255,255,.06);margin:0 -16px -16px}
+    .dtab{flex:1;padding:10px 6px;text-align:center;font-size:.65rem;font-weight:600;color:rgba(255,255,255,.3);letter-spacing:.04em;text-transform:uppercase;transition:all .2s;cursor:pointer;border-top:2px solid transparent}
+    .dtab.active{color:var(--teal3);border-top-color:var(--teal3)}
+
+    /* floating stat cards on demo */
+    .demo-wrap{position:relative}
+    .demo-stat{position:absolute;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:12px 16px;box-shadow:var(--shadow-lg)}
+    .ds-top{top:-18px;right:-18px}
+    .ds-bottom{bottom:-18px;left:-18px}
+    .ds-num{font-family:var(--fh);font-size:1.6rem;color:var(--teal);line-height:1}
+    .ds-label{font-size:.66rem;color:var(--muted);font-weight:500;margin-top:2px;white-space:nowrap}
+
+    /* ══ TRUST BAR ══ */
+    .trust{background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px 44px}
+    .trust-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+    .t-label{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sage)}
+    .t-sep{width:1px;height:18px;background:var(--border);flex-shrink:0}
+    .t-item{font-size:.78rem;color:var(--muted);font-weight:500;display:flex;align-items:center;gap:5px;white-space:nowrap}
+
+    /* ══ PRODUCTS ══ */
+    #products{padding:100px 0;background:var(--ink);position:relative;overflow:hidden}
+    #products::before{content:'';position:absolute;top:-20%;right:-8%;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(15,118,110,.09) 0%,transparent 65%);pointer-events:none}
+    #products::after{content:'';position:absolute;bottom:-20%;left:-8%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(101,163,13,.06) 0%,transparent 65%);pointer-events:none}
+    .prod-head{text-align:center;margin-bottom:56px}
+    .prod-head .stag{justify-content:center;color:rgba(132,169,140,.85)}
+    .prod-head .stag::before{background:rgba(132,169,140,.85)}
+    .prod-head h2{color:var(--white);font-family:var(--fh);font-size:clamp(1.85rem,3.4vw,2.85rem);font-weight:400;line-height:1.18}
+    .prod-head h2 em{font-style:italic;color:var(--teal3)}
+    .prod-head p{color:rgba(255,255,255,.45);font-size:.97rem;margin:12px auto 0;max-width:520px;font-weight:300}
+    .prod-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+    .pcard-wrap{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:18px;overflow:hidden;transition:all .35s;display:flex;flex-direction:column}
+    .pcard-wrap:hover{border-color:rgba(15,118,110,.4);background:rgba(255,255,255,.055);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.25)}
+    .pcard-wrap.feat{border-color:rgba(15,118,110,.32);background:rgba(15,118,110,.07)}
+    .pcard-top{padding:34px 34px 26px;flex:1}
+    .pcard-icon-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:22px}
+    .pcard-icon{width:54px;height:54px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:1.7rem;background:rgba(15,118,110,.18);border:1px solid rgba(15,118,110,.28)}
+    .badges{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+    .badge{font-size:.62rem;font-weight:700;padding:3px 9px;border-radius:100px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+    .b-live{background:rgba(34,197,94,.14);color:#4ade80;border:1px solid rgba(34,197,94,.28)}
+    .b-beta{background:rgba(251,191,36,.12);color:#fbbf24;border:1px solid rgba(251,191,36,.28)}
+    .b-free{background:rgba(15,118,110,.2);color:var(--teal3);border:1px solid rgba(15,118,110,.3)}
+    .pcard-name{font-family:var(--fh);font-size:1.75rem;font-weight:400;color:var(--white);margin-bottom:8px}
+    .pcard-tag{font-size:.93rem;color:rgba(255,255,255,.48);font-weight:300;line-height:1.58;margin-bottom:22px}
+    .pf-list{display:flex;flex-direction:column;gap:9px;margin-bottom:26px}
+    .pf-row{display:flex;align-items:flex-start;gap:9px;font-size:.83rem;color:rgba(255,255,255,.62)}
+    .pf-row::before{content:'✓';color:var(--teal3);font-weight:700;flex-shrink:0;font-size:.8rem;margin-top:1px}
+    .pcard-cta{display:inline-flex;align-items:center;gap:7px;font-size:.87rem;font-weight:600;color:var(--teal3);padding-bottom:2px;border-bottom:1px solid rgba(15,118,110,.35);transition:gap .2s}
+    .pcard-cta:hover{gap:12px}
+    .pcard-foot{padding:16px 34px;background:rgba(0,0,0,.18);border-top:1px solid rgba(255,255,255,.05);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+    .pf-tech{font-size:.68rem;color:rgba(255,255,255,.25);letter-spacing:.03em}
+    .prod-more{text-align:center;margin-top:40px;padding:0 44px}
+    .prod-more p{font-size:.85rem;color:rgba(255,255,255,.3);margin-bottom:16px}
+
+    /* ══ PROBLEM ══ */
+    #problem{padding:96px 0;background:var(--cream)}
+    .prob-inner{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+    .prob-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:22px;display:flex;gap:15px;align-items:flex-start;transition:all .25s;margin-bottom:14px}
+    .prob-card:last-child{margin-bottom:0}
+    .prob-card:hover{border-color:rgba(15,118,110,.28);box-shadow:var(--shadow);transform:translateX(4px)}
+    .prob-ico{width:38px;height:38px;border-radius:9px;background:rgba(15,118,110,.08);border:1px solid rgba(15,118,110,.15);display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex-shrink:0}
+    .prob-card h3{font-weight:600;font-size:.93rem;color:var(--ink);margin-bottom:4px}
+    .prob-card p{font-size:.82rem;color:var(--muted);line-height:1.62;font-weight:300}
+
+    /* ══ SERVICES ══ */
+    #services{padding:100px 0;background:var(--offwhite)}
+    .svc-hd{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;margin-bottom:52px;flex-wrap:wrap}
+    .pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .pillar{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;transition:all .3s}
+    .pillar:hover{box-shadow:0 10px 44px rgba(13,31,15,.1);transform:translateY(-4px)}
+    .pillar-top{padding:30px 26px 24px;border-bottom:1px solid var(--border)}
+    .p-ico{font-size:1.85rem;margin-bottom:14px;display:block}
+    .pillar h3{font-family:var(--fh);font-weight:400;font-size:1.32rem;color:var(--ink);margin-bottom:8px;line-height:1.22}
+    .pillar h3 em{color:var(--teal);font-style:italic}
+    .pillar-desc{font-size:.85rem;color:var(--muted);line-height:1.66;font-weight:300}
+    .pillar-svcs{padding:20px 26px;background:var(--cream)}
+    .pillar-svcs h4{font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:12px}
+    .sv{display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:1px solid var(--border);font-size:.81rem;color:var(--muted)}
+    .sv:last-child{border:none}
+    .sv::before{content:'→';color:var(--teal);font-weight:700;flex-shrink:0;margin-top:1px}
+    .pillar-ft{padding:16px 26px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);background:var(--white)}
+    .pft-from{font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;color:var(--sage);font-weight:700}
+    .pft-val{font-family:var(--fh);font-size:1.22rem;color:var(--teal)}
+
+    /* ══ TOOLS ══ */
+    .tools-band{background:var(--cream2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:28px 44px}
+    .tools-in{max-width:var(--max);margin:0 auto}
+    .tl-label{font-size:.68rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--sage);text-align:center;margin-bottom:18px}
+    .tl-row{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap}
+    .tbadge{background:var(--white);border:1px solid var(--border);border-radius:6px;padding:8px 16px;font-size:.8rem;font-weight:600;color:var(--muted);letter-spacing:.02em;transition:all .2s}
+    .tbadge:hover{border-color:var(--teal);color:var(--teal);background:rgba(15,118,110,.04)}
+
+    /* ══ CASE STUDIES ══ */
+    #work{padding:100px 0;background:var(--cream)}
+    .wk-hd{margin-bottom:50px}
+    .work-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .case{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;transition:all .3s}
+    .case:hover{box-shadow:0 10px 44px rgba(13,31,15,.1);transform:translateY(-3px)}
+    .case-bar{height:4px}
+    .case-body{padding:28px}
+    .case-cat{font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+    .case h3{font-family:var(--fh);font-weight:400;font-size:1.12rem;color:var(--ink);margin-bottom:9px;line-height:1.38}
+    .case p{font-size:.83rem;color:var(--muted);line-height:1.66;font-weight:300}
+    .case-result{margin-top:16px;padding:12px 14px;background:var(--cream);border-radius:var(--r);border-left:3px solid var(--teal)}
+    .cr-lbl{font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);margin-bottom:3px}
+    .cr-txt{font-size:.83rem;color:var(--ink);line-height:1.52}
+    .case-meta{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+    .case-meta span{font-size:.72rem;color:var(--muted)}
+
+    /* ══ TRAINING ══ */
+    #training{padding:88px 0;background:var(--ink)}
+    .training-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+    .tr-left .stag{color:rgba(132,169,140,.85)}
+    .tr-left .stag::before{background:rgba(132,169,140,.85)}
+    .tr-left h2{color:var(--white)}
+    .tr-left h2 em{color:var(--teal3)}
+    .tr-left .ssub{color:rgba(255,255,255,.47);max-width:420px}
+    .tr-left .btn-p{margin-top:26px;display:inline-flex}
+    .tc-list{display:flex;flex-direction:column;gap:12px}
+    .tc{background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);border-radius:var(--r);padding:18px 22px;display:flex;align-items:center;gap:14px;transition:all .25s}
+    .tc:hover{border-color:rgba(15,118,110,.4);background:rgba(255,255,255,.06)}
+    .tc-ico{font-size:1.3rem;flex-shrink:0}
+    .tc h4{font-weight:600;font-size:.9rem;color:var(--white);margin-bottom:2px}
+    .tc p{font-size:.78rem;color:rgba(255,255,255,.42);font-weight:300}
+    .tc-dur{margin-left:auto;font-size:.66rem;font-weight:700;padding:3px 9px;border-radius:100px;background:rgba(15,118,110,.2);color:var(--teal3);white-space:nowrap}
+
+    /* ══ PRICING ══ */
+    #pricing{padding:100px 0;background:var(--offwhite)}
+    .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:50px;align-items:start}
+    .prc{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:30px 26px;position:relative;transition:all .25s}
+    .prc:hover{box-shadow:var(--shadow-lg)}
+    .prc.feat{border-color:var(--teal);box-shadow:0 0 0 3px rgba(15,118,110,.1)}
+    .feat-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--teal);color:var(--white);font-size:.64rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:3px 14px;border-radius:100px;white-space:nowrap}
+    .prc-name{font-weight:700;font-size:.95rem;color:var(--ink);margin-bottom:6px}
+    .prc-desc{font-size:.8rem;color:var(--muted);font-weight:300;line-height:1.56;margin-bottom:18px}
+    .prc-amount{font-family:var(--fh);font-size:2.3rem;color:var(--teal);line-height:1;margin-bottom:2px}
+    .prc-unit{font-size:.72rem;color:var(--muted);margin-bottom:20px}
+    .prc-list{list-style:none;margin-bottom:22px;border-top:1px solid var(--border);padding-top:16px}
+    .prc-list li{font-size:.81rem;color:var(--muted);padding:5px 0;display:flex;align-items:flex-start;gap:7px;border-bottom:1px solid var(--border)}
+    .prc-list li:last-child{border:none}
+    .prc-list li::before{content:'✓';color:var(--teal);font-weight:700;flex-shrink:0}
+    .prc-btn{display:block;text-align:center;padding:11px;border-radius:var(--r);font-weight:600;font-size:.86rem;border:1.5px solid var(--teal);color:var(--teal);transition:all .2s}
+    .prc-btn:hover,.prc.feat .prc-btn{background:var(--teal);color:var(--white)}
+    .prc.feat .prc-btn:hover{background:var(--teal2)}
+
+    /* ══ CONTACT ══ */
+    #contact{padding:100px 0;background:var(--white)}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+    .cl h2{margin-bottom:12px}
+    .cl .ssub{margin-bottom:32px}
+    .ci-list{display:flex;flex-direction:column;gap:16px}
+    .ci-row{display:flex;align-items:center;gap:13px}
+    .ci-ico{width:40px;height:40px;border-radius:9px;background:var(--cream);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+    .ci-txt strong{display:block;font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--sage);margin-bottom:1px}
+    .ci-txt a,.ci-txt span{font-size:.88rem;color:var(--ink);font-weight:500;transition:color .2s}
+    .ci-txt a:hover{color:var(--teal)}
+    .cf-box{background:var(--cream);border:1px solid var(--border);border-radius:var(--r2);padding:34px}
+    .cf-box h3{font-family:var(--fh);font-weight:400;font-size:1.1rem;color:var(--ink);margin-bottom:22px}
+    .fg{margin-bottom:13px}
+    .fg label{display:block;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+    .fg input,.fg select,.fg textarea{width:100%;background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:10px 13px;color:var(--ink);font-family:var(--fb);font-size:.89rem;transition:border-color .2s;outline:none}
+    .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(15,118,110,.07)}
+    .fg textarea{height:90px;resize:vertical}
+    .sbtn{width:100%;background:var(--teal);color:var(--white);border:none;padding:12px;border-radius:var(--r);font-weight:700;font-size:.89rem;cursor:pointer;font-family:var(--fb);transition:all .22s;margin-top:4px}
+    .sbtn:hover{background:var(--teal2);transform:translateY(-1px)}
+
+    /* ══ FOOTER ══ */
+    footer{background:var(--ink);padding:60px 44px 36px}
+    .ft-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px;margin-bottom:44px}
+    .ft-brand{display:flex;flex-direction:column;gap:12px}
+    .ft-tagline{font-size:.82rem;color:rgba(255,255,255,.38);line-height:1.65;max-width:250px}
+    .ft-col h4{font-size:.67rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:14px}
+    .ft-col a{display:block;font-size:.82rem;color:rgba(255,255,255,.42);margin-bottom:9px;transition:color .2s}
+    .ft-col a:hover{color:var(--teal3)}
+    .ft-copy{max-width:var(--max);margin:0 auto;border-top:1px solid rgba(255,255,255,.07);padding-top:22px;text-align:center;font-size:.72rem;color:rgba(255,255,255,.2)}
+    .ft-copy a{color:rgba(255,255,255,.28);transition:color .2s}
+    .ft-copy a:hover{color:var(--teal3)}
+
+    /* ══ MOBILE ══ */
+    @media(max-width:960px){
+      .nav-inner,.trust-inner{padding:0 20px}
+      .hero{grid-template-columns:1fr;padding:96px 20px 64px;gap:40px}
+      .hero-demo{order:-1}
+      .demo-stat{display:none}
+      .about-grid{grid-template-columns:1fr;gap:36px}
+      .about-photo-col{position:static}
+      .aph-main img{aspect-ratio:4/3}
+      .aph-drone,.aph-badge{display:none}
+      .prob-inner,.training-inner,.contact-grid{grid-template-columns:1fr;gap:36px}
+      .work-grid,.prod-grid{grid-template-columns:1fr}
+      .pillar-grid,.price-grid{grid-template-columns:1fr}
+      .ft-inner{grid-template-columns:1fr;gap:28px}
+      section,#products,#problem,#training,#about,#work,#pricing,#contact,#services{padding-left:20px;padding-right:20px}
+      .tools-band,.trust{padding-left:20px;padding-right:20px}
+      footer{padding:44px 20px 28px}
+      .nav-links{display:none}
+      .burger{display:flex}
+      .t-sep{display:none}
+      .cred-grid{grid-template-columns:1fr 1fr}
+    }
+  
+.enterprise-section{padding:88px 0;background:var(--offwhite)} #industries,#about{background:var(--cream)} section{scroll-margin-top:68px} .section-number{display:block;color:var(--teal);font-size:.8rem;font-weight:600;margin-bottom:14px} .pillar-svcs:empty{display:none} #home{background:linear-gradient(135deg,#0d2419,#174638)} .hero{min-height:650px} .hero h1{color:white} .hero h1 em{color:#9ed6bc} .hero-desc{color:#d4e4da} .hero-eyebrow{color:#b7e4cb;border-color:#507b67;background:transparent} .hero .btn-s{color:white;border-color:#719788} .engine{padding:26px;color:white;text-align:center} .engine-label,.engine-note{font-size:.72rem;color:#a5c6b6;letter-spacing:.06em} .engine-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px} .engine-grid span{padding:13px 8px;border:1px solid #416655;border-radius:8px;font-size:.83rem;background:#203e30} .engine-arrow{padding:10px;color:#9ed6bc} .engine-core{background:#0f766e;border-radius:10px;padding:20px;font-family:var(--fh);font-size:1.8rem} .engine-core small{font-family:var(--fb);font-size:.8rem} .engine-note{margin-top:18px} .reveal{opacity:1;transform:none} @media(max-width:960px){.hero-demo{order:0}.hero{min-height:0}.container{padding:0 12px}.enterprise-section{padding:60px 20px}.hero h1{font-size:2.7rem}} 
+
+/* Corporate visual refresh */
+:root{--fh:'Outfit',sans-serif;--max:1240px;--r:8px;--r2:12px;--ink:#102a23;--ink2:#15382e;--ink3:#1d4539;--teal:#087b68;--offwhite:#f7faf8;--cream:#eef4f0}
+#home{background:linear-gradient(125deg,#102a23,#194a3b);color:white}
+.hero{min-height:690px;gap:48px;padding-top:145px;padding-bottom:90px}
+.hero h1{color:white;font-weight:600;letter-spacing:-.045em}.hero h1 em{color:#a8e4b8;font-style:normal}.hero-desc{color:#d5e7df;font-weight:400}.hero-eyebrow{color:#b9e8ce;background:#ffffff0b;border-color:#ffffff30}.hero .btn-s{color:white;border-color:#ffffff70}.hero .btn-p{background:#b7e8bf;color:#102a23}.hero .btn-p:hover{background:white}.hero-demo{order:0}.hero .demo-device{border:1px solid #ffffff30}.hero-chips .chip{background:#ffffff12;color:white;border-color:#ffffff30}h2.sh,.prod-head h2{font-weight:600;letter-spacing:-.035em}h2.sh em,.prod-head h2 em{font-style:normal}.pillar h3{font-weight:600}.pillar-desc,.ssub{font-weight:400}.pillar{box-shadow:0 4px 18px #102a2308}.nav-links{gap:22px}.ft-copy{color:#b6c9c0}.ft-col a,.ft-tagline{color:#c0d1c8}.reveal{opacity:1;transform:none}section{scroll-margin-top:68px}.nav-logo:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid #d99c39;outline-offset:4px}
+@media(max-width:960px){.hero{min-height:auto;padding:110px 24px 65px;gap:32px}.hero-demo{order:0}.container{padding:0 4px}.hero h1{font-size:clamp(2.5rem,7vw,4rem)}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.hero h1,.hero-eyebrow,.hero-desc,.hero-actions,.hero-demo,.hero-chips{opacity:1}}
+#about{padding:90px 0;background:white}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ NAV ══════════════ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">
+      <svg class="logo-mark" width="36" height="36" viewBox="0 0 120 100" fill="none">
+        <!-- Ground -->
+        <path d="M5 72 Q60 62 115 72" stroke="#1a4a0a" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <!-- Tractor body -->
+        <ellipse cx="32" cy="62" rx="16" ry="16" fill="#1B5E20"/>
+        <ellipse cx="32" cy="62" rx="10" ry="10" fill="white"/>
+        <ellipse cx="32" cy="62" rx="5"  ry="5"  fill="#1B5E20"/>
+        <ellipse cx="62" cy="65" rx="10" ry="10" fill="#1B5E20"/>
+        <ellipse cx="62" cy="65" rx="5.5" ry="5.5" fill="white"/>
+        <ellipse cx="62" cy="65" rx="2.5" ry="2.5" fill="#1B5E20"/>
+        <path d="M38 46 L70 46 L74 52 L74 62 L38 62 Z" fill="#1B5E20"/>
+        <path d="M38 46 L38 32 L52 32 L56 38 L56 46 Z" fill="#245C1A"/>
+        <rect x="50" y="24" width="4" height="10" rx="2" fill="#1B5E20"/>
+        <!-- Circuit plant stem -->
+        <line x1="84" y1="70" x2="84" y2="8"  stroke="#1B5E20" stroke-width="3.5" stroke-linecap="round"/>
+        <polyline points="83,42 66,42 66,30" stroke="#1B5E20" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="66" cy="30" r="4.5" fill="white" stroke="#1B5E20" stroke-width="2"/>
+        <circle cx="66" cy="30" r="1.8" fill="#1B5E20"/>
+        <polyline points="85,55 100,55 100,44" stroke="#1B5E20" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="100" cy="44" r="4.5" fill="white" stroke="#1B5E20" stroke-width="2"/>
+        <circle cx="100" cy="44" r="1.8" fill="#1B5E20"/>
+        <!-- Leaves -->
+        <path d="M84,8 C78,-6 60,0 62,16 C64,28 80,26 84,8Z"  fill="#2E7D32"/>
+        <path d="M84,12 C90,-4 108,4 106,20 C104,32 88,28 84,12Z" fill="#388E3C"/>
+      </svg>
+      <div class="nav-wordmark">
+        <div class="nw-main">WonkaFarm<span> Brain</span></div>
+      </div>
+    </a>
+    <ul class="nav-links" id="nl"><li><a href="#services">Solutions</a></li><li><a href="#products">Products</a></li><li><a href="#industries">Industries</a></li><li><a href="#technology">Technology</a></li><li><a href="#about">About</a></li><li><a href="#contact" class="nav-cta">Discuss a Project</a></li></ul>
+    <button class="burger" onclick="toggleNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<div id="home"><div class="hero"><div class="hero-left"><div class="hero-eyebrow">Agricultural AI &amp; Technology Solutions</div><h1>Intelligent technology.<br/><em>Real agricultural solutions.</em></h1><p class="hero-desc">We design AI-powered applications, predictive analytics and digital workflows around the needs of agricultural businesses. Connect data, anticipate risks and make better decisions.</p><div class="hero-actions"><a href="#contact" class="btn-p">Discuss your project →</a><a href="#services" class="btn-s">Explore solutions</a></div></div><div class="hero-demo"><div class="demo-device intelligence"><div class="demo-topbar"><span class="demo-app-label">Our technology approach</span></div><div class="engine"><div class="engine-label">AGRICULTURAL &amp; BUSINESS DATA</div><div class="engine-grid"><span>Satellite &amp; weather</span><span>Soil &amp; farm records</span><span>Business operations</span><span>Market information</span></div><div class="engine-arrow">↓</div><div class="engine-core">WFB Intelligence<br/><small>AI · Science · Economics</small></div><div class="engine-arrow">↓</div><div class="engine-grid"><span>Predict &amp; simulate</span><span>Automate &amp; optimize</span><span>Assess risk</span><span>Explain decisions</span></div><p class="engine-note">Conceptual solution architecture</p></div></div></div></div></div><section id="services" class="enterprise-section"><div class="container"><div class="svc-hd"><div><div class="stag">Our solutions</div><h2 class="sh">Technology built around <em>your challenges.</em></h2><p class="ssub">Explore project-based development opportunities tailored to your data, goals and technical requirements.</p></div></div><div class="pillar-grid"><article class="pillar"><div class="pillar-top"><span class="section-number">01</span><h3>AI & intelligent agents</h3><p class="pillar-desc">Agriculture-specific assistants and knowledge systems.</p></div><div class="pillar-svcs"><div class="sv">Conversational AI</div><div class="sv">Document intelligence</div><div class="sv">Multilingual applications</div></div></article><article class="pillar"><div class="pillar-top"><span class="section-number">02</span><h3>Business automation</h3><p class="pillar-desc">Connect information and simplify repetitive operations.</p></div><div class="pillar-svcs"><div class="sv">Workflow automation</div><div class="sv">Reporting and alerts</div><div class="sv">System integration</div></div></article><article class="pillar"><div class="pillar-top"><span class="section-number">03</span><h3>Predictive agricultural intelligence</h3><p class="pillar-desc">Explore future conditions and management alternatives.</p></div><div class="pillar-svcs"><div class="sv">Crop and climate modeling</div><div class="sv">Geospatial analytics</div><div class="sv">Economic scenario analysis</div></div></article><article class="pillar"><div class="pillar-top"><span class="section-number">04</span><h3>Risk & financial intelligence</h3><p class="pillar-desc">Develop analytical tools for agricultural exposure and uncertainty.</p></div><div class="pillar-svcs"><div class="sv">Production risk scenarios</div><div class="sv">Portfolio monitoring concepts</div><div class="sv">Investment decision support</div></div></article><article class="pillar"><div class="pillar-top"><span class="section-number">05</span><h3>Regenerative agriculture</h3><p class="pillar-desc">Explore practical transitions and document progress.</p></div><div class="pillar-svcs"><div class="sv">Baseline assessments</div><div class="sv">Transition cost scenarios</div><div class="sv">Sustainability reporting</div></div></article><article class="pillar"><div class="pillar-top"><span class="section-number">06</span><h3>Custom software development</h3><p class="pillar-desc">Design solutions around specific business requirements.</p></div><div class="pillar-svcs"><div class="sv">Web and mobile prototypes</div><div class="sv">Data integration</div><div class="sv">Testing and implementation</div></div></article></div></div></section><section id="products">
+  <div class="container">
+    <div class="prod-head reveal">
+      <div class="stag">Digital Agriculture Products</div>
+      <h2>Practical Tools. Professional <em>Intelligence.</em></h2>
+      <p>Explore our portfolio of agricultural applications, interactive demonstrations and early-stage technologies.</p>
+    </div>
+    <div class="prod-grid">
+      <div class="pcard-wrap feat reveal">
+        <div class="pcard-top">
+          <div class="pcard-icon-row">
+            <div class="pcard-icon">🌱</div>
+            <div class="badges"><span class="badge b-live">Live</span><span class="badge b-free">Free Forever</span></div>
+          </div>
+          <div class="pcard-name">CropOracle</div>
+          <div class="pcard-tag">WhatsApp AI farm advisor. Text your crop problem — describe symptoms, soil, weather, crop stage — and get professional agronomic advice powered by AI and process-based crop models in under 60 seconds. No app. No account.</div>
+          <div class="pf-list">
+            <div class="pf-row">Text your crop problem in plain language — no photo needed</div>
+            <div class="pf-row">AI + crop models generate agronomic advice</div>
+            <div class="pf-row">Fertiliser rates, irrigation timing, pest &amp; disease management</div>
+            <div class="pf-row">Crop stage advisory based on your location and conditions</div>
+            <div class="pf-row">Works in any language — globally accessible</div>
+            <div class="pf-row">Instant response via WhatsApp — zero friction</div>
+          </div>
+          <a href="https://wa.me/YOURNUMBER?text=Hello+CropOracle" class="pcard-cta">Text your first question on WhatsApp →</a>
+        </div>
+        <div class="pcard-foot">
+          <span class="pf-tech">Claude AI · Crop Models · WhatsApp Business API</span>
+          <span class="badge b-free">No credit card</span>
+        </div>
+      </div>
+      <div class="pcard-wrap reveal">
+        <div class="pcard-top">
+          <div class="pcard-icon-row">
+            <div class="pcard-icon">🧠</div>
+            <div class="badges"><span class="badge b-live">Live</span><span class="badge b-free">Demo Available</span></div>
+          </div>
+          <div class="pcard-name">FieldBrain AI</div>
+          <div class="pcard-tag">AI-powered field trial intelligence platform for agronomy, plant breeding, and agricultural research programs — built to improve data quality, field supervision, and project progress monitoring.</div>
+          <div class="pf-list">
+            <div class="pf-row">Offline field data collection for research teams</div>
+            <div class="pf-row">Plot-level observations with GPS, photos, voice notes, and timestamps</div>
+            <div class="pf-row">Supervisor dashboard for progress and team monitoring</div>
+            <div class="pf-row">Missing data detection and AI quality checks</div>
+            <div class="pf-row">Daily project summaries and early warning alerts</div>
+            <div class="pf-row">Designed for agronomy, breeding, and multi-location trials</div>
+          </div>
+          <a href="https://fieldbrain.netlify.app" class="pcard-cta">View interactive demo →</a>
+        </div>
+        <div class="pcard-foot">
+          <span class="pf-tech">Flutter · Supabase · AI Quality Control · Offline Sync</span>
+          <span class="badge b-live">Live Demo</span>
+        </div>
+      </div>
+      <div class="pcard-wrap reveal">
+        <div class="pcard-top">
+          <div class="pcard-icon-row">
+            <div class="pcard-icon">📸</div>
+            <div class="badges"><span class="badge b-beta">Beta</span><span class="badge b-free">Free Beta</span></div>
+          </div>
+          <div class="pcard-name">PlotScan</div>
+          <div class="pcard-tag">One phone photo per trial plot — get back multiple agronomic measurements instantly. Built for researchers running replicated field trials who need data, not clipboards.</div>
+          <div class="pf-list">
+            <div class="pf-row">Green canopy cover % per plot</div>
+            <div class="pf-row">NDVI proxy map from phone RGB camera</div>
+            <div class="pf-row">Plant count and stand density</div>
+            <div class="pf-row">Estimated canopy height</div>
+            <div class="pf-row">Vigor score and growth stage</div>
+            <div class="pf-row">Treatment comparison report — ranked</div>
+          </div>
+          <a href="YOURPLOTSCANLINK" class="pcard-cta">Try PlotScan — free beta →</a>
+        </div>
+        <div class="pcard-foot">
+          <span class="pf-tech">YOLOv8 · SAM 2 · DepthAnything v2 · Claude Vision</span>
+          <span class="badge b-beta">Beta access</span>
+        </div>
+      </div>
+      <div class="pcard-wrap reveal" id="croprisk">
+        <div class="pcard-top">
+          <div class="pcard-icon-row">
+            <div class="pcard-icon" aria-hidden="true">📊</div>
+            <div class="badges"><span class="badge b-beta">Early access</span></div>
+          </div>
+          <div class="pcard-name">CropRisk Intelligence</div>
+          <div class="pcard-tag">An agricultural risk intelligence prototype for agricultural professionals, lenders and insurers. Explore historical production risk and financial scenarios using location-specific environmental information and crop simulations.</div>
+          <div class="pf-list">
+            <div class="pf-row">Historical weather exposure and daily monitoring</div>
+            <div class="pf-row">Satellite vegetation and canopy moisture indicators</div>
+            <div class="pf-row">Estimated soil profiles and water availability</div>
+            <div class="pf-row">Weather-based wheat disease suitability screening</div>
+            <div class="pf-row">Historical rainfed wheat yield simulations</div>
+            <div class="pf-row">Illustrative production and financial risk scenarios</div>
+          </div>
+          <p class="pcard-tag" style="font-size:.78rem">Experimental, uncalibrated research prototype. Not for lending, underwriting or operational decisions.</p>
+          <a href="https://croprisk-intelligence.onrender.com" target="_blank" rel="noopener noreferrer" class="pcard-cta">Try CropRisk Intelligence — free beta →</a>
+        </div>
+        <div class="pcard-foot">
+          <span class="pf-tech">Weather · Satellite · Soil · Crop simulation</span>
+          <span class="badge b-beta">Beta access</span>
+        </div>
+      </div>
+    </div>
+    <div class="prod-more reveal">
+      <p>More AI tools in active development — including custom solutions built on client request</p>
+      <a href="#contact" class="btn-p">Request a Custom AI Tool →</a>
+    </div>
+  </div>
+</section><section id="industries" class="enterprise-section"><div class="container"><div class="svc-hd"><div><div class="stag">Industries</div><h2 class="sh">Built for the <em>agricultural economy.</em></h2><p class="ssub">Potential applications across the agricultural value chain.</p></div></div><div class="pillar-grid"><article class="pillar"><div class="pillar-top"><span class="section-number">01</span><h3>Growers</h3><p class="pillar-desc">Farm decisions, operational efficiency and sustainability.</p></div><div class="pillar-svcs"></div></article><article class="pillar"><div class="pillar-top"><span class="section-number">02</span><h3>Agribusinesses</h3><p class="pillar-desc">Automation, analytics and custom applications.</p></div><div class="pillar-svcs"></div></article><article class="pillar"><div class="pillar-top"><span class="section-number">03</span><h3>Banks & insurers</h3><p class="pillar-desc">Risk evidence and financial analytics prototypes.</p></div><div class="pillar-svcs"></div></article><article class="pillar"><div class="pillar-top"><span class="section-number">04</span><h3>Food & supply chains</h3><p class="pillar-desc">Production forecasting and procurement intelligence.</p></div><div class="pillar-svcs"></div></article><article class="pillar"><div class="pillar-top"><span class="section-number">05</span><h3>Government & development</h3><p class="pillar-desc">Program monitoring and climate resilience tools.</p></div><div class="pillar-svcs"></div></article><article class="pillar"><div class="pillar-top"><span class="section-number">06</span><h3>Seed & input companies</h3><p class="pillar-desc">Product analytics and customer support.</p></div><div class="pillar-svcs"></div></article></div></div></section><section id="technology" class="enterprise-section"><div class="container"><div class="svc-hd"><div><div class="stag">Our approach</div><h2 class="sh">From challenge to <em>working solution.</em></h2><p class="ssub">We combine agricultural science, AI and economics, with attention to data quality and uncertainty.</p></div></div><div class="pillar-grid"><article class="pillar"><div class="pillar-top"><span class="section-number">01</span><h3>Discover</h3><p class="pillar-desc">Define the business problem and expected value.</p></div><div class="pillar-svcs"></div></article><article class="pillar"><div class="pillar-top"><span class="section-number">02</span><h3>Design</h3><p class="pillar-desc">Assess data availability, feasibility and suitable methods.</p></div><div class="pillar-svcs"></div></article><article class="pillar"><div class="pillar-top"><span class="section-number">03</span><h3>Develop & evaluate</h3><p class="pillar-desc">Prototype, test and refine before deployment.</p></div><div class="pillar-svcs"></div></article></div></div></section><section id="about" class="enterprise-section"><div class="container"><div class="stag">About us</div><h2 class="sh">Beyond AI. <em>Agricultural intelligence.</em></h2><p class="ssub" style="max-width:760px">WonkaFarm Brain LLC is an independent, United States-based agricultural technology company focused on practical AI solutions. Our mission is to connect agricultural knowledge with digital technology to address real business challenges. We welcome commercial partnerships, pilot projects and technology development inquiries worldwide.</p><a class="btn-p" style="margin-top:24px" href="#contact">Explore a partnership →</a></div></section><section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="cl reveal">
+        <div class="stag">Get In Touch</div>
+        <h2 class="sh">Let's talk about<em>your project.</em></h2>
+        <p class="ssub">Tell us about your agricultural business challenge. We can explore project scope, technical feasibility and potential collaboration.</p>
+        <div class="ci-list">
+          <div class="ci-row">
+            <div class="ci-ico">📧</div>
+            <div class="ci-txt"><strong>Email</strong><a href="mailto:fekre@digitalagsystems.org">Contact our business team</a></div>
+          </div>
+          
+          
+          <div class="ci-row">
+            <div class="ci-ico">📅</div>
+            <div class="ci-txt"><strong>Business inquiries</strong><a href="mailto:fekre@digitalagsystems.org">Email to schedule</a></div>
+          </div>
+          <div class="ci-row">
+            <div class="ci-ico">🌍</div>
+            <div class="ci-txt"><strong>Base &amp; Coverage</strong><span>United States · Remote worldwide</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="cf-box reveal">
+        <h3>Request a Custom Solution</h3>
+        <form onsubmit="handleForm(event)">
+          <div class="fg"><label>Your Name</label><input type="text" placeholder="Your full name" required/></div>
+          <div class="fg"><label>Organisation</label><input type="text" placeholder="Company or organization"/></div>
+          <div class="fg"><label>Email Address</label><input type="email" placeholder="you@company.com" required/></div>
+          <div class="fg">
+            <label>How Can We Help?</label>
+            <select><option>Select a solution</option><option>AI agents</option><option>Business automation</option><option>Predictive analytics</option><option>Risk intelligence</option><option>Regenerative agriculture</option><option>Custom software</option><option>Partnership inquiry</option><option>Other</option></select>
+          </div>
+          <div class="fg"><label>Tell Us About Your Challenge</label><textarea placeholder="Describe your business challenge, available data and desired outcome..."></textarea></div>
+          <button type="submit" class="sbtn">Prepare Email Inquiry →</button><p style="font-size:.78rem;color:var(--muted);margin-top:10px">Opens your email application. Review and send the message to complete your inquiry.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-brand">
+      <div style="display:flex;align-items:center;gap:10px">
+        <svg width="32" height="32" viewBox="0 0 120 100" fill="none">
+          <path d="M5 72 Q60 62 115 72" stroke="#1a4a0a" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <ellipse cx="32" cy="62" rx="16" ry="16" fill="#1B5E20"/>
+          <ellipse cx="32" cy="62" rx="10" ry="10" fill="white"/>
+          <ellipse cx="32" cy="62" rx="5"  ry="5"  fill="#1B5E20"/>
+          <ellipse cx="62" cy="65" rx="10" ry="10" fill="#1B5E20"/>
+          <ellipse cx="62" cy="65" rx="5.5" ry="5.5" fill="white"/>
+          <ellipse cx="62" cy="65" rx="2.5" ry="2.5" fill="#1B5E20"/>
+          <path d="M38 46 L70 46 L74 52 L74 62 L38 62 Z" fill="#1B5E20"/>
+          <path d="M38 46 L38 32 L52 32 L56 38 L56 46 Z" fill="#245C1A"/>
+          <rect x="50" y="24" width="4" height="10" rx="2" fill="#1B5E20"/>
+          <line x1="84" y1="70" x2="84" y2="8"  stroke="#1B5E20" stroke-width="3.5" stroke-linecap="round"/>
+          <polyline points="83,42 66,42 66,30" stroke="#1B5E20" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="66" cy="30" r="4.5" fill="white" stroke="#1B5E20" stroke-width="2"/>
+          <circle cx="66" cy="30" r="1.8" fill="#1B5E20"/>
+          <polyline points="85,55 100,55 100,44" stroke="#1B5E20" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="100" cy="44" r="4.5" fill="white" stroke="#1B5E20" stroke-width="2"/>
+          <circle cx="100" cy="44" r="1.8" fill="#1B5E20"/>
+          <path d="M84,8 C78,-6 60,0 62,16 C64,28 80,26 84,8Z"  fill="#2E7D32"/>
+          <path d="M84,12 C90,-4 108,4 106,20 C104,32 88,28 84,12Z" fill="#388E3C"/>
+        </svg>
+        <div style="font-family:'Arial Black',Arial,sans-serif;font-size:.95rem;letter-spacing:2px;color:white">WonkaFarm<span style="color:#4ade80"> Brain</span></div>
+      </div>
+      <div class="ft-tagline">Agricultural AI, predictive intelligence and custom technology solutions.</div>
+    </div>
+    <div class="ft-col">
+      <h4>Products</h4>
+      <a href="#products">CropOracle — WhatsApp Advisory</a>
+      <a href="#products">PlotScan — Image Analysis</a>
+      <a href="https://fieldbrain.netlify.app">FieldBrain AI</a><a href="https://croprisk-intelligence.onrender.com">CropRisk Intelligence</a><a href="#contact">Custom AI Tool Request</a>
+    </div>
+    <div class="ft-col"><h4>Company</h4><a href="#services">Solutions</a><a href="#industries">Industries</a><a href="#technology">Technology</a><a href="#about">About</a><a href="#contact">Contact</a></div>
+  </div>
+  <div class="ft-copy">
+    © 2026 WonkaFarm Brain LLC ·
+    <a href="mailto:fekre@digitalagsystems.org">Contact our business team</a> ·
+    United States
+  </div>
+</footer>
+
+<script>
+  /* scroll reveal */
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e,i) => {
+      if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('vis'), i*70); obs.unobserve(e.target); }
+    });
+  },{threshold:0.07});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  /* mobile nav */
+  let open=false;
+  function toggleNav(){
+    const nl=document.getElementById('nl'); open=!open;
+    nl.style.cssText = open
+      ? 'display:flex;flex-direction:column;gap:14px;position:absolute;top:68px;left:0;right:0;background:rgba(250,250,248,.98);padding:16px 24px 24px;border-bottom:1px solid #dde8de;box-shadow:0 8px 24px rgba(13,31,15,.1);z-index:299'
+      : '';
+  }
+  document.querySelectorAll('#nl a').forEach(a=>{
+    a.addEventListener('click',()=>{ if(window.innerWidth<=960){ document.getElementById('nl').style.cssText=''; open=false; }});
+  });
+
+  /* nav shadow */
+  window.addEventListener('scroll',()=>{
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY>30);
+  });
+
+  /* form */
+  function handleForm(e){
+    e.preventDefault();
+    const f=e.target; const inputs=f.querySelectorAll('input');
+    const body=['Name: '+inputs[0].value,'Organization: '+inputs[1].value,'Email: '+inputs[2].value,'Solution: '+f.querySelector('select').value,'Challenge: '+f.querySelector('textarea').value].join('\n');
+    window.location.href='mailto:fekre@digitalagsystems.org?subject='+encodeURIComponent('WFB project inquiry')+'&body='+encodeURIComponent(body);
+  }
+</script>
+</body>
+</html>
